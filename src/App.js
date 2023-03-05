@@ -1,23 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { phongCreator } from './redux';
+import { MainRoutes } from './Router/router';
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  const {layDuLieuPhong} = bindActionCreators(phongCreator, dispatch);
+  
+  useEffect(()=> {
+    layDuLieuPhong();
+  }, [])
+
+  const {phongInfo} = useSelector(state=>state.phong);
+
+  useEffect(()=> {
+    console.log('phongInfo', phongInfo)
+  }, [phongInfo])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MainRoutes/>
     </div>
   );
 }

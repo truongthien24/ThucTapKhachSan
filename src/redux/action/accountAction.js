@@ -46,10 +46,11 @@ export const loginUser = (data) => async (dispatch) => {
                 let timerInterval;
                 Swal.fire({
                     icon: 'error',
+                    iconColor: '#3790c7',
                     title: 'Đăng nhập không thành công!',
                     timer: 2000,
                     timerProgressBar: true,
-                    confirmButtonColor: '',
+                    confirmButtonColor: '#3790c7',
                     // didOpen: () => {
                     //     Swal.showLoading()
                     //     const b = Swal.getHtmlContainer().querySelector('b')

@@ -1,6 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+body {
+  font-family: "Roboto Slab", serif;
+}
+
+* {
+  font-family: "Roboto Slab", serif;
+}
+
 .boxes {
   --size: 32px;
   --duration: 800ms;
@@ -122,6 +130,18 @@ html {
 }
 *:before, *:after {
   box-sizing: border-box;
+}
+
+.swiper {
+  padding: 10px 10px 30px 10px !important;
+}
+.swiper .swiper-pagination {
+  left: 0 !important;
+  width: 100% !important;
+  bottom: 3px !important;
+}
+.swiper .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: white;
 }
 
 .hover-span:hover + span {

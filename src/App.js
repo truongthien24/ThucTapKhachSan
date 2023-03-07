@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { phongCreator } from './redux';
 import { MainRoutes } from './Router/router';
+import { Loading } from './component/Loading/Loading';
 
 function App() {
 
@@ -17,12 +18,15 @@ function App() {
 
   const {phongInfo} = useSelector(state=>state.phong);
 
-  useEffect(()=> {
-    console.log('phongInfo', phongInfo)
-  }, [phongInfo])
+  const {statusLoading} = useSelector(state=>state.home);
 
   return (
     <div className="App">
+      {
+        statusLoading
+        &&
+        <Loading/>
+      }
       <MainRoutes/>
     </div>
   );

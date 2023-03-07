@@ -6,18 +6,21 @@ export const ListMenu = () => {
     const APIMenu = [
         {
             name: 'Về chúng tôi',
+            icon: 'check',
             method: () => {
                 alert('xin chào !')
             }
         },
         {
             name: 'Đặt phòng',
+            icon: 'calendar',
             method: () => {
                 alert('xin chào !')
             }
         },
         {
             name: 'Liên hệ',
+            icon: 'phone',
             method: () => {
                 alert('xin chào !')
             }

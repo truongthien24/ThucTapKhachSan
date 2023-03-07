@@ -5,8 +5,8 @@ import { MenuUser } from '../component/MenuUser'
 export const Layout1 = () => {
   return (
     <div>
-        <MenuUser/>
-        <Outlet/>
+      <MenuUser/>
+      <Outlet/>
     </div>
   )
 }

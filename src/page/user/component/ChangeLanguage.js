@@ -53,7 +53,7 @@ export const ChangeLanguage = () => {
             {
                 open
                 &&
-                <ul className='absolute top-[110%] left-0 border-solid border-[#dadada] w-full border-[1px] rounded-[8px] overflow-hidden shadow-lg shadow-gray-200'>
+                <ul className='absolute top-[110%] left-0 border-solid border-[#dadada] w-full border-[1px] rounded-[8px] overflow-hidden shadow-lg shadow-gray-200 z-10'>
                     {renderListLanguage()}
                 </ul>
             }

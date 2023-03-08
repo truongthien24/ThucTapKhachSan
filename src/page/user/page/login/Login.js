@@ -44,7 +44,7 @@ export const Login = () => {
               <img src="/images/fly.png" className='w-[200px] md:w-[250px]'/>
             </div>
             <div 
-              className='absolute top-[50%] left-[50%] bg-[white] w-[85%] sm:w-[80%] md:w-[50%] xl:w-[40%] translate-x-[-50%] translate-y-[-50%] rounded-[10px] px-[30px] py-[20px]'
+              className='absolute top-[50%] left-[50%] bg-[white] w-[85%] sm:w-[80%] md:w-[50%] xl:w-[25%] translate-x-[-50%] translate-y-[-50%] rounded-[10px] px-[30px] py-[20px]'
               style={{boxShadow: 'rgba(0, 0, 0, 0.26) 0px 5px 40px'}}
             >
               <div className='flex items-center justify-between mb-[30px]'>

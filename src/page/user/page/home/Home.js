@@ -6,6 +6,10 @@ export const HomeUser = () => {
 
   const listBanner = [
     {
+      title: 'Sống đậm chất riêng',
+      image: 'https://ik.imagekit.io/tvlk/image/imageResource/2023/01/04/1672832128279-058ecb9c711fcf1d732685bfaba3eefa.jpeg?tr=h-230,q-75,w-472',
+    },
+    {
       title: 'Coupon 20%',
       image: 'https://ik.imagekit.io/tvlk/image/imageResource/2023/01/05/1672895303799-b606809bc4a9a275e517bddc86ae252c.png?tr=h-230,q-75,w-472',
     },

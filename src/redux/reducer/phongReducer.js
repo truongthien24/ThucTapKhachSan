@@ -1,13 +1,13 @@
 
 
 const initialState = {
-    phongInfo: {}
+    listRoom: []
 }
 
 export const PhongReducer = (state = initialState, action) => {
     switch(action.type) {
         case 'LAY_DU_LIEU': {
-            state.phongInfo = action.payload.docs[0].data();
+            state.listRoom = action.payload.docs.map((doc)=>({...doc.data()}));
             return {...state};
         }
         break;

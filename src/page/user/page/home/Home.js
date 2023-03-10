@@ -1,6 +1,8 @@
 import React from 'react'
+import { ListRoomArea } from '../../component/ListRoomArea'
 import { SearchArea } from '../../component/SearchArea'
 import { Slider } from '../../component/Slider'
+import { Reason } from '../../component/Reason'
 
 export const HomeUser = () => {
 
@@ -35,6 +37,8 @@ export const HomeUser = () => {
         />
       </div>
       <SearchArea/>
+      <ListRoomArea/>
+      <Reason/>
     </div>
   )
 }

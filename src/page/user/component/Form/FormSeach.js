@@ -105,62 +105,11 @@ export const FormSearch = (props) => {
 
     return (
         <>
-            <form className='w-full grid grid-cols-2 gap-[20px]' onSubmit={handleSubmit(handleLogin)}>
-                <div className=''>
+            <form className='w-full flex' onSubmit={handleSubmit(handleLogin)}>
+                <div className='w-[70%]'>
                     {renderInput()}
                 </div>
-                {/* <div className='w-[80%] mt-[10px] flex justify-between items-center'>
-                    <span className='text-orange-400 cursor-pointer hover:underline'
-                        onClick={
-                            ()=> {
-                                Swal.fire({
-                                    icon: 'info',
-                                    iconColor: '#3790c7',
-                                    title: 'Chức năng đang phát triển!',
-                                    timer: 2000,
-                                    timerProgressBar: true,
-                                    confirmButtonColor: '#3790c7',
-                                    // didOpen: () => {
-                                    //     Swal.showLoading()
-                                    //     const b = Swal.getHtmlContainer().querySelector('b')
-                                    //     timerInterval = setInterval(() => {
-                                    //     b.textContent = Swal.getTimerLeft()
-                                    //     }, 100)
-                                    // },
-                                    // willClose: () => {
-                                    //     clearInterval(timerInterval)
-                                    // }
-                                })
-                            }
-                        }
-                    >Quên mật khẩu? </span>
-                    <span className='text-[#3790c7] font-[500] cursor-pointer hover:underline'
-                        onClick={
-                            ()=> {
-                                Swal.fire({
-                                    icon: 'info',
-                                    iconColor: '#3790c7',
-                                    title: 'Chức năng đang phát triển!',
-                                    timer: 2000,
-                                    timerProgressBar: true,
-                                    confirmButtonColor: '#3790c7',
-                                    // didOpen: () => {
-                                    //     Swal.showLoading()
-                                    //     const b = Swal.getHtmlContainer().querySelector('b')
-                                    //     timerInterval = setInterval(() => {
-                                    //     b.textContent = Swal.getTimerLeft()
-                                    //     }, 100)
-                                    // },
-                                    // willClose: () => {
-                                    //     clearInterval(timerInterval)
-                                    // }
-                                })
-                            }
-                        }
-                    >Chưa có tài khoản </span>
-                </div> */}
-                <div className='flex items-end'>
-                    {/* <button className='flex items-center justify-center bg-[white] py-[12px] rounded-[7px]' type="button" onClick={handleCancel}>Hủy bỏ</button> */}
+                <div className='flex items-end w-[30%]'>
                     <button className='flex items-center justify-center bg-[#3790c7] text-white py-[12px] px-[20px] rounded-[7px] duration-300 hover:shadow-[#3790c7a6] hover:shadow-lg hover:translate-y-[-3px]' type="submit">
                         <Icon name="search"/>
                         <span className='ml-[10px]'>Tìm khách sạn</span>

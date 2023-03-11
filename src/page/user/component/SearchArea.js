@@ -50,7 +50,7 @@ export const SearchArea = () => {
                 <Icon name="search" color="3790c7"/>
                 <h3 className='text-[25px] ml-[20px] text-[#3790c7] font-[500]'>Đặt phòng ở đây</h3>
             </div> */}
-            <div className='w-full lg:w-[80%] xl:w-[50%] bg-[#f3f2f2] rounded-[15px] py-[20px] px-[30px] shadow-lg shadow-gray-200'>
+            <div className='w-full lg:w-[80%] xl:w-[60%] bg-[#f3f2f2] rounded-[15px] py-[20px] px-[30px] shadow-lg shadow-gray-200'>
               <FormSearch
                 initialValue={initialValue} 
                 formField={formField} 

@@ -1,10 +1,13 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import { Icon } from '../../../assets/icon';
 
 export const RoomAreaItem = (props) => {
 
     //Props
     const {data, flag} = props;
+
+    const navigate = useNavigate();
 
     const renderDanhGia = () => {
         let arr = [];
@@ -16,8 +19,12 @@ export const RoomAreaItem = (props) => {
         })
     }
 
+    const chooseRoom = () => {
+        navigate(`infoRoom/${data.id}`);
+    }
+
     return (
-        <div className={`flex w-full shadow-lg shadow-gray-300 py-[20px] rounded-[20px] cursor-pointer mb-[35px]`}>
+        <div className={`flex w-full shadow-lg shadow-gray-300 py-[20px] rounded-[20px] cursor-pointer mb-[35px]`} onClick={chooseRoom}>
             <div className="w-[40%] flex justify-end">
                 <div className={`w-[200px] lg:w-[300px] overflow-hidden ${flag % 2 != 0 ? 'rounded-tr-[60px] rounded-bl-[100px]' : 'rounded-tl-[60px] rounded-br-[100px]'}`}>
                     <img className="duration-500 hover:scale-105" src={data.image}/>

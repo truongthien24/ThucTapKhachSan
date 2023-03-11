@@ -40,11 +40,11 @@ export const Login = () => {
     return (
       <>
         <div className='fixed top-0 left-0 w-screen h-screen bg-[white] z-10'>
-            <div className='absolute top-[8%] left-[50%] translate-x-[-50%]'>
+            <div className='absolute top-[5%] lg:top-[3%] left-[50%] translate-x-[-50%]'>
               <img src="/images/fly.png" className='w-[200px] md:w-[250px]'/>
             </div>
             <div 
-              className='absolute top-[50%] left-[50%] bg-[white] w-[85%] sm:w-[80%] md:w-[50%] xl:w-[25%] translate-x-[-50%] translate-y-[-50%] rounded-[10px] px-[30px] py-[20px]'
+              className='absolute top-[50%] lg:top-[55%] left-[50%] bg-[white] w-[85%] sm:w-[80%] md:w-[50%] lg:w-[40%] xl:w-[35%] 2xl:w-[30%] translate-x-[-50%] translate-y-[-50%] rounded-[10px] px-[30px] py-[20px]'
               style={{boxShadow: 'rgba(0, 0, 0, 0.26) 0px 5px 40px'}}
             >
               <div className='flex items-center justify-between mb-[30px]'>

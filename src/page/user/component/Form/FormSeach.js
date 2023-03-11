@@ -106,10 +106,10 @@ export const FormSearch = (props) => {
     return (
         <>
             <form className='w-full flex' onSubmit={handleSubmit(handleLogin)}>
-                <div className='w-[70%]'>
+                <div className='w-[60%]'>
                     {renderInput()}
                 </div>
-                <div className='flex items-end w-[30%]'>
+                <div className='flex items-end w-[40%]'>
                     <button className='flex items-center justify-center bg-[#3790c7] text-white py-[12px] px-[20px] rounded-[7px] duration-300 hover:shadow-[#3790c7a6] hover:shadow-lg hover:translate-y-[-3px]' type="submit">
                         <Icon name="search"/>
                         <span className='ml-[10px]'>Tìm khách sạn</span>

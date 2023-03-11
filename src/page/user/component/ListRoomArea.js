@@ -13,7 +13,7 @@ export const ListRoomArea = () => {
     }, [])
 
     const {listRoom} = useSelector(state=>state.phong);
-
+    
     // Method
     const renderRoom = () => {
         return listRoom.map((item, index) => {

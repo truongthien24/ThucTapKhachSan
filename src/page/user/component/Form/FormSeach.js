@@ -5,6 +5,7 @@ import { Icon } from '../../../../assets/icon';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
+import { useTranslation } from 'react-i18next';
 
 export const FormSearch = (props) => {
 
@@ -13,6 +14,7 @@ export const FormSearch = (props) => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const {t} = useTranslation();
 
     // Form
     const {setValue, watch, formState: { errors }, handleSubmit, register, getValues} = useForm({
@@ -112,7 +114,7 @@ export const FormSearch = (props) => {
                 <div className='flex items-end w-[40%]'>
                     <button className='flex items-center justify-center bg-[#3790c7] text-white py-[12px] px-[20px] rounded-[7px] duration-300 hover:shadow-[#3790c7a6] hover:shadow-lg hover:translate-y-[-3px]' type="submit">
                         <Icon name="search"/>
-                        <span className='ml-[10px]'>Tìm khách sạn</span>
+                        <span className='ml-[10px]'>{t('findAHotel')}</span>
                     </button>
                 </div>
             </form>

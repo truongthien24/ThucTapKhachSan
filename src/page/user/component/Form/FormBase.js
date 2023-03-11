@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Icon } from '../../../../assets/icon';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import Swal from 'sweetalert2';
 
 export const FormBase = (props) => {
@@ -13,6 +14,7 @@ export const FormBase = (props) => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const {t} = useTranslation();
 
     // Form
     const {setValue, watch, formState: { errors }, handleSubmit, register, getValues} = useForm({
@@ -86,7 +88,7 @@ export const FormBase = (props) => {
                                 })
                             }
                         }
-                    >Quên mật khẩu? </span>
+                    >{t('forgotPassword')}? </span>
                     <span className='text-[#3790c7] font-[500] cursor-pointer hover:underline'
                         onClick={
                             ()=> {
@@ -110,11 +112,11 @@ export const FormBase = (props) => {
                                 })
                             }
                         }
-                    >Chưa có tài khoản </span>
+                    >{t('noAccount')} </span>
                 </div>
                 <div className='mt-[40px] xl:mt-[70px] w-[70%] grid grid-cols-2 gap-3'>
-                    <button className='flex items-center justify-center bg-[white] py-[12px] rounded-[7px]' type="button" onClick={handleCancel}>Hủy bỏ</button>
-                    <button className='flex items-center justify-center bg-[#3790c7] text-white py-[12px] rounded-[7px] duration-300 hover:shadow-[#3790c7a6] hover:shadow-lg hover:translate-y-[-3px]' type="submit">Đăng nhập</button>
+                    <button className='flex items-center justify-center bg-[white] py-[12px] rounded-[7px]' type="button" onClick={handleCancel}>{t('cancel')}</button>
+                    <button className='flex items-center justify-center bg-[#3790c7] text-white py-[12px] rounded-[7px] duration-300 hover:shadow-[#3790c7a6] hover:shadow-lg hover:translate-y-[-3px]' type="submit">{t('login')}</button>
                 </div>
             </form>
         </>

@@ -5,6 +5,7 @@ import { layDuLieuPhongInfo } from '../../../../redux/action/phongAction';
 import { Icon } from '../../../../assets/icon/index';
 import { ModalBooking } from '../../component/modal/ModalBooking';
 import Swal from 'sweetalert2';
+import { useTranslation } from 'react-i18next';
 
 export const InfoRoom = () => {
 
@@ -15,6 +16,8 @@ export const InfoRoom = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const {t} = useTranslation();
+
     useEffect(()=> {
         dispatch(layDuLieuPhongInfo(id));
     }, [])
@@ -24,7 +27,7 @@ export const InfoRoom = () => {
     const renderMoreImage = () => {
         return <div className="h-full rounded-[10px] overflow-hidden bg-cover cursor-pointer" style={{backgroundImage: `url(${roomInfo.image})`}}>
             <div className="flex items-center justify-center h-full" style={{backgroundColor: 'rgba(0,0,0,0.5)'}}>
-                <span className="text-white">Xem tất cả</span>
+                <span className="text-white">{t('seeAll')}</span>
             </div>
         </div>
     }
@@ -81,8 +84,8 @@ export const InfoRoom = () => {
                             </div>
                         </div>
                         <div className="flex flex-col items-center">
-                            <p className="mb-[10px]">{roomInfo?.tinhTrang ? 'Hết phòng' : 'Còn phòng'}</p>
-                            <button className="flex items-center justify-center bg-[#3790c7] text-white py-[12px] px-[20px] rounded-[7px] duration-300 hover:shadow-[#3790c7a6] hover:shadow-lg hover:translate-y-[-3px]" onClick={handleBooking}>Booking</button>
+                            <p className="mb-[10px]">{roomInfo?.tinhTrang ? `${t('outOfRoom')}` : `${t('thereStillRoom')}`}</p>
+                            <button className="flex items-center justify-center bg-[#3790c7] text-white py-[12px] px-[20px] rounded-[7px] duration-300 hover:shadow-[#3790c7a6] hover:shadow-lg hover:translate-y-[-3px]" onClick={handleBooking}>{t('booking')}</button>
                         </div>
                     </div>
                     <div className="grid grid-cols-4 grid-rows-4 w-full gap-[10px]">

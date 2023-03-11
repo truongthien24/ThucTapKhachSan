@@ -2,10 +2,13 @@ import React, {useEffect} from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Icon } from '../../../../assets/icon';
+import { useTranslation } from 'react-i18next';
 
 export const FormBooking = (props) => {
     // Props
     const {formField, initialValue, validationSchema, methodSubmit, methodCancel, data} = props;
+
+    const {t} = useTranslation();
 
     // Form
     const {setValue, watch, formState: { errors }, handleSubmit, register, getValues} = useForm({
@@ -74,8 +77,8 @@ export const FormBooking = (props) => {
                 </div>
             </div>
             <div className='mt-[20px] xl:mt-[40px] w-[70%] grid grid-cols-2 gap-3'>
-                <button className='flex items-center justify-center bg-[white] py-[12px] rounded-[7px]' type="button" onClick={methodCancel}>Hủy bỏ</button>
-                <button className='flex items-center justify-center bg-[#3790c7] text-white py-[12px] rounded-[7px] duration-300 hover:shadow-[#3790c7a6] hover:shadow-lg hover:translate-y-[-3px]' type="submit">Booking</button>
+                <button className='flex items-center justify-center bg-[white] py-[12px] rounded-[7px]' type="button" onClick={methodCancel}>{t('cancel')}</button>
+                <button className='flex items-center justify-center bg-[#3790c7] text-white py-[12px] rounded-[7px] duration-300 hover:shadow-[#3790c7a6] hover:shadow-lg hover:translate-y-[-3px]' type="submit">{t('booking')}</button>
             </div>
         </form>
     )

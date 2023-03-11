@@ -4,10 +4,12 @@ import { FormBase } from '../../component/Form/FormBase';
 import * as yup from 'yup';
 import { Loading } from '../../../../component/Loading/Loading';
 import { loginUser } from '../../../../redux/action/accountAction';
+import { useTranslation } from 'react-i18next';
 
 export const Login = () => {
 
     const navigate = useNavigate();
+    const {t} = useTranslation();
 
     const initialValue = {
       userName: "",
@@ -48,7 +50,7 @@ export const Login = () => {
               style={{boxShadow: 'rgba(0, 0, 0, 0.26) 0px 5px 40px'}}
             >
               <div className='flex items-center justify-between mb-[30px]'>
-                <h3 className='text-[20px] md:text-[25px] font-[500] text-[#3790c7]'>Đăng nhập</h3>
+                <h3 className='text-[20px] md:text-[25px] font-[500] text-[#3790c7]'>{t('login')}</h3>
                 <span className='text-[25px] md:text-[30px] font-[500] translate-y-[-5px] text-[#3790c7] cursor-pointer' onClick={()=> {
                   navigate('/user')
                 }}>&times;</span>

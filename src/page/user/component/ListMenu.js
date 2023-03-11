@@ -1,25 +1,28 @@
 import React from 'react'
 import { ButtonMenu } from '../shareComponent/ButtonMenu/ButtonMenu'
+import { useTranslation } from 'react-i18next';
 
 export const ListMenu = () => {
 
+    const {t} = useTranslation();
+
     const APIMenu = [
         {
-            name: 'Về chúng tôi',
+            name: `${t('aboutUs')}`,
             icon: 'check',
             method: () => {
                 alert('xin chào !')
             }
         },
         {
-            name: 'Đặt phòng',
+            name: `${t('booking')}`,
             icon: 'calendar',
             method: () => {
                 alert('xin chào !')
             }
         },
         {
-            name: 'Liên hệ',
+            name: `${t('contact')}`,
             icon: 'phone',
             method: () => {
                 alert('xin chào !')

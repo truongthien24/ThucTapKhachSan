@@ -12,12 +12,13 @@ export const createBooking = (data) => async (dispatch) => {
             await addDoc(collection(db, "phieuDatPhong"), {
                 hoTen: data.hoTen,
                 sdt: data.sdt,
-                email: data.email,
+                cccd: data.cccd,
                 soNgay: data.soNgay,
                 ngayBatDauThue: data.ngayBatDauThue,
                 tinhTrang: false,
                 tongGia: data.tongGia,
-                idDatPhong: data.idDatPhong
+                idKhachHang: data.idKhachHang,
+                idPhong: data.idPhong
             });
             dispatch(setLoading({
                 status: 'done'
@@ -25,5 +26,24 @@ export const createBooking = (data) => async (dispatch) => {
         }, 1000)
     } catch (error) {
         console.log('Lỗi rồi')
+    }
+}
+
+
+export const getBooking = () => async (dispatch) => {
+    try {
+        const phieuDatPhongRef = collection(db, 'phieuDatPhong');
+        const dataRef = await getDocs(phieuDatPhongRef);
+
+        const result = dataRef.docs.filter((doc) => doc.data().idKhachHang == (JSON.parse(localStorage.getItem('jwt'))));
+
+        // console.log('result', result);
+
+        dispatch({
+            type: 'LAY_DU_LIEU_BOOKING',
+            payload: result
+        })
+    } catch (error) {
+        console.log('Lỗi rồi 22!');
     }
 }

@@ -12,7 +12,7 @@ export const loginUser = (data) => async (dispatch) => {
         const result = await getDocs(accountRef);
         // console.log('result docs', result.docs[0].data());
         
-        const dataResult = result.docs.map((doc)=> ({...doc.data()}));
+        const dataResult = result.docs.map((doc)=> ({...doc.data(), id: doc.id}));
 
         const findUser = dataResult?.filter((item)=>  item?.userName === data?.data?.userName && item?.password === data?.data?.password );
 

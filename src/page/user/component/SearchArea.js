@@ -4,10 +4,14 @@ import { FormSearch } from './Form/FormSeach'
 import * as yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
 import { layDuLieuKhuVuc } from '../../../redux/action/areaAction'
+import Swal from 'sweetalert2'
+import { useTranslation } from 'react-i18next'
 
 export const SearchArea = () => {
 
     const dispatch = useDispatch();
+
+    const {t} = useTranslation();
 
     useEffect(()=> {
       dispatch(layDuLieuKhuVuc());
@@ -36,8 +40,8 @@ export const SearchArea = () => {
     ]
 
     const validationSchema = yup.object().shape({
-      userName: yup.string().required("Please input...."),
-      password: yup.string().required("Please input...."),
+      // userName: yup.string().required("Please input...."),
+      // password: yup.string().required("Please input...."),
     });
 
     return (
@@ -55,7 +59,16 @@ export const SearchArea = () => {
                 initialValue={initialValue} 
                 formField={formField} 
                 validationSchema={validationSchema} 
-                // methodSubmit={loginUser}
+                methodSubmit={()=> {
+                  Swal.fire({
+                    icon: 'info',
+                    title: `${t('FuncIsDev')}`,
+                    confirmButtonColor: '#3790c7',
+                    confirmButtonText: `${t('ok')}`,
+                    timer: 2000,
+                    timerProgressBar: true
+                  })
+                }}
               />
             </div>
           </div>

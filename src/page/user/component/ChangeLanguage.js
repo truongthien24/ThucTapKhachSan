@@ -1,15 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import { useDispatch } from 'react-redux';
 import i18n from '../../../assets/i18n/i18n';
 import { setLoading } from '../../../redux/action/homeAction';
 
+// const language = localStorage.getItem('language');
+
 export const ChangeLanguage = () => {
 
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(false);
     const [lang, setLang] = useState({
         name: 'VN',
         image: '/images/vn.png',
     })
+
+    const language = localStorage.getItem('language')
+
+    useEffect(()=> {language === 'vn' ? setLang({
+        name: 'VN',
+        value: 'vn',
+        image: '/images/vn.png'
+    }) : language === 'en' ? setLang({
+        name: 'EN',
+        value: 'en',
+        image: '/images/us.png'
+    }) : setLang({
+        name: 'KR',
+        value: 'kr',
+        image: '/images/kr.png'
+    })},[language])
 
     const dispatch = useDispatch();
 
@@ -20,7 +38,6 @@ export const ChangeLanguage = () => {
         localStorage.setItem('language', data.value);
         i18n.changeLanguage(data.value)
         setTimeout(()=> {
-            setLang(data)
             setOpen(false);
             dispatch(setLoading({
                 status: 'done'
@@ -35,9 +52,7 @@ export const ChangeLanguage = () => {
             image: '/images/kr.png',
             method: () => {
                 handleMethod({
-                    name: 'KR',
                     value: 'kr',
-                    image: '/images/kr.png',
                 })
             }
         },
@@ -47,9 +62,7 @@ export const ChangeLanguage = () => {
             image: '/images/us.png',
             method: () => {
                 handleMethod({
-                    name: 'EN',
                     value: 'en',
-                    image: '/images/us.png',
                 })
             }
         },
@@ -59,9 +72,7 @@ export const ChangeLanguage = () => {
             image: '/images/vn.png',
             method: () => {
                 handleMethod({
-                    name: 'VN',
                     value: 'vn',
-                    image: '/images/vn.png',
                 })
             }
         },

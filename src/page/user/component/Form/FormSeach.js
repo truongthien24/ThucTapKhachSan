@@ -20,7 +20,7 @@ export const FormSearch = (props) => {
     const {setValue, watch, formState: { errors }, handleSubmit, register, getValues} = useForm({
         mode: 'onChange',
         defaultValues: initialValue,
-        resolver: yupResolver(validationSchema),
+        // resolver: yupResolver(validationSchema),
     });
 
     const renderInputType = (item, index) => {
@@ -97,9 +97,9 @@ export const FormSearch = (props) => {
         })
     }
 
-    const handleLogin = () => {
-        dispatch(methodSubmit({data: watch()}));
-    }
+    // const handleLogin = () => {
+    //     dispatch(methodSubmit({data: watch()}));
+    // }
 
     const handleCancel = () => {
         navigate(-1)
@@ -107,9 +107,9 @@ export const FormSearch = (props) => {
 
     return (
         <>
-            <form className='w-full flex' onSubmit={handleSubmit(handleLogin)}>
+            <form className='w-full flex' onSubmit={handleSubmit(methodSubmit)}>
                 <div className='w-[60%]'>
-                    {renderInput()}
+                    {/* {renderInput()} */}
                 </div>
                 <div className='flex items-end w-[40%]'>
                     <button className='flex items-center justify-center bg-[#3790c7] text-white py-[12px] px-[20px] rounded-[7px] duration-300 hover:shadow-[#3790c7a6] hover:shadow-lg hover:translate-y-[-3px]' type="submit">

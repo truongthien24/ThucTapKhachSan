@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 export const ModalBooking = (props) => {
 
     // Props;
-    const {data, setIsBooking} = props;
+    const {data, setIsBooking, idRoom} = props;
 
     const dispatch = useDispatch();
     const {t} = useTranslation();
@@ -16,11 +16,12 @@ export const ModalBooking = (props) => {
     const initialValue = {
         hoTen: "",
         sdt: null,
-        cmnd: "",
+        cccd: "",
         soNgay: null,
         ngayBatDauThue: null,
         tongGia: 0,
-        idDatPhong: `test` 
+        idKhachHang: `${JSON.parse(localStorage.getItem('jwt'))}`,
+        idPhong: idRoom
         // idDatPhong===> Tài khoản đăng nhập
     }
   
@@ -34,7 +35,7 @@ export const ModalBooking = (props) => {
             type: "string"
         },
         {
-            name: "cmnd",
+            name: "cccd",
             type: "string"
         },
         {
@@ -56,7 +57,7 @@ export const ModalBooking = (props) => {
         hoTen: yup.string().required("Please input"),
         sdt: yup.number().typeError('Please input number').required("Please input...."),
         // email: yup.string().email('Please input email vv@gmail').required("Please input...."),
-        cmnd: yup.number().typeError('Please input number').required("Please input...."),
+        cccd: yup.number().typeError('Please input number').required("Please input...."),
         soNgay: yup.number().typeError('Please input number').required("Please input....").min(1).max(10),
         ngayBatDauThue: yup.string().required("Please input...."),
     });

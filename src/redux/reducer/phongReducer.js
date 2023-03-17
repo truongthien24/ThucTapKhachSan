@@ -2,7 +2,7 @@
 
 const initialState = {
     listRoom: [],
-    roomInfo: {}
+    // roomInfo: {}
 }
 
 export const PhongReducer = (state = initialState, action) => {
@@ -12,12 +12,12 @@ export const PhongReducer = (state = initialState, action) => {
             return {...state};
         }
         break;
-        case 'LAY_DU_LIEU_PHONG_INFO': {
-            const result = action.payload[0].data();
-            state.roomInfo = result;
-            return {...state};
-        }
-        break;
+        // case 'LAY_DU_LIEU_PHONG_INFO': {
+        //     const result = action.payload[0].data();
+        //     state.roomInfo = result;
+        //     return {...state};
+        // }
+        // break;
         default: return state;
     }
 }

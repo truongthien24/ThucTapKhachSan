@@ -8,6 +8,8 @@ import { Building } from "./component/Building";
 import { More } from "./component/More";
 import { Location } from "./component/Location";
 import { Bank } from "./component/Bank";
+import { BookMark } from "./component/BookMark";
+import { Tag } from "./component/Tag";
 
 export const Icon = (props) => {
     switch(props.name) {
@@ -30,6 +32,10 @@ export const Icon = (props) => {
         case "location": return (<Location {...props}/>);
         break;
         case "bank": return (<Bank {...props}/>);
+        break;  
+        case "bookMark": return (<BookMark {...props}/>);
+        break;  
+        case "tag": return (<Tag {...props}/>);
         break;  
         default: return <></>;
     }

@@ -4,11 +4,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { layDuLieuPhong } from '../../../redux/action/phongAction';
 import {RoomAreaItem} from '../shareComponent/RoomAreaItem';
 import { useTranslation } from 'react-i18next';
+import { createSearchParams, useNavigate } from 'react-router-dom';
+import qs from 'qs';
 
 export const ListRoomArea = () => {
 
     const dispatch = useDispatch();
     const {t} = useTranslation();
+    const navigate = useNavigate();
+    const params = qs.stringify({ member: null, priceFrom: null, priceTo: null });
 
     useEffect(()=> {
         dispatch(layDuLieuPhong())
@@ -23,6 +27,13 @@ export const ListRoomArea = () => {
                 return <RoomAreaItem data={item} key={index} flag={index}/>
             }
         })
+    }
+
+    const handleSeeMore = () => {
+        navigate({
+            pathname: 'searchRoom',
+            search: `${createSearchParams(params)}`,
+        });
     }
 
     return (
@@ -43,7 +54,7 @@ export const ListRoomArea = () => {
                 <div className="text-[#3790c7]">
                     <div className="cursor-pointer flex items-center text-[15px]">
                         <Icon name="more"/>
-                        <span className="ml-[10px]">{t('seeMore')}</span>
+                        <span className="ml-[10px]" onClick={handleSeeMore}>{t('seeMore')}</span>
                     </div>
                 </div>
             </div>

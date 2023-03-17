@@ -3,8 +3,6 @@ import { initReactI18next } from "react-i18next";
  
 const language = localStorage.getItem('language');
 
-console.log('language', language);
-
 const resources = {
     en: {
       translation: {
@@ -26,6 +24,11 @@ const resources = {
         "findAHotel": "Find a hotel",
         "thereStillRoom": "There's still room",
         "outOfRoom": "Out of room",
+        "reservationTicket": "Reservation Ticket",
+        "check": "Check",
+        "confirmed": "Confirmed",
+        "FuncIsDev": "Function is developing !",
+        "ok": "OK",
       },
     },
     kr: {
@@ -48,6 +51,11 @@ const resources = {
         "findAHotel": "호텔 찾기",
         "thereStillRoom": "아직 여유가 있다",
         "outOfRoom": "더 이상 방이 없다",
+        "reservationTicket": "예매권",
+        "check": "확인",
+        "confirmed": "확인됨",
+        "FuncIsDev": "개발 중인 기능",
+        "ok": "동의하다",
       },
     },
     vi: {
@@ -70,6 +78,11 @@ const resources = {
         "findAHotel": "Tìm khách sạn",
         "thereStillRoom": "Còn phòng",
         "outOfRoom": "Hết phòng",
+        "reservationTicket": "Phiếu đặt phòng",
+        "check": "Đang xác nhận",
+        "confirmed": "Đã xác nhận",
+        "FuncIsDev": "Chức năng đang phát triển !",
+        "ok": "Đồng ý",
       },
     }
 };

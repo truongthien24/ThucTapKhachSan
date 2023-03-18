@@ -24,7 +24,7 @@ export const Reason = (props) => {
         return API.map((item, index)=> {
             return <div className="flex flex-col items-center" key={index}>
                 <img src={item.image}/>
-                <p className="font-500 text-[12px] md::text-[16px]">{item.title}</p>
+                <p className="font-500 text-[12px] md:text-[16px]">{item.title}</p>
             </div>
         })
     }

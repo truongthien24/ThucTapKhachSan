@@ -73,16 +73,18 @@ export const MenuMobile = () => {
 
     const renderMenu = () => {
         return APIMenu.map((item, index)=> {
-            return <div className="flex flex-col items-center" key={index} onClick={item.method}>
-                <Icon name={item.icon}/>
-                <span>{item.name}</span>
+            return <div className="flex justify-center">
+                <div className="flex flex-col items-center" key={index} onClick={item.method}>
+                    <Icon name={item.icon}/>
+                    <span>{item.name}</span>
+                </div>    
             </div>
         })
     }
 
     // Return
     return (
-        <div className="fixed flex justify-around items-center bottom-0 left-0 w-screen bg-[white] p-[8px] z-[100]" style={{boxShadow: "rgba(0, 0, 0, 0.5) 0px 5px 20px"}}>
+        <div className="fixed grid grid-cols-3 items-center bottom-0 left-0 w-screen bg-[white] p-[8px] z-[100]" style={{boxShadow: "rgba(0, 0, 0, 0.5) 0px 5px 20px"}}>
             {renderMenu()}
         </div>
     )

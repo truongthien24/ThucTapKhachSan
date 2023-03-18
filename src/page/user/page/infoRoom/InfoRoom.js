@@ -15,6 +15,7 @@ export const InfoRoom = () => {
 
     const [isBooking, setIsBooking] = useState(false);
     const [toggler, setToggler] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -34,7 +35,22 @@ export const InfoRoom = () => {
         dispatch(setLoading({
             status: 'done'
         }))
+        const innerWidth = window.innerWidth;
+        if(innerWidth < 700) {
+            setIsMobile(true);
+        } else {
+            setIsMobile(false);
+        }
     }, [])
+
+    window.addEventListener("resize", ()=>{
+        const innerWidth = window.innerWidth;
+        if(innerWidth < 700) {
+            setIsMobile(true);
+        } else {
+            setIsMobile(false);
+        }
+      })
 
     // const {roomInfo} = useSelector((state)=>state.phong);
 
@@ -42,7 +58,6 @@ export const InfoRoom = () => {
         return <div className="h-full rounded-[10px] overflow-hidden bg-cover cursor-pointer" style={{backgroundImage: `url(${data.image})`}}>
             <div className="flex items-center justify-center h-full" style={{backgroundColor: 'rgba(0,0,0,0.5)'}} onClick={()=> {
                 setToggler(!toggler);
-                console.log('image', data.image);
             }}>
                 <span className="text-white">{t('seeAll')}</span>
             </div>
@@ -95,7 +110,7 @@ export const InfoRoom = () => {
                     <Icon name="building" color="3790c7"/>
                     <h5 className="text-[#3790c7] text-[25px] ml-[20px] font-[500]">{data?.tenPhong}</h5>
                 </div>
-                <div className="w-[90%] md:w-[80%] xl:w-[70%] 2xl:w-[60%] flex flex-col justify-between shadow-lg shadow-gray-300 rounded-[20px] p-[20px]">
+                <div className="w-[90%] md:w-[80%] xl:w-[70%] 2xl:w-[60%] flex flex-col justify-between shadow-lg shadow-gray-300 rounded-[20px] p-[15px] md:p-[20px]">
                     <div className="flex items-end justify-between py-[10px]">
                         <div>
                             <p className="font-bold text-[20px] mb-[10px]">{data?.tenPhong}</p>
@@ -111,20 +126,33 @@ export const InfoRoom = () => {
                             </div>
                         </div>
                         <div className="flex flex-col ">
-                            <p className="mb-[10px]">{data?.tinhTrang ? `${t('outOfRoom')}` : `${t('thereStillRoom')}`}</p>
-                            <button className={`flex items-center justify-center ${data?.tinhTrang === false ? 'bg-[#3790c7] hover:shadow-[#3790c7a6] hover:shadow-lg' : 'bg-[gray] hover:shadow-lg hover:shadow-gray-400'} text-white py-[12px] px-[20px] rounded-[7px] duration-300 hover:translate-y-[-3px]`} onClick={handleBooking}>
-                                {t('booking')}
-                            </button>
+                            {
+                                !isMobile
+                                &&
+                                <>
+                                    <p className="mb-[10px]">{data?.tinhTrang ? `${t('outOfRoom')}` : `${t('thereStillRoom')}`}</p>
+                                    <button className={`flex items-center justify-center ${data?.tinhTrang === false ? 'bg-[#3790c7] hover:shadow-[#3790c7a6] hover:shadow-lg' : 'bg-[gray] hover:shadow-lg hover:shadow-gray-400'} text-white py-[12px] px-[20px] rounded-[7px] duration-300 hover:translate-y-[-3px]`} onClick={handleBooking}>
+                                        {t('booking')}
+                                    </button>
+                                </>
+                            }
                         </div>
                     </div>
-                    <div className="grid grid-cols-4 grid-rows-4 w-full gap-[10px]">
+                    <div className="grid grid-cols-4 grid-rows-3 md:grid-rows-4 w-full gap-[5px] md:gap-[10px]">
                         <div class="col-span-3 row-span-4 rounded-[10px] overflow-hidden">
-                            <img className="h-[300px] lg:h-[450px] w-full rounded-[10px] duration-500 hover:scale-105" src={data?.image}/>
+                            <img className="h-[200px] md:h-[450px] w-full rounded-[10px] duration-500 hover:scale-105" src={data?.image}/>
                         </div>
                         {
                             renderMoreImage()
                         }
-                    </div>
+                    </div>  
+                    {
+                        isMobile
+                        && 
+                        <button className={`flex items-center mt-[10px] justify-center ${data?.tinhTrang === false ? 'bg-[#3790c7] hover:shadow-[#3790c7a6] hover:shadow-lg' : 'bg-[gray] hover:shadow-lg hover:shadow-gray-400'} text-white py-[12px] px-[20px] rounded-[10px] duration-300 hover:translate-y-[-3px]`} onClick={handleBooking}>
+                            {t('booking')}
+                        </button>
+                    }
                 </div>
             </div> 
             <FsLightbox

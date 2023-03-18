@@ -83,7 +83,7 @@ const resources = {
         "forgotPassword": "Quên mật khẩu",
         "listRoom": "Danh sách phòng",
         "seeMore": 'Xem thêm',
-        "reasonBooking": "Lý do bạn nên đặt phòng của chúng tôi",
+        "reasonBooking": "Lý do bạn nên đặt phòng",
         "priceCheap": "Giá rẻ mỗi ngày với ưu đãi đặc biệt",
         "help24/7": "Hỗ trợ khách hàng 24/7",
         "feelbackReal": "Đánh gía khách quan từ khách hàng",

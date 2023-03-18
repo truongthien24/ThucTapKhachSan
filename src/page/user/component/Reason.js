@@ -24,16 +24,16 @@ export const Reason = (props) => {
         return API.map((item, index)=> {
             return <div className="flex flex-col items-center" key={index}>
                 <img src={item.image}/>
-                <p className="font-500">{item.title}</p>
+                <p className="font-500 text-[12px] md::text-[16px]">{item.title}</p>
             </div>
         })
     }
 
     return (
-        <div className="flex flex-col items-center py-[40px]">
+        <div className="flex flex-col items-center py-[40px] px-[10px]">
             <div className='flex items-center mb-[40px]'>
                 <Icon name="check" color="3790c7"/>
-                <h3 className='text-[25px] ml-[20px] text-[#3790c7] font-[500]'>{t('reasonBooking')}</h3>
+                <h3 className='text-[20px] md:text-[25px] ml-[20px] text-[#3790c7] font-[500]'>{t('reasonBooking')}</h3>
             </div>
             <div className="grid grid-cols-3 gap-[20px]">
                 {

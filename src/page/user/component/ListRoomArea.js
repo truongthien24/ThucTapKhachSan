@@ -41,12 +41,12 @@ export const ListRoomArea = () => {
             {/* <div className='w-[100%] flex justify-center py-[20px] bg-[#f7f7f7] rounded-t-[20px]'>
                 <h3 className='text-[20px]'>Đặt phòng ở đây</h3>
             </div> */}
-            <div className='w-full md:w-[90%] lg:w-[80%] 2xl:w-[65%] flex flex-col items-center justify-center py-[20px]'>
+            <div className='w-full w-[95%] md:w-[90%] lg:w-[80%] 2xl:w-[65%] flex flex-col items-center justify-center py-[20px]'>
                 <div className='flex items-center mb-[20px]'>
                     <Icon name="building" color="3790c7"/>
                     <h3 className='text-[25px] ml-[20px] text-[#3790c7] font-[500]'>{t('listRoom')}</h3>
                 </div>
-                <div className='w-full pt-[20px] pb-[5px] px-[30px]'>
+                <div className='w-full pt-[20px] pb-[5px] px-[20px] md:px-[30px]'>
                     {
                         renderRoom()
                     }

@@ -2,8 +2,8 @@ import React from 'react'
 
 export const Footer = () => {
   return (
-    <div className="bg-[#1b1b1b] p-[40px] min-h-[300px] mt-[40px] text-white">
-        <div className="grid grid-cols-3 gap-[30px] h-full">
+    <div className="bg-[#1b1b1b] p-[30px] lg:p-[40px] min-h-[300px] mt-[40px] text-white">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-[30px] h-full">
             <div>
 
             </div>

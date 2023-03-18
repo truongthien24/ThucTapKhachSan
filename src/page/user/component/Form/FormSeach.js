@@ -111,10 +111,10 @@ export const FormSearch = (props) => {
                 <div className='w-[60%]'>
                     {/* {renderInput()} */}
                 </div>
-                <div className='flex items-end w-[40%]'>
-                    <button className='flex items-center justify-center bg-[#3790c7] text-white py-[12px] px-[20px] rounded-[7px] duration-300 hover:shadow-[#3790c7a6] hover:shadow-lg hover:translate-y-[-3px]' type="submit">
+                <div className='flex justify-end w-[50%] md:w-[40%]'>
+                    <button className='flex items-center justify-center bg-[#3790c7] text-white py-[12px] px-[10px] md:px-[20px] rounded-[7px] duration-300 hover:shadow-[#3790c7a6] hover:shadow-lg hover:translate-y-[-3px]' type="submit">
                         <Icon name="search"/>
-                        <span className='ml-[10px]'>{t('findAHotel')}</span>
+                        <span className='ml-[5px] md:ml-[10px] text-[13px] md:text-[16px]'>{t('findAHotel')}</span>
                     </button>
                 </div>
             </form>

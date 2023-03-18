@@ -26,7 +26,7 @@ export const FormBaseRegister = (props) => {
     const renderInput = () => {
         return formField.map((item, index)=> {
             return (
-                <div className='w-[80%] mt-[20px]'>
+                <div className='w-[90%] lg:w-[80%] mt-[20px]'>
                     <h5 className='mb-[7px] text-[17px]'>* {item.name}:</h5>
                     <div className={`border-[1px] border-solid border-[#b4b4b4] rounded-[5px] px-[15px] py-[7px] relative ${errors?.[item.name]?.message ? 'border-orange-400' : ""}`}>
                         <input 
@@ -69,7 +69,7 @@ export const FormBaseRegister = (props) => {
         <>
             <form className='w-full flex flex-col justify-between items-center' onSubmit={handleSubmit(handleLogin)}>
                 {renderInput()}
-                <div className='mt-[40px] xl:mt-[70px] w-[70%] grid grid-cols-2 gap-3'>
+                <div className='w-[90%] lg:w-[80%] mt-[40px] xl:mt-[70px] grid grid-cols-2 gap-3'>
                     <button className='flex items-center justify-center bg-[white] py-[12px] rounded-[7px]' type="button" onClick={handleCancel}>{t('back')}</button>
                     <button className='flex items-center justify-center bg-[#3790c7] text-white py-[12px] rounded-[7px] duration-300 hover:shadow-[#3790c7a6] hover:shadow-lg hover:translate-y-[-3px]' type="submit">{t('register')}</button>
                 </div>

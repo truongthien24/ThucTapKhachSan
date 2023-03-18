@@ -26,7 +26,7 @@ export const FormBaseLogin = (props) => {
     const renderInput = () => {
         return formField.map((item, index)=> {
             return (
-                <div className='w-[80%] mt-[20px]'>
+                <div className='w-[90%] lg:w-[80%] mt-[20px]'>
                     <h5 className='mb-[7px] text-[17px]'>* {item.name}:</h5>
                     <div className={`border-[1px] border-solid border-[#b4b4b4] rounded-[5px] px-[15px] py-[7px] relative ${errors?.[item.name]?.message ? 'border-orange-400' : ""}`}>
                         <input 
@@ -64,8 +64,8 @@ export const FormBaseLogin = (props) => {
         <>
             <form className='w-full flex flex-col justify-between items-center' onSubmit={handleSubmit(handleLogin)}>
                 {renderInput()}
-                <div className='w-[80%] mt-[10px] flex justify-between items-center'>
-                    <span className='text-orange-400 cursor-pointer hover:underline'
+                <div className='w-[90%] lg:w-[80%] mt-[10px] flex justify-between items-center'>
+                    <span className='text-orange-400 cursor-pointer hover:underline text-[14px] md:text-[16px]'
                         onClick={
                             ()=> {
                                 Swal.fire({
@@ -89,7 +89,7 @@ export const FormBaseLogin = (props) => {
                             }
                         }
                     >{t('forgotPassword')}? </span>
-                    <span className='text-[#3790c7] font-[500] cursor-pointer hover:underline'
+                    <span className='text-[#3790c7] font-[500] cursor-pointer hover:underline text-[14px] md:text-[16px]'
                         onClick={
                             ()=> {
                                 navigate('/user/register')

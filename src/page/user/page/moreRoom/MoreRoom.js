@@ -52,7 +52,7 @@ export const MoreRoom = () => {
                     <Icon name="building" color="3790c7"/>
                     <h5 className="text-[#3790c7] text-[25px] ml-[20px] font-[500]">{t('listRoom')}</h5>
                 </div>
-                <div className="w-[90%] md:w-[80%] xl:w-[70%] 2xl:w-[60%] grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 shadow-lg shadow-gray-300 rounded-[20px] p-[20px]">
+                <div className="w-[90%] md:w-[87%] xl:w-[85%] 2xl:w-[70%] grid grid-cols-1 gap-[30px] md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 shadow-lg shadow-gray-300 rounded-[20px] p-[30px]">
                     {renderRoomSearch()}
                 </div>
             </div>

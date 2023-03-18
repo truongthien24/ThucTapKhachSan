@@ -92,24 +92,7 @@ export const FormBase = (props) => {
                     <span className='text-[#3790c7] font-[500] cursor-pointer hover:underline'
                         onClick={
                             ()=> {
-                                Swal.fire({
-                                    icon: 'info',
-                                    iconColor: '#3790c7',
-                                    title: 'Chức năng đang phát triển!',
-                                    timer: 2000,
-                                    timerProgressBar: true,
-                                    confirmButtonColor: '#3790c7',
-                                    // didOpen: () => {
-                                    //     Swal.showLoading()
-                                    //     const b = Swal.getHtmlContainer().querySelector('b')
-                                    //     timerInterval = setInterval(() => {
-                                    //     b.textContent = Swal.getTimerLeft()
-                                    //     }, 100)
-                                    // },
-                                    // willClose: () => {
-                                    //     clearInterval(timerInterval)
-                                    // }
-                                })
+                                navigate('/user/register')
                             }
                         }
                     >{t('noAccount')} </span>

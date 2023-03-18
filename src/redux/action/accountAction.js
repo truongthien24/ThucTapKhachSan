@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import { db } from "../../firebase/firebase.config";
 import { setLoading } from "./homeAction";
 
+// Đăng nhập user
 export const loginUser = (data) => async (dispatch) => {
     try {
         dispatch(setLoading({
@@ -73,3 +74,5 @@ export const loginUser = (data) => async (dispatch) => {
         })
     }
 }
+
+// Đăng ký user

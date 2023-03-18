@@ -29,6 +29,8 @@ const resources = {
         "confirmed": "Confirmed",
         "FuncIsDev": "Function is developing !",
         "ok": "OK",
+        "haveRoom": "Have room",
+        "outOfRoom": "Out of room",
       },
     },
     kr: {
@@ -56,6 +58,8 @@ const resources = {
         "confirmed": "확인됨",
         "FuncIsDev": "개발 중인 기능",
         "ok": "동의하다",
+        "haveRoom": "여유가 있다",
+        "outOfRoom": "방밖",
       },
     },
     vi: {
@@ -83,6 +87,8 @@ const resources = {
         "confirmed": "Đã xác nhận",
         "FuncIsDev": "Chức năng đang phát triển !",
         "ok": "Đồng ý",
+        "haveRoom": "Còn phòng",
+        "outOfRoom": "Hết phòng",
       },
     }
 };

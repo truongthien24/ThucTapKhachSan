@@ -100,7 +100,7 @@ export const InfoRoom = () => {
                                 <span className={`${data?.sale > 0 && 'line-through'}`}>{data?.giaThueNgay?.toLocaleString()}</span>
                             </div>
                         </div>
-                        <div className="flex flex-col items-center">
+                        <div className="flex flex-col ">
                             <p className="mb-[10px]">{data?.tinhTrang ? `${t('outOfRoom')}` : `${t('thereStillRoom')}`}</p>
                             <button className="flex items-center justify-center bg-[#3790c7] text-white py-[12px] px-[20px] rounded-[7px] duration-300 hover:shadow-[#3790c7a6] hover:shadow-lg hover:translate-y-[-3px]" onClick={handleBooking}>{t('booking')}</button>
                         </div>

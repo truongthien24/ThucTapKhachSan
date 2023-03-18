@@ -41,7 +41,7 @@ export const Login = () => {
 
     return (
       <>
-        <div className='fixed top-0 left-0 w-screen h-screen bg-[white] z-10'>
+        <div className='fixed top-0 left-0 w-screen h-screen bg-[white] z-[101]'>
             <div className='absolute top-[5%] lg:top-[3%] left-[50%] translate-x-[-50%]'>
               <img src="/images/fly.png" className='w-[200px] md:w-[250px]'/>
             </div>

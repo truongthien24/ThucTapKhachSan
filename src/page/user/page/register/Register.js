@@ -51,7 +51,7 @@ export const Register = () => {
 
     return (
       <>
-        <div className='fixed top-0 left-0 w-screen h-screen bg-[white] z-10 flex flex-col lg:flex-row items-center lg:justify-center'>
+        <div className='fixed top-0 left-0 w-screen h-screen bg-[white] z-[101] flex flex-col lg:flex-row items-center lg:justify-center'>
             <div className='mr-[10px] my-[20px] flex justify-center lg:flex-1'>
               <img src="/images/fly.png" className='w-[200px] md:w-[250px] max-h-max'/>
             </div>

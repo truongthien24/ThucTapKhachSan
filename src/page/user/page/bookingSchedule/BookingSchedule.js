@@ -4,6 +4,7 @@ import { Icon } from '../../../../assets/icon/index';
 import { useTranslation } from 'react-i18next';
 import { ReservationTicket } from '../../component/ReservationTicket';
 import { getBooking } from '../../../../redux/action/bookingAction';
+import { NoneInfo } from '../../shareComponent/NoneInfo';
 
 export const BookingSchedule = () => {
 
@@ -20,9 +21,17 @@ export const BookingSchedule = () => {
 
     // Method
     const renderReservationTicket = () => {
-        return listPhieuDatPhong.map((item, index) => {
-            return <ReservationTicket data={item} key={index}/>
-        })
+        if(listPhieuDatPhong.length > 0) {
+            return <div className="grid md:grid-cols-2 grid-cols-1 gap-[30px]">
+                {
+                    listPhieuDatPhong.map((item, index) => {
+                        return <ReservationTicket data={item} key={index}/>
+                    })
+                }
+            </div>
+        } else {
+            return <NoneInfo content="Bạn chưa đặt phòng nào"/>
+        }
     }
 
     return (
@@ -35,7 +44,7 @@ export const BookingSchedule = () => {
                     <Icon name="bookMark" color="#3790c7"/>
                     <h3 className='text-[25px] ml-[20px] text-[#3790c7] font-[500]'>{t('reservationTicket')}</h3>
                 </div>
-                <div className='w-full pt-[20px] pb-[5px] px-[30px] grid md:grid-cols-2 grid-cols-1 gap-[30px]'>
+                <div className='w-full pt-[20px] pb-[5px] px-[30px]'>
                     {
                         renderReservationTicket()
                     }

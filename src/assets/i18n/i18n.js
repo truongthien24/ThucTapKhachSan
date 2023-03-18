@@ -31,6 +31,10 @@ const resources = {
         "ok": "OK",
         "haveRoom": "Have room",
         "outOfRoom": "Out of room",
+        "register": "Register",
+        "roomIsSoldOut": "Sorry the room is sold out",
+        "youAreNotLoggedIn": "You are not logged in",
+        "back": "Back",
       },
     },
     kr: {
@@ -60,6 +64,10 @@ const resources = {
         "ok": "동의하다",
         "haveRoom": "여유가 있다",
         "outOfRoom": "방밖",
+        "register": "등록하다",
+        "roomIsSoldOut": "죄송합니다 방이 매진되었습니다",
+        "youAreNotLoggedIn": "로그인하지 않았습니다",
+        "back": "뒤쪽에",
       },
     },
     vi: {
@@ -89,6 +97,10 @@ const resources = {
         "ok": "Đồng ý",
         "haveRoom": "Còn phòng",
         "outOfRoom": "Hết phòng",
+        "register": "Đăng ký",
+        "roomIsSoldOut": "Rất tiếc phòng đã hết !",
+        "youAreNotLoggedIn": "Bạn chưa đăng nhập",
+        "back": "Trở về",
       },
     }
 };

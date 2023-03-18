@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import Swal from 'sweetalert2';
 
-export const FormBase = (props) => {
+export const FormBaseRegister = (props) => {
 
     // Props
     const {formField, initialValue, validationSchema, methodSubmit} = props;
@@ -17,7 +17,7 @@ export const FormBase = (props) => {
     const {t} = useTranslation();
 
     // Form
-    const {setValue, watch, formState: { errors }, handleSubmit, register, getValues} = useForm({
+    const {setValue, watch, formState: { errors }, handleSubmit, register, getValues, reset} = useForm({
         mode: 'onChange',
         defaultValues: initialValue,
         resolver: yupResolver(validationSchema),
@@ -52,8 +52,13 @@ export const FormBase = (props) => {
         })
     }
 
-    const handleLogin = () => {
-        dispatch(methodSubmit({data: watch()}));
+    const handleLogin = async () => {
+        const res = await dispatch(methodSubmit({data: watch()}));
+        if(res) {
+            setTimeout(()=> {
+                reset()
+            }, 1500)
+        }
     }
 
     const handleCancel = () => {
@@ -64,42 +69,9 @@ export const FormBase = (props) => {
         <>
             <form className='w-full flex flex-col justify-between items-center' onSubmit={handleSubmit(handleLogin)}>
                 {renderInput()}
-                <div className='w-[80%] mt-[10px] flex justify-between items-center'>
-                    <span className='text-orange-400 cursor-pointer hover:underline'
-                        onClick={
-                            ()=> {
-                                Swal.fire({
-                                    icon: 'info',
-                                    iconColor: '#3790c7',
-                                    title: 'Chức năng đang phát triển!',
-                                    timer: 2000,
-                                    timerProgressBar: true,
-                                    confirmButtonColor: '#3790c7',
-                                    // didOpen: () => {
-                                    //     Swal.showLoading()
-                                    //     const b = Swal.getHtmlContainer().querySelector('b')
-                                    //     timerInterval = setInterval(() => {
-                                    //     b.textContent = Swal.getTimerLeft()
-                                    //     }, 100)
-                                    // },
-                                    // willClose: () => {
-                                    //     clearInterval(timerInterval)
-                                    // }
-                                })
-                            }
-                        }
-                    >{t('forgotPassword')}? </span>
-                    <span className='text-[#3790c7] font-[500] cursor-pointer hover:underline'
-                        onClick={
-                            ()=> {
-                                navigate('/user/register')
-                            }
-                        }
-                    >{t('noAccount')} </span>
-                </div>
                 <div className='mt-[40px] xl:mt-[70px] w-[70%] grid grid-cols-2 gap-3'>
-                    <button className='flex items-center justify-center bg-[white] py-[12px] rounded-[7px]' type="button" onClick={handleCancel}>{t('cancel')}</button>
-                    <button className='flex items-center justify-center bg-[#3790c7] text-white py-[12px] rounded-[7px] duration-300 hover:shadow-[#3790c7a6] hover:shadow-lg hover:translate-y-[-3px]' type="submit">{t('login')}</button>
+                    <button className='flex items-center justify-center bg-[white] py-[12px] rounded-[7px]' type="button" onClick={handleCancel}>{t('back')}</button>
+                    <button className='flex items-center justify-center bg-[#3790c7] text-white py-[12px] rounded-[7px] duration-300 hover:shadow-[#3790c7a6] hover:shadow-lg hover:translate-y-[-3px]' type="submit">{t('register')}</button>
                 </div>
             </form>
         </>

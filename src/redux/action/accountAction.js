@@ -1,4 +1,4 @@
-import { collection, getDocs } from "firebase/firestore";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 import Swal from "sweetalert2";
 import { db } from "../../firebase/firebase.config";
 import { setLoading } from "./homeAction";
@@ -76,3 +76,49 @@ export const loginUser = (data) => async (dispatch) => {
 }
 
 // Đăng ký user
+export const registerUser = (data) => async (dispatch) => {
+    try {
+        dispatch(setLoading({
+            status: 'isLoading'
+        }))
+        const accountRef = collection(db, 'Account');
+        const result = await getDocs(accountRef);
+        const dataResult = result.docs.map((item)=> item.data());
+        const findIndex = dataResult.findIndex(item=>item.userName === data.data.userName);
+        if(findIndex === -1) {
+            setTimeout(async ()=> {
+                await addDoc(collection(db, 'Account'), {
+                    ...data.data, loaiTaiKhoan: 'guest'
+                });
+                dispatch(setLoading({
+                    status: 'done'
+                }))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Tạo tài khoản thành công !',
+                    showConfirmButton: false,
+                    timer: 1000,
+                    timerProgressBar: true
+                })
+            }, 1000);
+            return true;
+        } else {
+            setTimeout(async ()=> {
+                dispatch(setLoading({
+                    status: 'done'
+                }))
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Tài khoản đã tồn tại !',
+                    showConfirmButton: false,
+                    timer: 1000,
+                    timerProgressBar: true
+                })
+            }, 1000);
+            return false;
+        }
+    } catch(error) {
+        console.log(error)
+        return false;
+    }
+}

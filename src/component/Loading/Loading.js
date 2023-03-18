@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Loading = () => {
   return (
-    <div className='fixed w-screen h-screen top-0 left-0 bg-[#ffffffd9] z-20 flex items-center justify-center'>
+    <div className='fixed w-screen h-screen top-0 left-0 bg-[#ffffffd9] z-[999] flex items-center justify-center'>
         <div className="boxes">
             <div className="box">
                 <div></div>

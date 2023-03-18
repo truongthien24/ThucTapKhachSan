@@ -10,6 +10,8 @@ import { Location } from "./component/Location";
 import { Bank } from "./component/Bank";
 import { BookMark } from "./component/BookMark";
 import { Tag } from "./component/Tag";
+import { Chat } from "./component/Chat";
+import { Top } from "./component/Top";
 
 export const Icon = (props) => {
     switch(props.name) {
@@ -37,6 +39,10 @@ export const Icon = (props) => {
         break;  
         case "tag": return (<Tag {...props}/>);
         break;  
+        case "chat": return (<Chat {...props}/>);
+        break;         
+        case "top": return (<Top {...props}/>);
+        break;   
         default: return <></>;
     }
 }

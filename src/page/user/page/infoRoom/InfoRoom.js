@@ -60,21 +60,31 @@ export const InfoRoom = () => {
     }
 
     const handleBooking = () => {
-        const jwt = localStorage.getItem('jwt');
-        if(jwt) {
-            setIsBooking(true);
-        } else {
+        if(data?.tinhTrang) {
             Swal.fire({
-                title: 'Cần đăng nhập trước khi đặt phòng !',
                 icon: 'info',
                 iconColor: '#3790c7',
-                confirmButtonText: 'Đăng nhập',
-                confirmButtonColor: '#3790c7'
-            }).then((result) =>{
-                if(result.isConfirmed) {
-                    navigate('/user/login')
-                }
+                title: `${t('roomIsSoldOut')}`,
+                confirmButtonColor: '#3790c7',
+                confirmButtonText: `${t('ok')}`
             })
+        } else {
+            const jwt = localStorage.getItem('jwt');
+            if(jwt) {
+                setIsBooking(true);
+            } else {
+                Swal.fire({
+                    title: 'Cần đăng nhập trước khi đặt phòng !',
+                    icon: 'info',
+                    iconColor: '#3790c7',
+                    confirmButtonText: 'Đăng nhập',
+                    confirmButtonColor: '#3790c7'
+                }).then((result) =>{
+                    if(result.isConfirmed) {
+                        navigate('/user/login')
+                    }
+                })
+            }
         }
     }
 
@@ -102,7 +112,9 @@ export const InfoRoom = () => {
                         </div>
                         <div className="flex flex-col ">
                             <p className="mb-[10px]">{data?.tinhTrang ? `${t('outOfRoom')}` : `${t('thereStillRoom')}`}</p>
-                            <button className="flex items-center justify-center bg-[#3790c7] text-white py-[12px] px-[20px] rounded-[7px] duration-300 hover:shadow-[#3790c7a6] hover:shadow-lg hover:translate-y-[-3px]" onClick={handleBooking}>{t('booking')}</button>
+                            <button className={`flex items-center justify-center ${data?.tinhTrang === false ? 'bg-[#3790c7] hover:shadow-[#3790c7a6] hover:shadow-lg' : 'bg-[gray] hover:shadow-lg hover:shadow-gray-400'} text-white py-[12px] px-[20px] rounded-[7px] duration-300 hover:translate-y-[-3px]`} onClick={handleBooking}>
+                                {t('booking')}
+                            </button>
                         </div>
                     </div>
                     <div className="grid grid-cols-4 grid-rows-4 w-full gap-[10px]">

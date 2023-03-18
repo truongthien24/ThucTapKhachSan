@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setLoading } from '../../../redux/action/homeAction';
+import Swal from 'sweetalert2';
 
 export const ListMenu = () => {
 
@@ -18,7 +19,14 @@ export const ListMenu = () => {
             name: `${t('aboutUs')}`,
             icon: 'check',
             method: () => {
-                alert('xin chào !')
+                Swal.fire({
+                    icon: 'info',
+                    title: `${t('FuncIsDev')}`,
+                    confirmButtonColor: '#3790c7',
+                    confirmButtonText: `${t('ok')}`,
+                    timer: 2000,
+                    timerProgressBar: true
+                  })
             }
         },
         {
@@ -34,15 +42,34 @@ export const ListMenu = () => {
                 //         status: 'done',
                 //     }))
                 //     navigate('bookingSchedule');
-                // }, 1300)    
-                navigate('bookingSchedule');
+                // }, 1300)
+                const jwt = localStorage.getItem('jwt');
+                if(jwt) {
+                    navigate('bookingSchedule');
+                } else {
+                    Swal.fire({
+                        icon: 'info',
+                        title: `${t('youAreNotLoggedIn')}`,
+                        timer: 1500,
+                        timerProgressBar: true,
+                        confirmButtonText: `${t('ok')}`,
+                        confirmButtonColor: '#3790c7'
+                    })
+                }
             }
         },
         {
             name: `${t('contact')}`,
             icon: 'phone',
             method: () => {
-                alert('xin chào !')
+                Swal.fire({
+                    icon: 'info',
+                    title: `${t('FuncIsDev')}`,
+                    confirmButtonColor: '#3790c7',
+                    confirmButtonText: `${t('ok')}`,
+                    timer: 2000,
+                    timerProgressBar: true
+                  })
             }
         },
     ]

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { FormBase } from '../../component/Form/FormBase';
+import { FormBaseLogin } from '../../component/Form/FormBaseLogin';
 import * as yup from 'yup';
 import { Loading } from '../../../../component/Loading/Loading';
 import { loginUser } from '../../../../redux/action/accountAction';
@@ -56,7 +56,7 @@ export const Login = () => {
                 }}>&times;</span>
               </div>
               <div className='flex items-center justify-center'>
-                <FormBase 
+                <FormBaseLogin 
                   initialValue={initialValue} 
                   formField={formField} 
                   validationSchema={validationSchema} 

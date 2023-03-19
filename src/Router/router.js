@@ -9,6 +9,8 @@ import { Layout1Admin } from '../page/admin/layout/Layout1Admin';
 import { MoreRoom } from '../page/user/page/moreRoom/MoreRoom';
 import { Register } from '../page/user/page/register/Register';
 import { Welcome } from '../page/welcome/Welcome';
+import { Profile } from '../page/user/page/profile/Profile';
+import { Service } from '../page/user/page/service/Service';
 
 
 export const MainRoutes = () => {
@@ -23,6 +25,8 @@ export const MainRoutes = () => {
                 <Route path="infoRoom/:id" element={<InfoRoom/>}/>   
                 <Route path="bookingSchedule" element={<BookingSchedule/>}/>   
                 <Route path="searchRoom" element={<MoreRoom/>}/>   
+                <Route path="profile" element={<Profile/>}/>   
+                <Route path="service" element={<Service/>}/>   
             </Route>
             <Route path="/admin" element={<Layout1Admin/>}>
 

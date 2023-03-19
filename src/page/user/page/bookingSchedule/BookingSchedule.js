@@ -30,7 +30,7 @@ export const BookingSchedule = () => {
                 }
             </div>
         } else {
-            return <NoneInfo content="Bạn chưa đặt phòng nào"/>
+            return <NoneInfo content={`${t('youHaveNotBook')}`}/>
         }
     }
 

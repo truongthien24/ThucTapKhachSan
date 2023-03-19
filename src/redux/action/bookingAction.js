@@ -29,7 +29,7 @@ export const createBooking = (data) => async (dispatch) => {
     }
 }
 
-
+// Lấy dữ liệu phiếu đặt phòng
 export const getBooking = () => async (dispatch) => {
     try {
         const phieuDatPhongRef = collection(db, 'phieuDatPhong');
@@ -47,3 +47,32 @@ export const getBooking = () => async (dispatch) => {
         console.log('Lỗi rồi 22!');
     }
 }
+
+// Kiểm tra đã có phiếu đặt phòng chưa
+export const checkBooking = () => async (dispatch) => {
+    try {
+        dispatch(setLoading({
+            status: 'isLoading'
+        }))
+        const phieuDatPhongRef = collection(db, 'phieuDatPhong');
+        const dataRef = await getDocs(phieuDatPhongRef);
+
+        const result = dataRef.docs.filter((doc) => doc.data().idKhachHang == (JSON.parse(localStorage.getItem('jwt'))));
+
+        if(result.length > 0) {
+            dispatch(setLoading({
+                status: 'done'
+            }))
+            return true;
+        } else {
+            dispatch(setLoading({
+                status: 'done'
+            }))
+            return false;
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+

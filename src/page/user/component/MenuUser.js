@@ -17,7 +17,6 @@ export const MenuUser = () => {
 
   window.addEventListener("resize", ()=>{
     const innerWidth = window.innerWidth;
-    console.log('innerWidth', innerWidth);
     if(innerWidth < 700) {
       setIsMenuMobile(true);
     } else {

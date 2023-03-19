@@ -55,6 +55,21 @@ export const MenuMobile = () => {
             }
         },
         {
+            name: `${t('service')}`,
+            icon: 'service',
+            method: () => {
+                // Swal.fire({
+                //     icon: 'info',
+                //     title: `${t('FuncIsDev')}`,
+                //     confirmButtonColor: '#3790c7',
+                //     confirmButtonText: `${t('ok')}`,
+                //     timer: 2000,
+                //     timerProgressBar: true
+                //   })
+                navigate('service');
+            }
+        },
+        {
             name: `${t('contact')}`,
             icon: 'phone',
             method: () => {
@@ -84,7 +99,7 @@ export const MenuMobile = () => {
 
     // Return
     return (
-        <div className="fixed grid grid-cols-3 items-center bottom-0 left-0 w-screen bg-[white] p-[8px] z-[100]" style={{boxShadow: "rgba(0, 0, 0, 0.5) 0px 5px 20px"}}>
+        <div className="fixed grid grid-cols-4 items-center bottom-0 left-0 w-screen bg-[white] p-[8px] z-[100]" style={{boxShadow: "rgba(0, 0, 0, 0.5) 0px 5px 20px"}}>
             {renderMenu()}
         </div>
     )

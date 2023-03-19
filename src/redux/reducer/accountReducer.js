@@ -19,6 +19,10 @@ export const AccountReducer = (state = initialState, action) => {
             return {...state};
         }
         break;
+        case 'LAY_DU_LIEU_USER': {
+            state.userInfo = action.payload;
+            return {...state};
+        }
         default: return state;
     }
 }

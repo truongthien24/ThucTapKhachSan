@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 import { setLoading } from '../../redux/action/homeAction';
@@ -7,6 +8,7 @@ export const Welcome = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const {t} = useTranslation();
 
     return (
         <div className="bg-[url('https://media.istockphoto.com/id/1138367349/vi/anh/burj-al-arab-m%E1%BB%99t-kh%C3%A1ch-s%E1%BA%A1n-sang-tr%E1%BB%8Dng-%E1%BB%9F-dubai-uae.jpg?s=170667a&w=0&k=20&c=vDpcNackbrn-eiElrN_NrAn2jMq91AB5g_wyEu_rLrk=')] md:bg-[url('https://img5.thuthuatphanmem.vn/uploads/2021/10/20/mau-background-vali-du-lich_110856208.jpg')] bg-cover bg-center h-screen w-full flex flex-col justify-center items-center overflow-hidden">
@@ -26,7 +28,7 @@ export const Welcome = () => {
                             }, 1000)
                         }}
                     >
-                        Tôi là quản trị viên
+                        {t("I'mTheAdministrator")}
                     </button>
                     <button  
                         className="px-[20px] py-[10px] rounded-[10px] bg-[#3790c7] text-white"
@@ -42,7 +44,7 @@ export const Welcome = () => {
                             }, 1000)
                         }}
                     >
-                        Tôi là khách hàng
+                        {t("I'mACustomer")}
                     </button>
                 </div>
             </div>

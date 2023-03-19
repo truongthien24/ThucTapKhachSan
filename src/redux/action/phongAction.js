@@ -50,3 +50,16 @@ export const layDuLieuPhongInfo = async (id) => {
         console.log('Lỗi rồi !');
     }
 }
+
+
+// Lấy dữ liệu phòng từ phiếu đặt phòng
+export const getInfoRoomFormBooking = (data) => async (dispatch) => {
+    try {
+        console.log('data', data);
+        const phongRef = collection(db, 'Phong');
+        const result = await getDocs(phongRef);
+        
+    } catch (error) {
+        console.log(error);
+    }
+}

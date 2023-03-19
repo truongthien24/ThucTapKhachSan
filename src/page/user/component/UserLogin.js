@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
 export const UserLogin = (props) => {
 
@@ -11,6 +12,8 @@ export const UserLogin = (props) => {
 
     const userLogin = localStorage.getItem('jwt');
 
+    const {userInfo} = useSelector(state=>state.account);
+
     return (
         <div>
             {
@@ -18,13 +21,17 @@ export const UserLogin = (props) => {
                 ? 
                 <div className='flex items-center'>
                     <span 
-                        className='cursor-pointer'
-                        onClick={()=> {
-                            // navigate('/user/login')
-                            localStorage.removeItem("jwt");
-                            window.location.reload();
-                    }}>
-                        {t('logOut')}
+                        className='cursor-pointer text-[14px] block md:hidden lg:block'
+                        // onClick={()=> {
+                        //     // navigate('/user/login')
+                        //     localStorage.removeItem("jwt");
+                        //     window.location.reload();
+                        // }}
+                    >
+                        {/* {t('logOut')} */}
+                        {t('hi')}
+                        ,  
+                        <span className="text-[#3790c7] ml-[5px]">{userInfo?.userName}</span>
                     </span>
                     <img className='w-[50px] h-[50px] rounded-[50%] ml-[10px] object-cover cursor-pointer' src="https://img5.thuthuatphanmem.vn/uploads/2022/01/12/anh-tokuda-dep-nhat_101702809.jpg" 
                     onClick={()=> {

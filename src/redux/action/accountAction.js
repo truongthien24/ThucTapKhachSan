@@ -122,3 +122,18 @@ export const registerUser = (data) => async (dispatch) => {
         return false;
     }
 }
+
+// Lấy thông tin user
+export const getUser = (id) => async (dispatch) => {
+    try {
+        const accountRef = collection(db, 'Account');
+        const result = await getDocs(accountRef);
+        const resultFilter = result.docs.filter(item => item.id === id);
+        dispatch({
+            type: 'LAY_DU_LIEU_USER',
+            payload: resultFilter[0].data(),
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}

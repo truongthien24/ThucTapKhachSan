@@ -59,6 +59,21 @@ export const ListMenu = () => {
             }
         },
         {
+            name: `${t('service')}`,
+            icon: 'service',
+            method: () => {
+                // Swal.fire({
+                //     icon: 'info',
+                //     title: `${t('FuncIsDev')}`,
+                //     confirmButtonColor: '#3790c7',
+                //     confirmButtonText: `${t('ok')}`,
+                //     timer: 2000,
+                //     timerProgressBar: true
+                //   })
+                navigate('service');
+            }
+        },
+        {
             name: `${t('contact')}`,
             icon: 'phone',
             method: () => {

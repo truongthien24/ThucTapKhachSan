@@ -3,14 +3,23 @@ import { Outlet } from 'react-router-dom'
 import { MenuUser } from '../component/MenuUser'
 import { Footer } from '../component/Footer'
 import { ScrollToTop } from '../component/ScrollToTop'
+import { useDispatch } from 'react-redux'
+import { getUser } from '../../../redux/action/accountAction'
 
 export const Layout1 = () => {
 
   const pathname = window.location.pathname;
 
+  const dispatch = useDispatch();
+
   useEffect(()=> {
     window.scrollTo(0,0);
   }, [pathname])
+
+  useEffect(()=> {
+    const jwt = JSON.parse(localStorage.getItem('jwt'));
+    dispatch(getUser(jwt));
+  }, []);
 
   return (
     <div>

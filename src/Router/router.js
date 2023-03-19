@@ -8,12 +8,14 @@ import { BookingSchedule } from '../page/user/page/bookingSchedule/BookingSchedu
 import { Layout1Admin } from '../page/admin/layout/Layout1Admin';
 import { MoreRoom } from '../page/user/page/moreRoom/MoreRoom';
 import { Register } from '../page/user/page/register/Register';
+import { Welcome } from '../page/welcome/Welcome';
 
 
 export const MainRoutes = () => {
   return (
     <div>
         <Routes>
+            <Route path="/" element={<Welcome/>}/>
             <Route path="/user" element={<Layout1/>}>
                 <Route index element={<HomeUser/>}/>  
                 <Route path="login" element={<Login/>}/>

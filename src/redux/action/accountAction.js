@@ -18,8 +18,8 @@ export const loginUser = (data) => async (dispatch) => {
         const findUser = dataResult?.filter((item)=>  item?.userName === data?.data?.userName && item?.password === data?.data?.password );
 
         if(findUser.length > 0) {
-            setTimeout(()=> {
-                dispatch({
+            setTimeout(async()=> {
+                await dispatch({
                     type: 'DANG_NHAP_USER',
                     payload: {
                         data: findUser,

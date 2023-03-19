@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { ChangeLanguage } from './ChangeLanguage'
 import { ListMenu } from './ListMenu'
 import { MenuMobile } from './MenuMobile'
+import { ProfileTab } from './ProfileTab'
 import { UserLogin } from './UserLogin'
 
 export const MenuUser = () => {
@@ -10,6 +11,7 @@ export const MenuUser = () => {
   const navigate = useNavigate();
 
   const [isMenuMobile, setIsMenuMobile] = useState(false);
+  const [isProfile, setIsProfile] = useState(false);
 
   // const innerWidth = window.innerWidth;
 
@@ -67,13 +69,18 @@ export const MenuUser = () => {
             <ListMenu/>
           }
           <ChangeLanguage/>
-          <UserLogin/>
+          <UserLogin setIsProfile={setIsProfile}/>
         </div>
       </div>
       {
         isMenuMobile
         &&   
         <MenuMobile/>
+      }
+      {
+        isProfile
+        &&
+        <ProfileTab setIsProfile={setIsProfile} isProfile={isProfile}/>
       }
     </>
   )

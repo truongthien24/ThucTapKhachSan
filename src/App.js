@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { phongCreator } from './redux';
 import { MainRoutes } from './Router/router';
 import { Loading } from './component/Loading/Loading';
+import 'antd/dist/reset.css';
 
 function App() {
 

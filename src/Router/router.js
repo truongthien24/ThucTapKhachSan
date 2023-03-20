@@ -11,10 +11,11 @@ import { Register } from '../page/user/page/register/Register';
 import { Welcome } from '../page/welcome/Welcome';
 import { Profile } from '../page/user/page/profile/Profile';
 import { Service } from '../page/user/page/service/Service';
+import { Dashboard } from '../page/admin/page/Dashboard/Dashboard';
 
 
 export const MainRoutes = () => {
-  return (
+  return (  
     <div>
         <Routes>
             <Route path="/" element={<Welcome/>}/>
@@ -29,7 +30,7 @@ export const MainRoutes = () => {
                 <Route path="service" element={<Service/>}/>   
             </Route>
             <Route path="/admin" element={<Layout1Admin/>}>
-
+              <Route index element={<Dashboard/>}/>
             </Route>
         </Routes>
     </div>

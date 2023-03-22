@@ -10,6 +10,8 @@ import {
   } from '@ant-design/icons';
   import { Button, Menu } from 'antd';
   import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
   function getItem(label, key, icon, children, type) {
     return {
       key,
@@ -19,22 +21,7 @@ import {
       type,
     };
   }
-  const items = [
-    getItem('Option 1', '1', <PieChartOutlined />),
-    getItem('Option 2', '2', <DesktopOutlined />),
-    getItem('Option 3', '3', <ContainerOutlined />),
-    getItem('Navigation One', 'sub1', <MailOutlined />, [
-      getItem('Option 5', '5'),
-      getItem('Option 6', '6'),
-      getItem('Option 7', '7'),
-      getItem('Option 8', '8'),
-    ]),
-    getItem('Navigation Two', 'sub2', <AppstoreOutlined />, [
-      getItem('Option 9', '9'),
-      getItem('Option 10', '10'),
-      getItem('Submenu', 'sub3', null, [getItem('Option 11', '11'), getItem('Option 12', '12')]),
-    ]),
-  ];
+
 
 export const Navigation = () => {
 
@@ -43,13 +30,38 @@ export const Navigation = () => {
       setCollapsed(!collapsed);
     };
 
+    const navigate = useNavigate();
+
+    const items = [
+      getItem(<div onClick={()=> {
+        navigate('/admin/dashboard')
+      }}>Dashboard</div>, '1', <PieChartOutlined />),
+      getItem('Account Management', '2', <DesktopOutlined />),
+      getItem('Customer Management', '3', <ContainerOutlined />),
+      getItem('Account Management', 'sub1', <MailOutlined />, [
+        getItem('User Account', '5'),
+        getItem('Employee Accout', '6'),
+        // getItem('Option 7', '7'),
+        // getItem('Option 8', '8'),
+      ]),
+      getItem('Booking', 'sub2', <MailOutlined />, [
+        getItem('Check-ing request', '7'),
+        getItem('Check-out request', '8'),
+        // getItem('Option 7', '7'),
+        // getItem('Option 8', '8'),
+      ]),
+      getItem('Room Management', '9', <ContainerOutlined />),
+      getItem('Service Management', '10', <ContainerOutlined />),
+      getItem('Revenue', 'sub3', <AppstoreOutlined />, [
+        getItem('Invoices Management', '11'),
+        getItem('Statistical Management', '12'),
+        // getItem('Submenu', 'sub3', null, [getItem('Option 11', '11'), getItem('Option 12', '12')]),
+      ]),
+    ];
+
     return (
         <div
-            className='admin__navigation'
-            style={{
-                width: 256,
-                height: '100vh'
-            }}
+            className='admin__navigation bg-[#000B16] w-[256px] h-[calc(100vh-100px)]'
         >
             {/* <Button
             type="primary"
@@ -60,13 +72,16 @@ export const Navigation = () => {
             >
             { <MenuFoldOutlined />}
             </Button> */}
+            <div className="flex items-center justify-center py-[20px]">
+              <img src='/images/fly.png' className="w-[55%]"/>
+            </div>
             <Menu
-            defaultSelectedKeys={['1']}
-            defaultOpenKeys={['sub1']}
-            mode="inline"
-            theme="dark"
-            inlineCollapsed={collapsed}
-            items={items}
+              defaultSelectedKeys={['1']}
+              defaultOpenKeys={['sub1']}
+              mode="inline"
+              theme="dark"
+              inlineCollapsed={collapsed}
+              items={items}
             />
         </div>
     )

@@ -6,6 +6,7 @@ import { phongCreator } from './redux';
 import { MainRoutes } from './Router/router';
 import { Loading } from './component/Loading/Loading';
 import 'antd/dist/reset.css';
+// import "@ant-design/flowchart/dist/index.css";
 
 function App() {
 

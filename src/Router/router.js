@@ -31,6 +31,8 @@ export const MainRoutes = () => {
             </Route>
             <Route path="/admin" element={<Layout1Admin/>}>
               <Route index element={<Dashboard/>}/>
+              <Route path="dashboard" element={<Dashboard/>}/>
+              {/* <Route path="login" element={<Login/>}/> */}
             </Route>
         </Routes>
     </div>

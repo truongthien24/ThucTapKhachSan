@@ -21,6 +21,7 @@ export const AdminInfo = (props) => {
 
     const handleLogout = () => {
         localStorage.removeItem('jwtAdmin');
+        navigate('/admin/login')
     }
 
     // Return
@@ -33,10 +34,12 @@ export const AdminInfo = (props) => {
             {
                 isActive
                 &&
-                <div className="absolute top-[105%] right-0 min-w-full h-[50px] bg-white shadow-lg shadow-gray-400 z-[100] rounded-[5px] px-[10px] flex items-center cursor-pointer" 
+                <div className="absolute top-[105%] rounded-[5px] right-0 min-w-max bg-white shadow-lg shadow-gray-400 z-[100] cursor-pointer p-[7px]" 
                 onClick={handleLogout}>
-                    <Icon name="logOut"/>
-                    <span className="ml-[8px]">{t('logOut')}</span>
+                    <div className="rounded-[5px] p-[7px] w-full flex items-center duration-200 hover:bg-gray-100">
+                        <Icon name="logOut"/>
+                        <span className="ml-[8px]">{t('logOut')}</span>
+                    </div>
                 </div>
             }
         </div>

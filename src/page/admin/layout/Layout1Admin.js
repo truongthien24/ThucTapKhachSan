@@ -8,11 +8,13 @@ export const Layout1Admin = () => {
 
   const navigate = useNavigate()
 
+  const {pathname} = window.location;
+
   useEffect(()=> {
     if(!localStorage.getItem('jwtAdmin')) {
-      // navigate('/admin/login');
+      navigate('/admin/login');
     }
-  }, [])
+  }, [pathname])
 
   return (
     <div className="flex">

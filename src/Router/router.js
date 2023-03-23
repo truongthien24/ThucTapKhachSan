@@ -12,6 +12,7 @@ import { Welcome } from '../page/welcome/Welcome';
 import { Profile } from '../page/user/page/profile/Profile';
 import { Service } from '../page/user/page/service/Service';
 import { Dashboard } from '../page/admin/page/Dashboard/Dashboard';
+import { LoginAdmin } from '../page/admin/page/LoginAdmin';
 
 
 export const MainRoutes = () => {
@@ -32,7 +33,7 @@ export const MainRoutes = () => {
             <Route path="/admin" element={<Layout1Admin/>}>
               <Route index element={<Dashboard/>}/>
               <Route path="dashboard" element={<Dashboard/>}/>
-              {/* <Route path="login" element={<Login/>}/> */}
+              <Route path="login" element={<LoginAdmin/>}/>
             </Route>
         </Routes>
     </div>

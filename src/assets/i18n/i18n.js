@@ -43,6 +43,7 @@ const resources = {
         "quantityIsOut": "Quantity is out",
         "bookService": "Booking",
         "hi": "Hi",
+        "add": "Add",
       },
     },
     kr: {
@@ -84,6 +85,7 @@ const resources = {
         "quantityIsOut": "수량 부족",
         "bookService": "서비스를 요청하다",
         "hi": "안녕하세요",
+        "add": "추가하다",
       },
     },
     vi: {
@@ -125,6 +127,7 @@ const resources = {
         "quantityIsOut": "Số lượng đã hết",
         "bookService": "Đặt dịch vụ",
         "hi": "Xin chào",
+        "add": "Thêm",
       },
     }
 };

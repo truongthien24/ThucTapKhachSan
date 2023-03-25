@@ -99,15 +99,15 @@ export const registerUser = (data) => async (dispatch) => {
         dispatch(setLoading({
             status: 'isLoading'
         }))
+        console.log('data', data);
         const accountRef = collection(db, 'Account');
         const result = await getDocs(accountRef);
         const dataResult = result.docs.map((item)=> item.data());
-        const findIndex = dataResult.findIndex(item=>item.userName === data.data.userName);
+        const findIndex = dataResult.findIndex(item=>item.userName === (data.data.userName || data.userName));
         if(findIndex === -1) {
             setTimeout(async ()=> {
                 await addDoc(collection(db, 'Account'), {
-                    ...data.data, loaiTaiKhoan: 'guest'
-                });
+                    ...data.data});
                 dispatch(setLoading({
                     status: 'done'
                 }))
@@ -231,7 +231,7 @@ export const loginAdmin = (data) => async (dispatch) => {
     }
 }
 
-// Lấy thông tin user
+// Lấy thông tin account với id
 export const getUser = (id) => async (dispatch) => {
     try {
         const accountRef = collection(db, 'Account');
@@ -243,5 +243,19 @@ export const getUser = (id) => async (dispatch) => {
         })
     } catch (error) {
         console.log(error);
+    }
+}
+
+// Lấy thông tin tất cả account
+export const getAllUser = () => async (dispatch) => {
+    try {
+        const accountRef = collection(db, 'Account');
+        const result = await getDocs(accountRef);
+        dispatch({
+            type: 'LAY_DU_LIEU_USER_ALL',
+            payload: result,
+        })
+    } catch (error) {
+        console.log(error)
     }
 }

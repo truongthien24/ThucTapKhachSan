@@ -36,7 +36,9 @@ export const Navigation = () => {
       getItem(<div onClick={()=> {
         navigate('/admin/dashboard')
       }}>Dashboard</div>, '1', <PieChartOutlined />),
-      getItem('Account Management', '2', <DesktopOutlined />),
+      getItem(<div onClick={()=> {
+        navigate('/admin/accountManagement')
+      }}>Account Management</div>, '2', <DesktopOutlined />),
       getItem('Customer Management', '3', <ContainerOutlined />),
       getItem('Account Management', 'sub1', <MailOutlined />, [
         getItem('User Account', '5'),

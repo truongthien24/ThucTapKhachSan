@@ -14,6 +14,7 @@ export const Register = () => {
     const initialValue = {
       userName: "",
       password: "",
+      loaiTaiKhoan: "guest"
     }
 
     const formField = [

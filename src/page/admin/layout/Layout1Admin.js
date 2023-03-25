@@ -17,11 +17,11 @@ export const Layout1Admin = () => {
   }, [pathname])
 
   return (
-    <div className="flex">
+    <div className="flex h-screen">
       <Navigation/>
-      <div className="w-[calc(100%-250px)]">
+      <div className="w-[calc(100%-250px)] h-full">
         <TabMenu/>
-        <div className="px-[10px] py-[30px]">
+        <div className="px-[20px] py-[15px] h-[92%]">
           <Outlet/>
         </div>  
       </div>

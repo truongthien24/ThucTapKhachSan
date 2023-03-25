@@ -4,6 +4,7 @@ const initialState = {
     adminInfo: {},
     statusLogin: false,
     statusLoginAdmin: false,
+    listUser: [],
 }
 
 
@@ -37,6 +38,12 @@ export const AccountReducer = (state = initialState, action) => {
             state.userInfo = action.payload;
             return {...state};
         } 
+        break;
+        case 'LAY_DU_LIEU_USER_ALL': {
+            const data = action.payload.docs.map((item)=> ({...item.data(), id: item.id}));
+            state.listUser = data;
+            return {...state};
+        }
         break;
         default: return state;
     }

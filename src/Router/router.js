@@ -12,6 +12,7 @@ import { Welcome } from '../page/welcome/Welcome';
 import { Profile } from '../page/user/page/profile/Profile';
 import { Service } from '../page/user/page/service/Service';
 import { Dashboard } from '../page/admin/page/Dashboard/Dashboard';
+import AccountManagement from '../page/admin/page/AccountManagement';
 import { LoginAdmin } from '../page/admin/page/LoginAdmin';
 
 
@@ -33,6 +34,7 @@ export const MainRoutes = () => {
             <Route path="/admin" element={<Layout1Admin/>}>
               <Route index element={<Dashboard/>}/>
               <Route path="dashboard" element={<Dashboard/>}/>
+              <Route path="accountManagement" element={<AccountManagement/>}/>
               <Route path="login" element={<LoginAdmin/>}/>
             </Route>
         </Routes>

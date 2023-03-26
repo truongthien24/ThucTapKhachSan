@@ -7,8 +7,10 @@ import { Confirm } from '../../../../component/Confirm/Confirm';
 import { db } from '../../../../firebase/firebase.config';
 import { deleteUser, getAllUser, registerUser, updateUser } from '../../../../redux/action/accountAction';
 import { setConfirm } from '../../../../redux/action/homeAction';
-import { FormEdit } from '../../shareComponent/form/FormEdit';
+// import { FormEdit } from '../../shareComponent/form/FormEdit';
+// import { FormEdit } from '../../shareComponent/form/FormEdit';
 import { FormCreate } from '../../shareComponent/form/FormCreate';
+import { FormUpdate } from '../../shareComponent/form/FormUpdate';
 import { ModalCreate } from '../../shareComponent/modal/ModalCreate';
 import { ModalEdit } from '../../shareComponent/modal/ModalEdit';
 import { TableMain } from '../../shareComponent/table/TableMain'
@@ -103,7 +105,7 @@ const AccountManagement = (props) => {
           title={t('Edit Account Management ')}
           isOpen={isModalEditOpen}
           childrenForm={
-            <FormEdit
+            <FormUpdate
               columns={ColumnsEdit} 
               methodCancel={()=>setIsModalEditOpen(false)} 
               methodSubmit={updateUser}

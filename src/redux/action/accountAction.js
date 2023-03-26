@@ -295,6 +295,8 @@ export const updateUser = (data) => async (dispatch) => {
     }
 }
 
+
+// Xoá account
 export const deleteUser = (data) => async (dispatch) => {
     try {
         dispatch(setLoading({

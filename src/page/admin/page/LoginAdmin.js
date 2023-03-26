@@ -9,6 +9,8 @@ export const LoginAdmin = () => {
     const navigate = useNavigate();
     const {t} = useTranslation();
 
+    console.log('teset')
+
     const initialValue = {
       userName: "",
       password: "",

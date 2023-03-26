@@ -7,7 +7,7 @@ import { Confirm } from '../../../../component/Confirm/Confirm';
 import { db } from '../../../../firebase/firebase.config';
 import { deleteUser, getAllUser, registerUser, updateUser } from '../../../../redux/action/accountAction';
 import { setConfirm } from '../../../../redux/action/homeAction';
-import { FormEdit } from '../../shareComponent/form/\bFormEdit';
+import { FormEdit } from '../../shareComponent/form/FormEdit';
 import { FormCreate } from '../../shareComponent/form/FormCreate';
 import { ModalCreate } from '../../shareComponent/modal/ModalCreate';
 import { ModalEdit } from '../../shareComponent/modal/ModalEdit';

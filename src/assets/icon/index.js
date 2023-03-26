@@ -13,7 +13,7 @@ import { Tag } from "./component/Tag";
 import { Chat } from "./component/Chat";
 import { Top } from "./component/Top";
 import { Logout } from "./component/Logout";
-import { Service } from "./component/\bService";
+import { Service } from "./component/Service";
 
 export const Icon = (props) => {
     switch(props.name) {

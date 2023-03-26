@@ -44,6 +44,9 @@ const resources = {
         "bookService": "Booking",
         "hi": "Hi",
         "add": "Add",
+        "areYouSure?": "Are you sure ?",
+        "confirm": "Confirm",
+        "save": "Save",
       },
     },
     kr: {
@@ -86,6 +89,9 @@ const resources = {
         "bookService": "서비스를 요청하다",
         "hi": "안녕하세요",
         "add": "추가하다",
+        "areYouSure?": "확실합니까 ?",
+        "confirm": "확인하다",
+        "save": "구하다",
       },
     },
     vi: {
@@ -128,6 +134,9 @@ const resources = {
         "bookService": "Đặt dịch vụ",
         "hi": "Xin chào",
         "add": "Thêm",
+        "areYouSure?": "Bạn đã chắc chắn ?",
+        "confirm": "Xác nhận",
+        "save": "Lưu",
       },
     }
 };

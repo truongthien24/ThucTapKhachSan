@@ -1,4 +1,4 @@
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDocs, updateDoc } from "firebase/firestore";
 import Swal from "sweetalert2";
 import { db } from "../../firebase/firebase.config";
 import { setLoading } from "./homeAction";
@@ -99,7 +99,6 @@ export const registerUser = (data) => async (dispatch) => {
         dispatch(setLoading({
             status: 'isLoading'
         }))
-        console.log('data', data);
         const accountRef = collection(db, 'Account');
         const result = await getDocs(accountRef);
         const dataResult = result.docs.map((item)=> item.data());
@@ -249,12 +248,71 @@ export const getUser = (id) => async (dispatch) => {
 // Lấy thông tin tất cả account
 export const getAllUser = () => async (dispatch) => {
     try {
+        dispatch(setLoading({
+            status: 'isLoading'
+        }))
         const accountRef = collection(db, 'Account');
         const result = await getDocs(accountRef);
-        dispatch({
-            type: 'LAY_DU_LIEU_USER_ALL',
-            payload: result,
-        })
+        setTimeout(async()=> {
+            await dispatch({
+                type: 'LAY_DU_LIEU_USER_ALL',
+                payload: result,
+            })
+            dispatch(setLoading({
+                status: 'done'
+            }))
+        }, 500)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+// Cập nhật thông tin account
+export const updateUser = (data) => async (dispatch) => {
+    try {
+        dispatch(setLoading({
+            status: 'isLoading'
+        }))
+        setTimeout(async ()=> {
+            const accountRef = doc(db,'Account', data.data.id);
+            await updateDoc(accountRef, data.data);
+            dispatch(setLoading({
+                status: 'done'
+            }))
+            Swal.fire({
+                icon: 'success',
+                title: 'Cập nhật thành công !',
+                showConfirmButton: false,
+                timer: 1000,
+                timerProgressBar: true
+            })
+        }, 1000);
+        return true;
+    } catch (error) {
+        return false;
+        // console.log(error);
+    }
+}
+
+export const deleteUser = (data) => async (dispatch) => {
+    try {
+        dispatch(setLoading({
+            status: 'isLoading'
+        }))
+        setTimeout(async()=> {
+            await deleteDoc(doc(db, "Account", data.data.id));
+            dispatch(setLoading({
+                status: 'done'
+            }))
+            Swal.fire({
+                icon: 'success',
+                title: 'Xoá thành công !',
+                showConfirmButton: false,
+                timer: 1000,
+                timerProgressBar: true
+            })
+        }, 500)
     } catch (error) {
         console.log(error)
     }

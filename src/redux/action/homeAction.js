@@ -16,3 +16,18 @@ export const setLoading = (data) => async (dispatch) => {
         console.log('Lỗi rồi!');
     }
 }
+
+
+export const setConfirm = (data) => async (dispatch) => {
+    if(data.status === 'open') {
+        dispatch({
+            type: 'OPEN-CONFIRM',
+            payload: data.method
+        })
+    } else {
+        dispatch({
+            type: 'CLOSE-CONFIRM',
+            payload: null
+        })
+    }
+}

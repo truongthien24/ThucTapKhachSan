@@ -44,6 +44,7 @@ export const columns = [
     {
       name: 'email',
       type: 'string',
+      required: true
     },
     {
       name: 'loaiTaiKhoan',
@@ -62,11 +63,53 @@ export const columns = [
     },
   ]
 
+
+  export const ColumnsEdit = [
+    {
+      name: 'id',
+      type: 'string',
+      required: true,
+      readOnly: true,
+    },
+    {
+      name: 'userName',
+      type: 'string',
+      required: true,
+      readOnly: true,
+    },
+    {
+      name: 'password',
+      type: 'string',
+      required: true
+    },
+    {
+      name: 'email',
+      type: 'string',
+      required: true
+    },
+    {
+      name: 'loaiTaiKhoan',
+      type: 'select',
+      dataSelect: [
+        {
+          label: 'Khách hàng',
+          value: 'guest'
+        },
+        {
+          label: 'Quản trị viên',
+          value: 'admin'
+        },
+      ],
+      required: true
+    },
+  ]
+
+
   // Validation create user
   export const validationSchemaCreateUser = yup.object().shape({
       userName: yup.string().required("Please input...."),
       password: yup.string().required("Please input...."),
-      email: yup.string().email('Please input abc@gmail...'),
+      email: yup.string().email('Please input abc@gmail...').required("Please input...."),
       loaiTaiKhoan: yup.string().required("Please input....")
   });
 

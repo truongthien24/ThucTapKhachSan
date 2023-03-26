@@ -7,7 +7,7 @@ import Highlighter from 'react-highlight-words';
 export const TableMain = (props) => {
 
     // Props
-    const {data, columns} = props;
+    const {data, columns, handleEdit, handleDelete} = props;
 
     // State
     const [searchText, setSearchText] = useState('');
@@ -23,10 +23,12 @@ export const TableMain = (props) => {
       setSearchText(selectedKeys[0]);
       setSearchedColumn(dataIndex);
     };
+
     const handleReset = (clearFilters) => {
       clearFilters();
       setSearchText('');
     };
+
     const getColumnSearchProps = (dataIndex) => ({
       filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
         <div
@@ -134,11 +136,11 @@ export const TableMain = (props) => {
               key: 'operation',
               fixed: 'right',
               width: 100,
-              render: () => <div className="flex w-full items-center justify-center">
-                <button type="text" className="delete">
+              render: (data) => <div className="flex w-full items-center justify-center">
+                <button type="text" className="delete" onClick={()=>handleDelete(data)}>
                   <DeleteFilled />
                 </button>
-                <button type="text" className="edit">
+                <button type="text" className="edit" onClick={()=>handleEdit(data)}>
                   <EditFilled />
                 </button>
               </div>,

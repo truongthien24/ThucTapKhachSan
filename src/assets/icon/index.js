@@ -13,7 +13,7 @@ import { Tag } from "./component/Tag";
 import { Chat } from "./component/Chat";
 import { Top } from "./component/Top";
 import { Logout } from "./component/Logout";
-import { Service } from "./component/Service";
+import { ServiceIcon } from "./component/ServiceIcon";
 
 export const Icon = (props) => {
     switch(props.name) {
@@ -47,7 +47,7 @@ export const Icon = (props) => {
         break;
         case "logOut": return (<Logout {...props}/>);
         break;              
-        case "service": return (<Service {...props}/>);
+        case "service": return (<ServiceIcon {...props}/>);
         break;      
         default: return <></>;
     }

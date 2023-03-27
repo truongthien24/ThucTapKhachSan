@@ -7,6 +7,8 @@ import { useDispatch } from 'react-redux';
 import { Icon } from '../../../../assets/icon';
 import { setConfirm } from '../../../../redux/action/homeAction';
 import Swal from 'sweetalert2';
+import { DatePicker } from 'antd';
+import moment from 'moment';
 
 export const FormUpdate = (props) => {
 
@@ -93,6 +95,16 @@ export const FormUpdate = (props) => {
                     }
                 </select>
             </div> 
+        } else if (item.type === "date") {
+                return <DatePicker 
+                {...register(`${item.name}`)}
+                value={moment(dataEdit?.[item.name])}
+                format="DD-MM-YYYY"
+                disabled={true}
+                // onChange={(e)=> {
+                //     console.log('e',e);
+                // }} 
+            />
         }
     }
 

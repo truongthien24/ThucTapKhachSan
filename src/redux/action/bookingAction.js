@@ -29,7 +29,29 @@ export const createBooking = (data) => async (dispatch) => {
     }
 }
 
-// Lấy dữ liệu phiếu đặt phòng
+// Lấy dữ liệu tất cả phiếu đặt phòng 
+export const getAllBooking = () => async (dispatch) => {
+    try {
+        dispatch(setLoading({
+            status: 'isLoading'
+        }))
+        setTimeout(async ()=> {
+            const phieuDatPhongRef = collection(db, 'phieuDatPhong');
+            const dataRef = await getDocs(phieuDatPhongRef);
+            dispatch({
+                type: 'LAY_DU_LIEU_BOOKING',
+                payload: dataRef.docs.map((item)=> ({...item.data(), id: item.id}))
+            })
+            dispatch(setLoading({
+                status: 'done'
+            }))
+        }, 1000)
+    } catch (error) {
+        console.log('Lỗi rồi')
+    }
+}
+
+// Lấy dữ liệu phiếu đặt phòng theo id
 export const getBooking = () => async (dispatch) => {
     try {
         const phieuDatPhongRef = collection(db, 'phieuDatPhong');
@@ -40,7 +62,7 @@ export const getBooking = () => async (dispatch) => {
         // console.log('result', result);
 
         dispatch({
-            type: 'LAY_DU_LIEU_BOOKING',
+            type: 'LAY_DU_LIEU_BOOKING_ID',
             payload: result
         })
     } catch (error) {

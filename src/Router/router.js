@@ -15,6 +15,7 @@ import { Dashboard } from '../page/admin/page/Dashboard/Dashboard';
 import AccountManagement from '../page/admin/page/AccountManagement';
 import { LoginAdmin } from '../page/admin/page/LoginAdmin';
 import { RoomManagement } from '../page/admin/page/RoomManagement/RoomManagement';
+import { CheckingManagement } from '../page/admin/page/CheckingManagement/CheckingManagement';
 
 
 export const MainRoutes = () => {
@@ -37,6 +38,7 @@ export const MainRoutes = () => {
               <Route path="dashboard" element={<Dashboard/>}/>
               <Route path="accountManagement" element={<AccountManagement/>}/>
               <Route path="roomManagement" element={<RoomManagement/>}/>
+              <Route path="checkingManagement" element={<CheckingManagement/>}/>
               <Route path="login" element={<LoginAdmin/>}/>
             </Route>
         </Routes>

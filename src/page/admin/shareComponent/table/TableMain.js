@@ -3,6 +3,7 @@ import { SearchOutlined, DeleteFilled, EditFilled } from '@ant-design/icons';
 import { Button, Input, Space, Table } from 'antd';
 import { useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
+import { useTranslation } from 'react-i18next';
 
 export const TableMain = (props) => {
 
@@ -16,6 +17,7 @@ export const TableMain = (props) => {
     const [dataColumns, setDataColumns] = useState([]);
 
     // Somethings
+    const {t} = useTranslation();
 
     // Method
     const handleSearch = (selectedKeys, confirm, dataIndex) => {
@@ -128,7 +130,27 @@ export const TableMain = (props) => {
         if(columns) {
             let dataResult = [];
             columns.map((item, index) => {
-                const obj = {...item, ...getColumnSearchProps(`${item.dataIndex}`)};
+                // if(item.dât)
+                console.log('item', item);
+                let obj = {};
+                if(item.key === 'tinhTrang') {
+                  obj = {...item, render: (text) => <div>{
+                      text 
+                      ?
+                      <div className="flex items-center">
+                        <span className="w-[4px] h-[4px] rounded-[50%] bg-[green] block mr-[5px]"></span>
+                        <span className="text-[12px] text-[green]">{t('confirmed')}</span>
+                      </div>
+                      :
+                        <div className="flex items-center">
+                            <span className="w-[4px] h-[4px] rounded-[50%] bg-[orange] block mr-[5px]"></span>
+                            <span className="text-[13px] text-[orange]">{t('check')}</span>
+                        </div>
+                    }</div>}
+                } else {
+                  obj = {...item, ...getColumnSearchProps(`${item.dataIndex}`)};
+                }
+                
                 return dataResult.push(obj);
             })
             dataResult.push({

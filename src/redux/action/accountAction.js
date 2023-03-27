@@ -302,18 +302,34 @@ export const deleteUser = (data) => async (dispatch) => {
         dispatch(setLoading({
             status: 'isLoading'
         }))
+        debugger;
+        const phieuDatPhongRef = collection(db, 'phieuDatPhong');
+        const dataRef = await getDocs(phieuDatPhongRef);
         setTimeout(async()=> {
-            await deleteDoc(doc(db, "Account", data.data.id));
-            dispatch(setLoading({
-                status: 'done'
-            }))
-            Swal.fire({
-                icon: 'success',
-                title: 'Xoá thành công !',
-                showConfirmButton: false,
-                timer: 1000,
-                timerProgressBar: true
-            })
+            if((dataRef.docs.findIndex((item)=> item.data().idKhachHang === data.data.id)) != -1) {
+                dispatch(setLoading({
+                    status: 'done'
+                }))
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Khách hàng đang đặt phòng !',
+                    showConfirmButton: false,
+                    timer: 1000,
+                    timerProgressBar: true
+                })
+            } else {
+                await deleteDoc(doc(db, "Account", data.data.id));
+                dispatch(setLoading({
+                    status: 'done'
+                }))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Xoá thành công !',
+                    showConfirmButton: false,
+                    timer: 1000,
+                    timerProgressBar: true
+                })
+            }
         }, 500)
     } catch (error) {
         console.log(error)

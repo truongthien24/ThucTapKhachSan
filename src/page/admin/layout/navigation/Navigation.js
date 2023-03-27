@@ -47,7 +47,9 @@ export const Navigation = () => {
         // getItem('Option 8', '8'),
       ]),
       getItem('Booking', 'sub2', <MailOutlined />, [
-        getItem('Check-ing request', '7'),
+        getItem(<div onClick={()=> {
+          navigate('/admin/checkingManagement')
+        }}>Checking Management</div>, '7'),
         getItem('Check-out request', '8'),
         // getItem('Option 7', '7'),
         // getItem('Option 8', '8'),

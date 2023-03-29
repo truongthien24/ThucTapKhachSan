@@ -147,6 +147,12 @@ export const TableMain = (props) => {
                             <span className="text-[13px] text-[orange]">{t('check')}</span>
                         </div>
                     }</div>}
+                } else if (item.key === 'soLuongPhong') { 
+                  obj = {...item, render: (text) => <div>
+                    {
+                      text?.length
+                    }
+                  </div>}
                 } else {
                   obj = {...item, ...getColumnSearchProps(`${item.dataIndex}`)};
                 }
@@ -156,8 +162,8 @@ export const TableMain = (props) => {
             dataResult.push({
               title: 'Action',
               key: 'operation',
-              fixed: 'right',
-              width: 100,
+              // fixed: 'right',
+              width: '100px',
               render: (data) => <div className="flex w-full items-center justify-center">
                 <button type="text" className="delete" onClick={()=>handleDelete(data)}>
                   <DeleteFilled />

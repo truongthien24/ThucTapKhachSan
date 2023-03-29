@@ -49,9 +49,17 @@
                         .ant-table-row {
                             height: 40px !important;
 
+                            &:nth-child(even) {
+                                
+                                .ant-table-cell {
+                                    background-color: #3790c71a !important;
+                                }
+                            }
+
                             .ant-table-cell {
                                 padding-top: 0 !important;
                                 padding-bottom: 0 !important;
+                                
 
                                 button {
                                     // padding: 5px !important;

@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { Icon } from '../../../../assets/icon';
 import { setConfirm } from '../../../../redux/action/homeAction';
 import Swal from 'sweetalert2';
-import { DatePicker } from 'antd';
+import { DatePicker, Radio } from 'antd';
 import moment from 'moment';
 
 export const FormUpdate = (props) => {
@@ -105,6 +105,14 @@ export const FormUpdate = (props) => {
                 //     console.log('e',e);
                 // }} 
             />
+        } else if (item.type === "radio") {
+            return <Radio.Group {...register(`${item.name}`)} onChange={(e)=> {setValue(`${item.name}`, e.target.value)}}>
+                {
+                    item.dataRadio?.map((data, index)=> {
+                        return <Radio.Button value={data.value} key={index} disabled={data.checked}>{data.label}</Radio.Button>
+                    })
+                }
+            </Radio.Group>
         }
     }
 

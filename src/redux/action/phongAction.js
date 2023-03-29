@@ -1,4 +1,4 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/firebase.config";
 
 export const layDuLieuPhong = () => async (dispatch) => {
@@ -63,3 +63,15 @@ export const getInfoRoomFormBooking = (data) => async (dispatch) => {
         console.log(error);
     }
 }
+
+
+// Lấy số lượng phòng của phòng theo id 
+export const getSoLuongPhong = (data) => async (dispatch) => {
+    try {
+        const phongRef = doc(db, 'Phong', data);
+        const result = await getDoc(phongRef);
+        return result.data().soLuongPhong;
+    } catch (error) {
+        console.log(error);
+    }
+} 

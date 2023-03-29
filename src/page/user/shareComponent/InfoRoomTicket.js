@@ -41,6 +41,13 @@ export const InfoRoomTicket = (props) => {
                             <Icon name="location"/>
                             <span className="ml-[5px] mt-[5px]">{data?.diaChi}</span>
                         </div>
+                        <div>
+                            {
+                                tinhTrang
+                                &&
+                                <span>{t('view')}</span>
+                            }
+                        </div>
                     </div>
                     <div>
                         {

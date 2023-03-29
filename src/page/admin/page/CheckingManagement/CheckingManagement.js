@@ -3,20 +3,23 @@ import React, { useMemo, useState } from 'react'
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
 import { Confirm } from '../../../../component/Confirm/Confirm';
 import { db } from '../../../../firebase/firebase.config';
-import { getAllBooking } from '../../../../redux/action/bookingAction';
+import { cancelBooking, getAllBooking, updateBooking } from '../../../../redux/action/bookingAction';
 import { setConfirm } from '../../../../redux/action/homeAction';
+import { getSoLuongPhong } from '../../../../redux/action/phongAction';
 import { FormUpdate } from '../../shareComponent/form/FormUpdate';
 import { ModalEdit } from '../../shareComponent/modal/ModalEdit';
 import { TableMain } from '../../shareComponent/table/TableMain'
-import { columns, columnsEdit, getDataTable, validationSchemaEditChecking } from './helper';
+import { columns, columnsEdit, getDataPhong, getDataTable, validationSchemaEditChecking } from './helper';
 
 export const CheckingManagement = () => {
 
     // State
     const [dataEdit, setDataEdit] = useState({});
     const [isModalEditOpen, setIsModalEditOpen] = useState(false);
+    const [dataPhong, setDataPhong] = useState([]);
 
     // Somethings
     const {t} = useTranslation();
@@ -40,17 +43,40 @@ export const CheckingManagement = () => {
         getDataTable(listAllPhieuDatPhong)
     , [listAllPhieuDatPhong]);
 
+    // const dataPhong = useMemo(async()=> {
+    //     await dispatch(getSoLuongPhong(data))
+    // }, [dataEdit])
+
+    useEffect(async()=> {
+        if(isModalEditOpen) {
+            const data = await dispatch(getSoLuongPhong(dataEdit.idPhong))
+            setDataPhong(data)
+        }
+    }, [isModalEditOpen])
+
+
     // Method
     const handleEdit = (data) => {
-        console.log('data', data);
         setDataEdit(data);
         setIsModalEditOpen(true);
     }
 
-    const handleDelete = () => {
-        dispatch(setConfirm({
+    const handleDelete = async (data) => {
+        await dispatch(setConfirm({
             status: 'open',
-            method: () => {}
+            method: async () => await dispatch(cancelBooking({
+                data: data
+            })).then(data=> {
+
+            }).catch(err => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Xoá thất bại !',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    timerProgressBar: true
+                })
+            })
         }))
     }
 
@@ -82,9 +108,9 @@ export const CheckingManagement = () => {
                 isOpen={isModalEditOpen}
                 childrenForm={
                     <FormUpdate
-                        columns={columnsEdit} 
+                        columns={columnsEdit(dataPhong)} 
                         methodCancel={()=>setIsModalEditOpen(false)} 
-                        methodSubmit={()=> {}}
+                        methodSubmit={updateBooking}
                         validationSchema={validationSchemaEditChecking}
                         dataEdit={dataEdit}
                     />

@@ -40,12 +40,12 @@ export const Navigation = () => {
         navigate('/admin/accountManagement')
       }}>Account Management</div>, '2', <DesktopOutlined />),
       getItem('Customer Management', '3', <ContainerOutlined />),
-      getItem('Account Management', 'sub1', <MailOutlined />, [
-        getItem('User Account', '5'),
-        getItem('Employee Accout', '6'),
-        // getItem('Option 7', '7'),
-        // getItem('Option 8', '8'),
-      ]),
+      // getItem('Account Management', 'sub1', <MailOutlined />, [
+      //   getItem('User Account', '5'),
+      //   getItem('Employee Accout', '6'),
+      //   // getItem('Option 7', '7'),
+      //   // getItem('Option 8', '8'),
+      // ]),
       getItem('Booking', 'sub2', <MailOutlined />, [
         getItem(<div onClick={()=> {
           navigate('/admin/checkingManagement')
@@ -54,7 +54,9 @@ export const Navigation = () => {
         // getItem('Option 7', '7'),
         // getItem('Option 8', '8'),
       ]),
-      getItem('Room Management', '9', <ContainerOutlined />),
+      getItem(<div onClick={()=> {
+        navigate('/admin/roomManagement')
+      }}>Room Management</div>, '9', <ContainerOutlined />),
       getItem('Service Management', '10', <ContainerOutlined />),
       getItem('Revenue', 'sub3', <AppstoreOutlined />, [
         getItem('Invoices Management', '11'),

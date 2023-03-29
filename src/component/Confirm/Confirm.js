@@ -12,7 +12,6 @@ export const Confirm = () => {
     // API
     const {statusConfirm} = useSelector(state=>state.home);
 
-    console.log('statusConfirm', statusConfirm);
 
     // Method
     const handleClose = () => {

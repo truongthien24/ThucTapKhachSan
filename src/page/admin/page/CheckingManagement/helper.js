@@ -1,4 +1,6 @@
+import { useDispatch } from 'react-redux';
 import * as yup from 'yup';
+import { getSoLuongPhong } from '../../../../redux/action/phongAction';
 
 // Columns table
 export const columns = [
@@ -62,75 +64,101 @@ export const columns = [
 
 
   // Columns Edit 
-  export const columnsEdit = [
-    {
-        name: 'hoTen',
-        type: 'string',
-        required: true,
-    },
-    {
-        name: 'idKhachHang',
-        type: 'string',
-        required: true,
-        readOnly: true,
-    },
-    {
-        name: 'idPhong',
-        type: 'string',
-        required: true,
-        readOnly: true,
-    },
-    {
-        name: 'cccd',
-        type: 'string',
-        required: true,
-        readOnly: true,
-    },
-    {
-        name: 'sdt',
-        type: 'string',
-        required: true,
-        // readOnly: true,
-    },
-    {
-        // title: 'ngayThue',
-        // dataIndex: 'ngayBatDauThue',
-        // key: 'ngayBatDauThue',
-        // width: '15%',
-        name: 'ngayBatDauThue',
-        type: 'date',
-        required: true,
-    },
-    {
-        // title: 'ngay',
-        // dataIndex: 'soNgay',
-        // key: 'soNgay',
-        // width: '15%',
-        // visible: true
-        name: 'soNgay',
-        type: 'string',
-        required: true,
-    },
-    {
-        // title: 'tinhTrang',
-        // dataIndex: 'tinhTrang',
-        // key: 'tinhTrang',
-        // width: '15%',
-        name: 'tinhTrang',
-        type: 'select',
-        dataSelect: [
-          {
-            label: 'Đã xác nhận',
-            value: true
-          },
-          {
-            label: 'Chờ xác nhận',
-            value: false
-          },
-        ],
-        required: true,
-    },
-  ] 
+  export const columnsEdit = (data) => {
+
+    const dataPhong = [];
+    if(data) {
+      data.map((item)=> {
+        return dataPhong.push({
+          label: item.soPhong,
+          value: item.soPhong,
+          checked: item.tinhTrang
+        })
+      })
+    }
+
+    return [
+        {
+            name: 'id',
+            type: 'string',
+            required: true,
+            readOnly: true,
+        },
+        {
+            name: 'hoTen',
+            type: 'string',
+            required: true,
+        },
+        {
+            name: 'idKhachHang',
+            type: 'string',
+            required: true,
+            readOnly: true,
+        },
+        {
+            name: 'idPhong',
+            type: 'string',
+            required: true,
+            readOnly: true,
+        },
+        {
+            name: 'cccd',
+            type: 'string',
+            required: true,
+            readOnly: true,
+        },
+        {
+            name: 'sdt',
+            type: 'string',
+            required: true,
+            // readOnly: true,
+        },
+        {
+            // title: 'ngayThue',
+            // dataIndex: 'ngayBatDauThue',
+            // key: 'ngayBatDauThue',
+            // width: '15%',
+            name: 'ngayBatDauThue',
+            type: 'date',
+            required: true,
+        },
+        {
+            // title: 'ngay',
+            // dataIndex: 'soNgay',
+            // key: 'soNgay',
+            // width: '15%',
+            // visible: true
+            name: 'soNgay',
+            type: 'string',
+            required: true,
+        },
+        {
+            // title: 'tinhTrang',
+            // dataIndex: 'tinhTrang',
+            // key: 'tinhTrang',
+            // width: '15%',
+            name: 'tinhTrang',
+            type: 'select',
+            dataSelect: [
+              {
+                label: 'Đã xác nhận',
+                value: true
+              },
+              {
+                label: 'Chờ xác nhận',
+                value: false
+              },
+            ],
+            required: true,
+        },
+        {
+          name: 'soPhong',
+          type: 'radio',
+          dataRadio: dataPhong,
+          required: true,
+        }
+      ] 
+  } 
 
   // Validation edit 
    export const validationSchemaEditChecking = yup.object().shape({
@@ -156,4 +184,9 @@ export const columns = [
       return dataResult.push(obj);
     })
     return dataResult;
+  }
+
+  export const getDataPhong = (data) => async (dispatch) => {
+    const result = await dispatch(getSoLuongPhong(data));
+    return result;
   }

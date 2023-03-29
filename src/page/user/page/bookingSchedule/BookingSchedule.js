@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { ReservationTicket } from '../../component/ReservationTicket';
 import { getBooking } from '../../../../redux/action/bookingAction';
 import { NoneInfo } from '../../shareComponent/NoneInfo';
+import { collection, onSnapshot } from 'firebase/firestore';
+import { db } from '../../../../firebase/firebase.config';
 
 export const BookingSchedule = () => {
 
@@ -13,9 +15,12 @@ export const BookingSchedule = () => {
 
     useEffect(()=> {
         dispatch(getBooking());
+
+        onSnapshot(collection(db,'phieuDatPhong'), (snapShot) => {
+            dispatch(getBooking())
+        });
     }, [])
 
-    
     // API
     const {listPhieuDatPhong} = useSelector(state=>state.booking);
 

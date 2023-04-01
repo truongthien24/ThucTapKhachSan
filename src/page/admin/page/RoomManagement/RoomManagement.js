@@ -15,6 +15,7 @@ export const RoomManagement = () => {
     // State
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isModalEditOpen, setIsModalEditOpen] = useState(false);
+    const [dataEdit, setDataEdit] = useState({});
 
     // Somethings
     const {t} = useTranslation();
@@ -27,8 +28,6 @@ export const RoomManagement = () => {
 
     const {listRoom} = useSelector(state => state.phong);
 
-    console.log('listRoom', listRoom)
-
     const data = useMemo(()=> 
       getDataTable(listRoom)
     , [listRoom])
@@ -39,6 +38,8 @@ export const RoomManagement = () => {
     }
 
     const handleEdit = (data) => {
+      console.log('data', data);
+      setDataEdit(data);
       setIsModalEditOpen(true);
     }
 
@@ -73,6 +74,7 @@ export const RoomManagement = () => {
             methodCancel={()=>setIsModalEditOpen(false)}
             title={t('Edit Account Management ')}
             isOpen={isModalEditOpen}
+            dataEdit={dataEdit}
             childrenForm={
               // <FormUpdate
               //   columns={ColumnsEdit} 

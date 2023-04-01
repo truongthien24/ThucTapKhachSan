@@ -1,5 +1,6 @@
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebase.config";
+import { setLoading } from "./homeAction";
 
 export const layDuLieuPhong = () => async (dispatch) => {
     try {
@@ -75,3 +76,22 @@ export const getSoLuongPhong = (data) => async (dispatch) => {
         console.log(error);
     }
 } 
+
+
+// Cập nhật phòng
+export const updateRoom = (data) => async (dispatch) => {
+    try {
+        dispatch(setLoading({
+            status: 'isLoading'
+        }));
+        setTimeout(async()=> {
+            const roomRef = doc(db, 'Phong', data.data.id);
+            await updateDoc(roomRef, {...data.data, checkout: true});
+            dispatch(setLoading({
+                status: 'done'
+            }));
+        }, 1000)
+    } catch (error) {
+        console.log(error)
+    }
+}

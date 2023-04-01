@@ -108,6 +108,7 @@ export const updateBooking = (data) => async (dispatch) => {
             const bookingRef = doc(db, 'phieuDatPhong', data.data.id);
             const a = data.data.tinhTrang === 'true' ? true : false;
             delete data.data.tinhTrang;
+            console.log('data 111', data);
             await updateDoc(bookingRef, {...data.data, tinhTrang: a});
             dispatch(setLoading({
                 status: 'done'

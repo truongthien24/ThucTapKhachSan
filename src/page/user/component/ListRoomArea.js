@@ -9,6 +9,7 @@ import qs from 'qs';
 
 export const ListRoomArea = () => {
 
+    // Somethings
     const dispatch = useDispatch();
     const {t} = useTranslation();
     const navigate = useNavigate();
@@ -19,9 +20,10 @@ export const ListRoomArea = () => {
     }, [])
 
     const {listRoom} = useSelector(state=>state.phong);
-    
+
     // Method
     const renderRoom = () => {
+        // ES6
         return listRoom.map((item, index) => {
             if(index < 3) {
                 return <RoomAreaItem data={item} key={index} flag={index}/>

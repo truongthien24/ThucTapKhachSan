@@ -22,6 +22,7 @@ export const MainRoutes = () => {
   return (  
     <div>
         <Routes>
+            {/* Trang mặc định */}
             <Route path="/" element={<Welcome/>}/>
             <Route path="/user" element={<Layout1/>}>
                 <Route index element={<HomeUser/>}/>  

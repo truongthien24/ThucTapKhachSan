@@ -1,7 +1,8 @@
-import { collection, getDocs, addDoc, doc, updateDoc, deleteDoc } from "firebase/firestore";
+import { collection, getDocs, addDoc, doc, updateDoc, deleteDoc, getDoc } from "firebase/firestore";
 import Swal from "sweetalert2";
 import { db } from "../../firebase/firebase.config";
 import { setLoading } from "./homeAction";
+import { updateRoom } from "./phongAction";
 
 export const createBooking = (data) => async (dispatch) => {
     try {
@@ -106,10 +107,25 @@ export const updateBooking = (data) => async (dispatch) => {
         }))
         setTimeout(async()=> {
             const bookingRef = doc(db, 'phieuDatPhong', data.data.id);
+            const phongRef = doc(db, 'Phong', data.data.idPhong);
             const a = data.data.tinhTrang === 'true' ? true : false;
             delete data.data.tinhTrang;
-            console.log('data 111', data);
+            const result = await getDoc(phongRef);
+            const dataTest = {...result.data(), soLuongPhong: result.data()?.soLuongPhong?.map((item)=>
+                {
+                    if(item.soPhong === data.data.soPhong) {
+                        return {
+                            ...item,
+                            tinhTrang: true,
+                        }
+                    } else {
+                        return {...item}
+                    }
+                }
+            )}
             await updateDoc(bookingRef, {...data.data, tinhTrang: a});
+            await updateDoc(phongRef, {...dataTest});
+            // console.log('phongRef', await getDoc(phongRef).data());
             dispatch(setLoading({
                 status: 'done'
             }))

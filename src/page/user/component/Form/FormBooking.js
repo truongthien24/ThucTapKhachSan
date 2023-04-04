@@ -25,6 +25,7 @@ export const FormBooking = (props) => {
 
     // Method
     const renderInput = () => {
+        // ES6
         return formField.map((item, index)=> {
             return (
                 <div className='w-[80%] mb-[10px]'>

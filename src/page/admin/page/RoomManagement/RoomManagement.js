@@ -6,9 +6,14 @@ import { FormUpdate } from '../../shareComponent/form/FormUpdate';
 import { ModalCreate } from '../../shareComponent/modal/ModalCreate';
 import { TableMain } from '../../shareComponent/table/TableMain'
 import { useDispatch, useSelector } from 'react-redux';
-import { layDuLieuPhong } from '../../../../redux/action/phongAction';
+import { deleteRoom, layDuLieuPhong } from '../../../../redux/action/phongAction';
 import { columns, getDataTable } from './helper';
 import { ModalEditRoom } from './component/modal/ModalEditRoom';
+import { collection, onSnapshot } from 'firebase/firestore';
+import { db } from '../../../../firebase/firebase.config';
+import { ModalCreateRoom } from './component/modal/ModalCreateRoom';
+import { setConfirm } from '../../../../redux/action/homeAction';
+import Swal from 'sweetalert2';
 
 export const RoomManagement = () => {
 
@@ -26,6 +31,12 @@ export const RoomManagement = () => {
       dispatch(layDuLieuPhong());
     }, [])
 
+    useEffect(()=> {
+      onSnapshot(collection(db,'Phong'), (snapShot) => {
+        dispatch(layDuLieuPhong())
+      });
+    }, [])
+
     const {listRoom} = useSelector(state => state.phong);
 
     const data = useMemo(()=> 
@@ -34,17 +45,32 @@ export const RoomManagement = () => {
 
     // Method
     const handleAdd = () => {
-
+      setIsModalOpen(true);
     }
 
     const handleEdit = (data) => {
-      console.log('data', data);
       setDataEdit(data);
       setIsModalEditOpen(true);
     }
 
-    const handleDelete = (data) => {
+    const handleDelete = async (data) => {
+      await dispatch(setConfirm({
+        status: 'open',
+        method: async() => {
+            dispatch(deleteRoom(data)).then(data=> {
 
+            }).catch(err => {
+              Swal.fire({
+                icon: 'error',
+                title: 'Xoá thất bại !',
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true
+              })
+            });
+        }
+        
+      }))
     }
 
     return (
@@ -56,7 +82,7 @@ export const RoomManagement = () => {
           <div className="h-[88%]">
               <TableMain data={data} columns={columns} handleEdit={handleEdit} handleDelete={handleDelete}/>
           </div>
-          <ModalCreate
+          {/* <ModalCreate
             methodCancel={()=>setIsModalOpen(false)}
             title={t('Create Account Management ')}
             isOpen={isModalOpen}
@@ -69,23 +95,20 @@ export const RoomManagement = () => {
               // />
               <></>
             }
-          />
+          /> */}
           <ModalEditRoom
             methodCancel={()=>setIsModalEditOpen(false)}
-            title={t('Edit Account Management ')}
+            title={t('Edit Room Management')}
             isOpen={isModalEditOpen}
             dataEdit={dataEdit}
             childrenForm={
-              // <FormUpdate
-              //   columns={ColumnsEdit} 
-              //   methodCancel={()=>setIsModalEditOpen(false)} 
-              //   methodSubmit={()=>{}}
-              //   validationSchema={validationSchemaCreateUser}
-              //   dataEdit={dataEdit}
-              // />
-              // <>fdaffsaf</>
                 <></>
             }
+          />
+          <ModalCreateRoom
+            methodCancel={()=>setIsModalOpen(false)}
+            title={t('Create Room Management')}
+            isOpen={isModalOpen}
           />
           <Confirm/>
         </>

@@ -62,6 +62,7 @@ export const FormBaseRegister = (props) => {
     }
 
     const handleCancel = () => {
+        // Trả về trang trước đó 
         navigate(-1)
     }
 

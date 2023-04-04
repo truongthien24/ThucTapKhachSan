@@ -1,6 +1,6 @@
 import { FormBooking } from "../Form/FormBooking";
 import { useDispatch } from 'react-redux';
-import * as yup from 'yup'
+import * as yup from 'yup';
 import { createBooking } from '../../../../redux/action/bookingAction'
 import Swal from "sweetalert2";
 import { useTranslation } from 'react-i18next'; 
@@ -55,7 +55,7 @@ export const ModalBooking = (props) => {
   
     const validationSchema = yup.object().shape({
         hoTen: yup.string().required("Please input"),
-        sdt: yup.number().typeError('Please input number').required("Please input...."),
+        sdt: yup.number().typeError('Please input number fdsafadsfsf').required("Please input...."),
         // email: yup.string().email('Please input email vv@gmail').required("Please input...."),
         cccd: yup.number().typeError('Please input number').required("Please input...."),
         soNgay: yup.number().typeError('Please input number').required("Please input....").min(1).max(10),

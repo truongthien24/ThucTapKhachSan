@@ -5,19 +5,19 @@ import { UploadOutlined } from '@ant-design/icons';
 import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
 import { app } from '../../../../../../firebase/firebase.config';
 import { useDispatch } from 'react-redux';
-import { setConfirm } from '../../../../../../redux/action/homeAction';
+import { setConfirm, setLoading } from '../../../../../../redux/action/homeAction';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
 import { setGridColumn } from '../../helper';
 import { FormAddRoom } from '../form/FormAddRoom';
-import { updateRoom } from '../../../../../../redux/action/phongAction';
+import { createRoom, updateRoom } from '../../../../../../redux/action/phongAction';
 
-export const ModalEditRoom = (props) => {
+export const ModalCreateRoom = (props) => {
 
     // Props
-    const {title, isOpen, childrenForm, methodSubmit, methodCancel, dataEdit} = props;
+    const {title, isOpen, childrenForm, methodCancel} = props;
 
 
     // State
@@ -29,8 +29,6 @@ export const ModalEditRoom = (props) => {
 
     const [open, setOpen] = useState(false);
 
-    const [isChangeImage, setIsChangeImage] = useState(false);
-
     const dispatch = useDispatch();
 
     const {t} = useTranslation();
@@ -40,17 +38,18 @@ export const ModalEditRoom = (props) => {
     useEffect(()=> {
         setIsSkeleton(true);
         setTimeout(()=> {
+            setImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDF9695aEHL20tZNMzJ26nIGr5AYMKr_eaoxXWtDkngU8M8KXhqPQXkhyamMWJ1mvbeYU&usqp=CAU')
             setIsSkeleton(false);
         }, 500) 
-    }, [dataEdit]);
+    }, [isOpen]);
 
     // Form 
     const APIEdit = [
         {
-            name: 'id',
-            type: 'string-readOnly',
+            name: 'tenPhong',
+            type: 'string',
             required: true,
-            size: '2'
+            size: '3'
         },
         {
             name: 'loaiPhong',
@@ -68,12 +67,6 @@ export const ModalEditRoom = (props) => {
             required: true,
         },
         {
-            name: 'tenPhong',
-            type: 'string',
-            required: true,
-            size: '2'
-        },
-        {
             name: 'sale',
             type: 'string',
             required: true,
@@ -87,7 +80,7 @@ export const ModalEditRoom = (props) => {
         {
             name: 'soLuongPhong',
             type: 'array',
-            dataArray: dataEdit?.soLuongPhong,
+            dataArray: [],
             dataItemName: 'soPhong',
             required: true,
             size: '3'
@@ -113,53 +106,72 @@ export const ModalEditRoom = (props) => {
     } = useForm({
         method: 'onChange',
         resolver: yupResolver(validationSchema),
-    })
-
-    useEffect(() => {
-        if(dataEdit) {
-            setImage(dataEdit.image);
-            setValue('image', dataEdit?.image);
-            setValue('dacDiemPhong', dataEdit?.dacDiemPhong);
-            APIEdit.forEach(data=> setValue(`${data.name}`, dataEdit?.[data.name]));
+        defaultValues: {
+            tenPhong: "",
+            diaChi: "",
+            soLuongPhong: [],
+            sale: null,
+            dacDiemPhong: ""
         }
-    }, [dataEdit])
-
+    })
 
     // Method
     const handleChangeImage = async (e) => {
+        dispatch(setLoading({
+            status: 'isLoading'
+        }))
         const file = e.target.files[0];
+        setImage(file);
         let reader = new FileReader();
         reader.readAsDataURL(file);
-        reader.onload = (e)=>{
-            setFileImage(file);
-            setImage(e.target.result);
-            setValue('image', e.target.result);
-            setIsChangeImage(true);
+        reader.onload = (event)=>{
+            setImage(event.target.result);
+            setValue('image', event.target.result);
         }
+        const storageRef = getStorage(app);
+        const testRef = ref(storageRef, `${file?.name}`);
+        await uploadBytes(testRef, file).then(async(snapshot) => {
+            const down = await getDownloadURL(testRef);
+            setValue('image', down);
+        });
+        dispatch(setLoading({
+            status: 'done'
+        }))
     }
 
-    const submitForm = async () => {
-        if(isChangeImage) {
-            const storageRef = getStorage(app);
-            const testRef = ref(storageRef, `${fileImage?.name}`);
-            await uploadBytes(testRef, fileImage).then(async(snapshot) => {
-                const down = await getDownloadURL(testRef);
-                setValue('image', down);
-            });
-        }
+    // const submitForm = async () => {
+    //     if(isChangeImage) {
+    //         const storageRef = getStorage(app);
+    //         const testRef = ref(storageRef, `${fileImage?.name}`);
+    //         await uploadBytes(testRef, fileImage).then(async(snapshot) => {
+    //             const down = await getDownloadURL(testRef);
+    //             setValue('image', down);
+    //         });
+    //     }
         
-        await dispatch(updateRoom({data: watch()})).then(data=> {
+    //     await dispatch(createRoom({data: watch()}));  
+    // }
+
+    const handleSubmitData = () => {
+        // await dispatch(setConfirm({
+        //     status: 'open',
+        //     method: submitForm
+        // }))
+        // if(isChangeImage) {
+        //     const storageRef = getStorage(app);
+        //     const testRef = ref(storageRef, `${fileImage?.name}`);
+        //     await uploadBytes(testRef, fileImage).then(async(snapshot) => {
+        //         const down = await getDownloadURL(testRef);
+        //         setValue('image', down);
+        //     });
+        // }
+        dispatch(createRoom({data: watch()})).then(data=> {
             console.log('Thêm thành công !');
+            reset();
+            setImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDF9695aEHL20tZNMzJ26nIGr5AYMKr_eaoxXWtDkngU8M8KXhqPQXkhyamMWJ1mvbeYU&usqp=CAU')
         }).catch(err => {
             console.log('Lỗi rồi');
-        });  
-    }
-
-    const handleSubmitData = async () => {
-        await dispatch(setConfirm({
-            status: 'open',
-            method: submitForm
-        }))
+        });  ;  
     }
 
     const handleCancel = () => {
@@ -168,7 +180,7 @@ export const ModalEditRoom = (props) => {
 
     const handleOpenChange = (newOpen) => {
         setOpen(newOpen);
-      };
+    };
 
     const renderInput = (item) => {
         if(item.type === 'select') {
@@ -193,7 +205,7 @@ export const ModalEditRoom = (props) => {
                     })
                 }
                 {
-                    getValues('soLuongPhong')?.length < 5
+                    (getValues('soLuongPhong')?.length < 5 || !getValues('soLuongPhong')?.length)
                     &&
                     <Popover
                     content={

@@ -6,6 +6,7 @@ import { Reason } from '../../component/Reason'
 
 export const HomeUser = () => {
 
+  // Danh sách banner
   const listBanner = [
     {
       title: 'Sống đậm chất riêng',

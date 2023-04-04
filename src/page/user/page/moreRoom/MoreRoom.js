@@ -18,7 +18,6 @@ export const MoreRoom = () => {
     // State
     const [dataRoom, setDataRoom] = useState([]);
 
-
     useEffect(async ()=> {
         const memberPar = searchParams.get('member');
         const priceFromPar = searchParams.get('priceFrom');

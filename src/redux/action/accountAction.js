@@ -102,6 +102,7 @@ export const registerUser = (data) => async (dispatch) => {
         const accountRef = collection(db, 'Account');
         const result = await getDocs(accountRef);
         const dataResult = result.docs.map((item)=> item.data());
+        // ES6
         const findIndex = dataResult.findIndex(item=>item.userName === (data.data.userName || data.userName));
         if(findIndex === -1) {
             setTimeout(async ()=> {
@@ -117,6 +118,7 @@ export const registerUser = (data) => async (dispatch) => {
                     timer: 1000,
                     timerProgressBar: true
                 })
+                window.location.replace('/user/login');
             }, 1000);
             return true;
         } else {

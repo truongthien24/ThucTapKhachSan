@@ -42,7 +42,7 @@ export const InfoRoomSearch = (props) => {
             </div>
             <div className="flex justify-end p-[10px]">
                 {
-                    data.tinhTrang
+                    (data?.soLuongPhong?.findIndex((item)=> item?.tinhTrang === false) == -1) || (data?.soLuongPhong?.length === 0)
                     ?
                     <div className="flex items-center justify-end">
                         <span className="w-[5px] h-[5px] rounded-[50%] bg-[orange] block mr-[10px]"></span>

@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 
 const initialState = {
     userInfo: {},
@@ -7,7 +8,6 @@ const initialState = {
     listUser: [],
 }
 
-
 export const AccountReducer = (state = initialState, action) => {
     switch(action.type) {
         case 'DANG_NHAP_USER': {
@@ -16,6 +16,7 @@ export const AccountReducer = (state = initialState, action) => {
                 state.statusLogin = true;
                 localStorage.setItem("jwt", JSON.stringify(action.payload.data[0].id));
                 window.location.replace('/user');
+                // tương ứng navigate 
             } else {
                 state.statusLogin = false;
             }

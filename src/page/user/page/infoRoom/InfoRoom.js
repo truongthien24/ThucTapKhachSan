@@ -8,40 +8,13 @@ import Swal from 'sweetalert2';
 import { useTranslation } from 'react-i18next';
 import { setLoading } from '../../../../redux/action/homeAction';
 import FsLightbox from "fslightbox-react";
+import { layDuLieuDanhGiaPhong } from '../../../../redux/action/danhGiaAction';
+import { Reaction } from '../../component/Reaction';
+import { FormReaction } from '../../component/Form/FormReaction';
 
 export const InfoRoom = () => {
 
     const {id} = useParams();
-
-    const [isBooking, setIsBooking] = useState(false);
-    const [toggler, setToggler] = useState(false);
-    const [isMobile, setIsMobile] = useState(false);
-
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-
-    const {t} = useTranslation();
-
-    // let data = [];
-    const [data, setData]= useState([]);
-
-    useEffect(async()=> {
-        // dispatch(layDuLieuPhongInfo(id));
-        dispatch(setLoading({
-            status: 'isLoading'
-        }))
-        const dataInfo = await layDuLieuPhongInfo(id);
-        setData(dataInfo);
-        dispatch(setLoading({
-            status: 'done'
-        }))
-        const innerWidth = window.innerWidth;
-        if(innerWidth < 700) {
-            setIsMobile(true);
-        } else {
-            setIsMobile(false);
-        }
-    }, [])
 
     window.addEventListener("resize", ()=>{
         const innerWidth = window.innerWidth;
@@ -50,7 +23,43 @@ export const InfoRoom = () => {
         } else {
             setIsMobile(false);
         }
-      })
+    })
+
+    // State
+    const [isBooking, setIsBooking] = useState(false);
+    const [toggler, setToggler] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+    const [data, setData]= useState([]);
+    const [danhGia, setDanhGia] = useState([]);
+
+    // Somethings
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const {t} = useTranslation();
+
+
+    // Effect
+    useEffect(async()=> {
+        // dispatch(layDuLieuPhongInfo(id));
+        dispatch(setLoading({
+            status: 'isLoading'
+        }))
+        const dataInfo = await layDuLieuPhongInfo(id);
+        setData(dataInfo);
+        const danhGia = await dispatch(layDuLieuDanhGiaPhong(id));
+        dispatch(setLoading({
+            status: 'done'
+        }))
+        setDanhGia(danhGia);
+
+        const innerWidth = window.innerWidth;
+        if(innerWidth < 700) {
+            setIsMobile(true);
+        } else {
+            setIsMobile(false);
+        }
+
+    }, [])
 
     // const {roomInfo} = useSelector((state)=>state.phong);
 
@@ -64,18 +73,29 @@ export const InfoRoom = () => {
         </div>
     }
 
+    // Render số sao
+    // const renderDanhGia = () => {
+    //     let arr = [];
+    //     for(let i = 0; i < data?.danhGia; i++) {
+    //         arr.push({}); 
+    //     }
+    //     return arr.map((item, index)=> {
+    //         return <Icon name="star" fill="#ffd902"/>
+    //     })
+    // }
+
     const renderDanhGia = () => {
-        let arr = [];
-        for(let i = 0; i < data?.danhGia; i++) {
-            arr.push({}); 
-        }
-        return arr.map((item, index)=> {
-            return <Icon name="star" fill="#ffd902"/>
+        return danhGia.map((dg, i) => {
+            return <Reaction key={i} data={dg}/>
         })
     }
 
+    // Xử lý đặt phòng
     const handleBooking = () => {
-        if(data?.tinhTrang) {
+        // Kiểm tra tình trạng phòng
+
+        // Hết phòng
+        if((data?.soLuongPhong?.findIndex((item)=> item?.tinhTrang === false) == -1) || (data?.soLuongPhong?.length === 0)) {
             Swal.fire({
                 icon: 'info',
                 iconColor: '#3790c7',
@@ -84,10 +104,16 @@ export const InfoRoom = () => {
                 confirmButtonText: `${t('ok')}`
             })
         } else {
+            // Còn phòng
             const jwt = localStorage.getItem('jwt');
+
+            // Kiểm tra đăng nhập
             if(jwt) {
+                // Đã đăng nhập
                 setIsBooking(true);
             } else {
+
+                // Chưa đăng nhập
                 Swal.fire({
                     title: 'Cần đăng nhập trước khi đặt phòng !',
                     icon: 'info',
@@ -108,13 +134,13 @@ export const InfoRoom = () => {
             <div className="flex justify-center pb-[60px] pt-[40px] flex-col items-center">
                 <div className="flex justify-center items-center">
                     <Icon name="building" color="3790c7"/>
-                    <h5 className="text-[#3790c7] text-[25px] ml-[20px] font-[500]">{data?.tenPhong}</h5>
+                    <h4 className="text-[#3790c7] text-[25px] ml-[20px] font-[500]">{data?.tenPhong}</h4>
                 </div>
                 <div className="w-[90%] md:w-[80%] xl:w-[70%] 2xl:w-[60%] flex flex-col justify-between shadow-lg shadow-gray-300 rounded-[20px] p-[15px] md:p-[20px]">
                     <div className="flex items-end justify-between py-[10px]">
                         <div>
                             <p className="font-bold text-[20px] mb-[10px]">{data?.tenPhong}</p>
-                            <p className="flex translate-x-[-5px] mb-[5px]">{renderDanhGia()}</p>
+                            {/* <p className="flex translate-x-[-5px] mb-[5px]">{renderDanhGia()}</p> */}
                             <div className="flex items-center text-[gray] text-[14px] translate-x-[-5px]">
                                 <Icon name="location"/>
                                 <span className="ml-[5px]">{data?.diaChi}</span>
@@ -131,7 +157,7 @@ export const InfoRoom = () => {
                                 &&
                                 <>
                                     <p className="mb-[10px]">{data?.tinhTrang ? `${t('outOfRoom')}` : `${t('thereStillRoom')}`}</p>
-                                    <button className={`flex items-center justify-center ${data?.tinhTrang === false ? 'bg-[#3790c7] hover:shadow-[#3790c7a6] hover:shadow-lg' : 'bg-[gray] hover:shadow-lg hover:shadow-gray-400'} text-white py-[12px] px-[20px] rounded-[7px] duration-300 hover:translate-y-[-3px]`} onClick={handleBooking}>
+                                    <button className={`flex items-center justify-center ${(data?.soLuongPhong?.findIndex((item)=> item?.tinhTrang === false) != -1 && data?.soLuongPhong?.length > 0) ? 'bg-[#3790c7] hover:shadow-[#3790c7a6] hover:shadow-lg' : 'bg-[gray] hover:shadow-lg hover:shadow-gray-400'} text-white py-[12px] px-[20px] rounded-[7px] duration-300 hover:translate-y-[-3px]`} onClick={handleBooking}>
                                         {t('booking')}
                                     </button>
                                 </>
@@ -154,6 +180,21 @@ export const InfoRoom = () => {
                         </button>
                     }
                 </div>
+                {/* Đánh giá */}
+                <div className="w-[90%] md:w-[80%] xl:w-[70%] 2xl:w-[60%] shadow-lg shadow-gray-300 rounded-[20px] p-[15px] md:p-[20px] mt-[20px] bg-[white]">
+                    <div className="flex items-center">
+                        <Icon name="chat" color="#3790c7"/>
+                        <h5 className="text-[#3790c7] ml-[10px] text-[16px] md:text-[20px] 2xl:text-[25px]">Reaction</h5>
+                    </div>
+                    <div className="mt-[20px]">
+                        {
+                            renderDanhGia()
+                        }
+                    </div>
+                    <div className="mt-[20px]">
+                        <FormReaction/>
+                    </div>
+                </div>
             </div> 
             <FsLightbox
 				toggler={toggler}
@@ -168,6 +209,7 @@ export const InfoRoom = () => {
             }
         </>
 
+// createdAt: serverTimestamp(),
         
     )
 }

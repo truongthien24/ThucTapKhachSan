@@ -5,6 +5,7 @@ import { homeReducer } from "./homeReducer";
 import { PhongReducer } from "./phongReducer";
 import { BookingReducer } from "./bookingReducer";
 import { dichVuReducer } from "./dichVuReducer";
+import { danhGiaReducer } from "./danhGiaReducer";
 
 const reducers = combineReducers({
     phong: PhongReducer,
@@ -12,7 +13,8 @@ const reducers = combineReducers({
     home: homeReducer,
     area: AreaReducer,
     booking: BookingReducer,
-    dichVu: dichVuReducer
+    dichVu: dichVuReducer,
+    danhGia: danhGiaReducer
 })
 
 export default reducers;

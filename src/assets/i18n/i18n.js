@@ -47,6 +47,7 @@ const resources = {
         "areYouSure?": "Are you sure ?",
         "confirm": "Confirm",
         "save": "Save",
+        "send": "Send",
       },
     },
     kr: {
@@ -92,6 +93,7 @@ const resources = {
         "areYouSure?": "확실합니까 ?",
         "confirm": "확인하다",
         "save": "구하다",
+        "send": "보내다",
       },
     },
     vi: {
@@ -137,6 +139,7 @@ const resources = {
         "areYouSure?": "Bạn đã chắc chắn ?",
         "confirm": "Xác nhận",
         "save": "Lưu",
+        "send": "Gửi",
       },
     }
 };

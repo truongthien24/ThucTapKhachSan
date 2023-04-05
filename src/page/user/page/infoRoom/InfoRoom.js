@@ -11,6 +11,10 @@ import FsLightbox from "fslightbox-react";
 import { layDuLieuDanhGiaPhong } from '../../../../redux/action/danhGiaAction';
 import { Reaction } from '../../component/Reaction';
 import { FormReaction } from '../../component/Form/FormReaction';
+import { ModalDanhGia } from '../../component/modal/ModalDanhGia';
+import { collection, onSnapshot } from 'firebase/firestore';
+import { db } from '../../../../firebase/firebase.config';
+import { NoneInfo } from '../../shareComponent/NoneInfo';
 
 export const InfoRoom = () => {
 
@@ -31,6 +35,7 @@ export const InfoRoom = () => {
     const [isMobile, setIsMobile] = useState(false);
     const [data, setData]= useState([]);
     const [danhGia, setDanhGia] = useState([]);
+    const [openDanhGia, setOpenDanhGia] = useState(false);
 
     // Somethings
     const dispatch = useDispatch();
@@ -44,20 +49,30 @@ export const InfoRoom = () => {
         dispatch(setLoading({
             status: 'isLoading'
         }))
+        // Lấy thông tin phòng
         const dataInfo = await layDuLieuPhongInfo(id);
         setData(dataInfo);
+
+        // lấy thông tin đánh giá
         const danhGia = await dispatch(layDuLieuDanhGiaPhong(id));
         dispatch(setLoading({
             status: 'done'
         }))
         setDanhGia(danhGia);
 
+        // Kiểm tra độ rộng màn hình
         const innerWidth = window.innerWidth;
         if(innerWidth < 700) {
             setIsMobile(true);
         } else {
             setIsMobile(false);
         }
+
+        // Khi có một đánh giá mới
+        onSnapshot(collection(db,'danhGia'), async (snapShot) => {
+            const danhGia = await dispatch(layDuLieuDanhGiaPhong(id));
+            setDanhGia(danhGia);
+        });
 
     }, [])
 
@@ -74,20 +89,52 @@ export const InfoRoom = () => {
     }
 
     // Render số sao
-    // const renderDanhGia = () => {
-    //     let arr = [];
-    //     for(let i = 0; i < data?.danhGia; i++) {
-    //         arr.push({}); 
-    //     }
-    //     return arr.map((item, index)=> {
-    //         return <Icon name="star" fill="#ffd902"/>
-    //     })
-    // }
+    const renderSoSao = () => {
+        let so = 0;
+        danhGia?.forEach((item)=> {return so = so + item.soSao})
+        const soSao = parseInt(so/danhGia?.length);
+        let arr = [];
+        for(let i = 0; i < soSao; i++) {
+            arr.push({}); 
+        }
+        return arr.map((item, index)=> {
+            return <Icon name="star" fill="#ffd902"/>
+        })
+    }
+
+    const handleOpenForm = () => {
+        if(localStorage.getItem('jwt') && localStorage.getItem('userLogin')) {
+            dispatch(setLoading({
+                status: 'isLoading'
+            }))
+            setTimeout(()=> {
+                dispatch(setLoading({
+                    status: 'done'
+                }))
+                setOpenDanhGia(true);
+            }, 500)
+        } else {
+            Swal.fire({
+                icon: 'info',
+                iconColor: '#3790c7',
+                title: `${t('youAreNotLoggedIn')}`,
+                confirmButtonColor: '#3790c7',
+                confirmButtonText: `${t('ok')}`
+            })
+        }
+    }
 
     const renderDanhGia = () => {
-        return danhGia.map((dg, i) => {
-            return <Reaction key={i} data={dg}/>
-        })
+        if(danhGia?.length === 0) {
+            return <div className="h-[100px] md:h-[150px] flex items-center justify-center">
+                <NoneInfo content={`${t('No reaction')}`}/>
+            </div>
+        }
+        else {
+            return danhGia.map((dg, i) => {
+                return <Reaction key={i} data={dg}/>
+            })
+        }
     }
 
     // Xử lý đặt phòng
@@ -140,7 +187,7 @@ export const InfoRoom = () => {
                     <div className="flex items-end justify-between py-[10px]">
                         <div>
                             <p className="font-bold text-[20px] mb-[10px]">{data?.tenPhong}</p>
-                            {/* <p className="flex translate-x-[-5px] mb-[5px]">{renderDanhGia()}</p> */}
+                            <p className="flex translate-x-[-5px] mb-[5px]">{renderSoSao()}</p>
                             <div className="flex items-center text-[gray] text-[14px] translate-x-[-5px]">
                                 <Icon name="location"/>
                                 <span className="ml-[5px]">{data?.diaChi}</span>
@@ -186,13 +233,22 @@ export const InfoRoom = () => {
                         <Icon name="chat" color="#3790c7"/>
                         <h5 className="text-[#3790c7] ml-[10px] text-[16px] md:text-[20px] 2xl:text-[25px]">Reaction</h5>
                     </div>
-                    <div className="mt-[20px]">
+                    <div className="mt-[20px] grid grid-cols-1 gap-[10px] md:gap-[15px]">
                         {
                             renderDanhGia()
                         }
                     </div>
                     <div className="mt-[20px]">
-                        <FormReaction/>
+                        {/* <FormReaction/> */}
+                        <button className="bg-[#3790c7] relative rounded-[10px] px-[10px] py-[10px] overflow-hidden hoverToShow" onClick={handleOpenForm}>
+                            <div className="flex">
+                                <Icon name="paper" color="#fff"/>
+                                <span className="text-[#fff] text-[13px] md:text-[15px] ml-[10px]">Đánh giá ở đây</span>
+                            </div>
+                            <div className="hoverToShow-hide absolute top-0 left-0 w-full h-full bg-[#3790c7]">
+                                <Icon name="paper" color="#fff"/>
+                            </div>
+                        </button>
                     </div>
                 </div>
             </div> 
@@ -206,6 +262,11 @@ export const InfoRoom = () => {
                 isBooking
                 &&
                 <ModalBooking data={data} setIsBooking={setIsBooking} idRoom={id}/>
+            }
+            {
+                openDanhGia
+                &&
+                <ModalDanhGia setOpenDanhGia={setOpenDanhGia} background={data?.image}/>
             }
         </>
 

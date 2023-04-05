@@ -241,4 +241,47 @@ html {
 }
 .ant-modal .ant-modal-content .ant-modal-body {
   height: calc(100% - 50px) !important;
+}
+
+.hoverToShow {
+  transition: all 0.7s;
+}
+.hoverToShow:hover .hoverToShow-hide {
+  width: 100%;
+  transform: translateX(0);
+}
+.hoverToShow:hover .hoverToShow-hide svg {
+  animation-name: fadeOnLeft;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-delay: 0.3s;
+}
+.hoverToShow:hover {
+  box-shadow: 0 0px 10px 5px rgba(55, 144, 199, 0.6509803922);
+}
+.hoverToShow .hoverToShow-hide {
+  transition: all 0.5s;
+  transform: translateX(-50px);
+  width: 0;
+}
+.hoverToShow .hoverToShow-hide svg {
+  position: absolute;
+  left: -15%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@keyframes fadeOnLeft {
+  from {
+    left: -15%;
+    transform: translateY(-50%);
+  }
+  to {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+.ant-rate-star-zero .anticon-star {
+  color: rgb(119, 119, 119);
 }/*# sourceMappingURL=index.css.map */

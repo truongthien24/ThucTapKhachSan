@@ -15,6 +15,7 @@ export const AccountReducer = (state = initialState, action) => {
                 state.userInfo = action.payload.data[0];
                 state.statusLogin = true;
                 localStorage.setItem("jwt", JSON.stringify(action.payload.data[0].id));
+                localStorage.setItem("userLogin", JSON.stringify({userName: action.payload.data[0].userName, email: action.payload.data[0].email}));
                 window.location.replace('/user');
                 // tương ứng navigate 
             } else {

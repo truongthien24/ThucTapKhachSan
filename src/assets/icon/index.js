@@ -14,6 +14,7 @@ import { Chat } from "./component/Chat";
 import { Top } from "./component/Top";
 import { Logout } from "./component/Logout";
 import { ServiceIcon } from "./component/ServiceIcon";
+import { Paper } from "./component/Paper";
 
 export const Icon = (props) => {
     switch(props.name) {
@@ -48,7 +49,9 @@ export const Icon = (props) => {
         case "logOut": return (<Logout {...props}/>);
         break;              
         case "service": return (<ServiceIcon {...props}/>);
-        break;      
+        break;
+        case "paper": return (<Paper {...props}/>);
+        break;           
         default: return <></>;
     }
 }

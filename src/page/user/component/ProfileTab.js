@@ -43,6 +43,7 @@ export const ProfileTab = (props) => {
 
     const handleLogOut = () => {
       localStorage.removeItem("jwt");
+      localStorage.removeItem("userLogin");
       window.location.reload();
     }
 

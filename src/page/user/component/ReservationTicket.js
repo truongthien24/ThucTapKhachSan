@@ -8,7 +8,7 @@ export const ReservationTicket = (props) => {
 
     return (
         <div className="bg-[white] shadow-lg shadow-gray-400 p-[10px] rounded-[10px] hover:shadow-[#5c97bc] duration-300 hover:shadow-xl cursor-pointer">
-            <InfoRoomTicket idPhong={data.idPhong} tinhTrang={data.tinhTrang}/>
+            <InfoRoomTicket idPhong={data.idPhong} dataTicket={data}/>
         </div>
     )
 }

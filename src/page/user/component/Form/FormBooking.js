@@ -19,10 +19,10 @@ export const FormBooking = (props) => {
     });
 
     useEffect(()=> {
-        if(getValues('soNgay') > 0 ) {
+        // if(getValues('soNgay') > 0 ) {
             setValue('tongGia', (getValues('soNgay') * data.giaThueNgay).toLocaleString());
-        }
-    }, [getValues('soNgay')])
+        // }
+    }, [getValues('soNgay')]);
 
     // Method
     const renderInput = () => {
@@ -68,9 +68,9 @@ export const FormBooking = (props) => {
                 <div className="w-[60%]">
                     {renderInput()}
                 </div>
-                <div className="w-[40%] grid grid-rows-3">
+                <div className="w-[40%] grid grid-rows-3 gap-[20px]">
                     <img src={data?.image} className="rounded-[10px]"/>
-                    <div>
+                    <div className="mt-[20px]">
                         <p>{data?.tenPhong}</p>
                         <div className="flex text-[gray] mt-[5px] text-[13px] translate-x-[-5px]">
                             <Icon name="location"/>

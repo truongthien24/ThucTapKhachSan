@@ -7,7 +7,7 @@ import { getThongTinLoaiPhong } from '../../../redux/action/phongAction';
 export const InfoLoaiPhong = (props) => {
 
     // Props
-    const {dataRoom} = props;
+    const {dataRoom, setGiaThueNgay} = props;
 
     // Something
     const dispatch = useDispatch();
@@ -19,6 +19,7 @@ export const InfoLoaiPhong = (props) => {
     useEffect(async() => {
         const res = await dispatch(getThongTinLoaiPhong(dataRoom?.loaiPhong));
         setData(res);
+        setGiaThueNgay(res.giaThueNgay)
     }, [dataRoom])
 
     // Return

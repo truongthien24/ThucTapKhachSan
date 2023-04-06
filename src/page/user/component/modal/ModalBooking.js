@@ -8,7 +8,9 @@ import { useTranslation } from 'react-i18next';
 export const ModalBooking = (props) => {
 
     // Props;
-    const {data, setIsBooking, idRoom} = props;
+    const {data, setIsBooking, idRoom, giaThueNgay} = props;
+
+    console.log('giaThueNgay', giaThueNgay)
 
     const dispatch = useDispatch();
     const {t} = useTranslation();
@@ -17,9 +19,9 @@ export const ModalBooking = (props) => {
         hoTen: "",
         sdt: null,
         cccd: "",
-        soNgay: null,
+        soNgay: 1,
         ngayBatDauThue: null,
-        tongGia: 0,
+        tongGia: giaThueNgay,
         idKhachHang: `${JSON.parse(localStorage.getItem('jwt'))}`,
         idPhong: idRoom
         // idDatPhong===> Tài khoản đăng nhập
@@ -39,12 +41,12 @@ export const ModalBooking = (props) => {
             type: "string"
         },
         {
-            name: "soNgay",
-            type: "string"
-        },
-        {
             name: "ngayBatDauThue",
             type: "date"
+        },
+        {
+            name: "soNgay",
+            type: "string"
         },
         {
             name: "tongGia",
@@ -100,7 +102,7 @@ export const ModalBooking = (props) => {
                         validationSchema={validationSchema} 
                         methodSubmit={handleBooking}
                         methodCancel={handleCancel}
-                        data={data}
+                        data={{...data, giaThueNgay: giaThueNgay}}
                     />
                 </div>
             </div>

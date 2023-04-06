@@ -20,6 +20,10 @@ import { Reply } from "./component/Reply";
 import { Bath } from "./component/Bath";
 import { Bed } from "./component/Bed";
 import { People } from "./component/People";
+import { Key } from "./component/Key";
+import { Swatch } from "./component/Swatch";
+import { Clock } from "./component/Clock";
+import { Card } from "./component/Card";
 
 export const Icon = (props) => {
     switch(props.name) {
@@ -67,6 +71,14 @@ export const Icon = (props) => {
         break;  
         case "people": return (<People {...props}/>);
         break;  
+        case "key": return (<Key {...props}/>);
+        break;  
+        case "swatch": return (<Swatch {...props}/>);
+        break;  
+        case "clock": return (<Clock {...props}/>);
+        break; 
+        case "card": return (<Card {...props}/>);
+        break;   
         default: return <></>;
     }
 }

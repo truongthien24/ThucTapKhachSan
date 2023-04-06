@@ -52,6 +52,7 @@ const resources = {
         "reply": "Reply",
         "reactionHere": "Reaction here",
         "reaction": "Reaction",
+        "view": "View",
       },
     },
     kr: {
@@ -102,6 +103,7 @@ const resources = {
         "reply": "회신하다",
         "reactionHere": "여기에서 반응",
         "reaction": "여기에서",
+        "view": "보다",
       },
     },
     vi: {
@@ -152,6 +154,7 @@ const resources = {
         "reply": "Trả lời",
         "reactionHere": "Đánh giá ở đây",
         "reaction": "Đánh giá",
+        "view": "Xem chi tiết",
       },
     }
 };

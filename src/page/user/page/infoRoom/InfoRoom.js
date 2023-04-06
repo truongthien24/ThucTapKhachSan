@@ -37,6 +37,7 @@ export const InfoRoom = () => {
     const [data, setData]= useState([]);
     const [danhGia, setDanhGia] = useState([]);
     const [openDanhGia, setOpenDanhGia] = useState(false);
+    const [giaThueNgay, setGiaThueNgay] = useState(0);
 
     // Somethings
     const dispatch = useDispatch();
@@ -190,7 +191,7 @@ export const InfoRoom = () => {
                             <p className="font-bold text-[20px] translate-x-[-4px]">{data?.tenPhong}</p>
                             <p className="flex translate-x-[-5px] mb-[13px]">{renderSoSao()}</p>
                             <div>
-                                <InfoLoaiPhong dataRoom={data}/>
+                                <InfoLoaiPhong dataRoom={data} setGiaThueNgay={setGiaThueNgay}/>
                             </div>
                             {/* <div className="flex items-center translate-x-[-5px] mt-[5px] text-[18px]">
                                 <Icon name="bank"/>
@@ -265,7 +266,7 @@ export const InfoRoom = () => {
             {
                 isBooking
                 &&
-                <ModalBooking data={data} setIsBooking={setIsBooking} idRoom={id}/>
+                <ModalBooking data={data} setIsBooking={setIsBooking} idRoom={id} giaThueNgay={giaThueNgay}/>
             }
             {
                 openDanhGia

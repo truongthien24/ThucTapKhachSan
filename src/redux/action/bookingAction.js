@@ -1,4 +1,4 @@
-import { collection, getDocs, addDoc, doc, updateDoc, deleteDoc, getDoc } from "firebase/firestore";
+import { collection, getDocs, addDoc, doc, updateDoc, deleteDoc, getDoc, serverTimestamp } from "firebase/firestore";
 import Swal from "sweetalert2";
 import { db } from "../../firebase/firebase.config";
 import { setLoading } from "./homeAction";
@@ -19,7 +19,8 @@ export const createBooking = (data) => async (dispatch) => {
                 tinhTrang: false,
                 tongGia: data.tongGia,
                 idKhachHang: data.idKhachHang,
-                idPhong: data.idPhong
+                idPhong: data.idPhong,
+                createAt: serverTimestamp()
             });
             dispatch(setLoading({
                 status: 'done'

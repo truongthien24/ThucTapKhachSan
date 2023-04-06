@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Icon } from '../../../../assets/icon';
 import { useTranslation } from 'react-i18next';
+import moment from 'moment/moment';
 
 export const FormBooking = (props) => {
     // Props
@@ -39,6 +40,7 @@ export const FormBooking = (props) => {
                             className={`w-[95%] outline-none text-[15px]`}
                             {...register(`${item.name}`)}
                             readOnly={item.readOnly}
+                            min={item.type === "date" && moment(new Date()).format('YYYY-MM-DD').toString()}
                         />
                         {
 

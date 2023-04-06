@@ -15,6 +15,7 @@ import { ModalDanhGia } from '../../component/modal/ModalDanhGia';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { db } from '../../../../firebase/firebase.config';
 import { NoneInfo } from '../../shareComponent/NoneInfo';
+import { InfoLoaiPhong } from '../../shareComponent/InfoLoaiPhong';
 
 export const InfoRoom = () => {
 
@@ -83,7 +84,7 @@ export const InfoRoom = () => {
             <div className="flex items-center justify-center h-full" style={{backgroundColor: 'rgba(0,0,0,0.5)'}} onClick={()=> {
                 setToggler(!toggler);
             }}>
-                <span className="text-white">{t('seeAll')}</span>
+                <span className="text-white text-[14px] md:text-[16px] lg:text-[18px]">{t('seeAll')}</span>
             </div>
         </div>
     }
@@ -184,26 +185,29 @@ export const InfoRoom = () => {
                     <h4 className="text-[#3790c7] text-[25px] ml-[20px] font-[500]">{data?.tenPhong}</h4>
                 </div>
                 <div className="w-[90%] md:w-[80%] xl:w-[70%] 2xl:w-[60%] flex flex-col justify-between shadow-lg shadow-gray-300 rounded-[20px] p-[15px] md:p-[20px]">
-                    <div className="flex items-end justify-between py-[10px]">
+                    <div className="flex items-end justify-between pb-[10px]">
                         <div>
-                            <p className="font-bold text-[20px] mb-[10px]">{data?.tenPhong}</p>
-                            <p className="flex translate-x-[-5px] mb-[5px]">{renderSoSao()}</p>
-                            <div className="flex items-center text-[gray] text-[14px] translate-x-[-5px]">
-                                <Icon name="location"/>
-                                <span className="ml-[5px]">{data?.diaChi}</span>
+                            <p className="font-bold text-[20px] translate-x-[-4px]">{data?.tenPhong}</p>
+                            <p className="flex translate-x-[-5px] mb-[13px]">{renderSoSao()}</p>
+                            <div>
+                                <InfoLoaiPhong dataRoom={data}/>
                             </div>
-                            <div className="flex items-center translate-x-[-5px] mt-[5px] text-[18px]">
+                            {/* <div className="flex items-center translate-x-[-5px] mt-[5px] text-[18px]">
                                 <Icon name="bank"/>
                                 <span className="text-[#3790c7] font-500 mr-[20px] ml-[7px]">{(data?.giaThueNgay - (data?.giaThueNgay * data?.sale / 100))?.toLocaleString()}</span>
                                 <span className={`${data?.sale > 0 && 'line-through'}`}>{data?.giaThueNgay?.toLocaleString()}</span>
-                            </div>
+                            </div> */}
                         </div>
-                        <div className="flex flex-col ">
+                        <div className="flex flex-col">
+                            <div className="flex items-center justify-end text-[gray] text-[14px] translate-x-[-5px] ml-[20px] mb-[10px] mt-[5px]">
+                                <Icon name="location"/>
+                                <span className="ml-[5px]">{data?.diaChi}</span>
+                             </div>
                             {
                                 !isMobile
                                 &&
                                 <>
-                                    <p className="mb-[10px]">{data?.tinhTrang ? `${t('outOfRoom')}` : `${t('thereStillRoom')}`}</p>
+                                    <p className="mb-[10px] text-end">{data?.tinhTrang ? `${t('outOfRoom')}` : `${t('thereStillRoom')}`}</p>
                                     <button className={`flex items-center justify-center ${(data?.soLuongPhong?.findIndex((item)=> item?.tinhTrang === false) != -1 && data?.soLuongPhong?.length > 0) ? 'bg-[#3790c7] hover:shadow-[#3790c7a6] hover:shadow-lg' : 'bg-[gray] hover:shadow-lg hover:shadow-gray-400'} text-white py-[12px] px-[20px] rounded-[7px] duration-300 hover:translate-y-[-3px]`} onClick={handleBooking}>
                                         {t('booking')}
                                     </button>
@@ -213,7 +217,7 @@ export const InfoRoom = () => {
                     </div>
                     <div className="grid grid-cols-4 grid-rows-3 md:grid-rows-4 w-full gap-[5px] md:gap-[10px]">
                         <div class="col-span-3 row-span-4 rounded-[10px] overflow-hidden">
-                            <img className="h-[200px] md:h-[450px] w-full rounded-[10px] duration-500 hover:scale-105" src={data?.image}/>
+                            <img className="h-[210px] md:h-[450px] 2xl:h-[550px] w-full rounded-[10px] duration-500 hover:scale-105" src={data?.image}/>
                         </div>
                         {
                             renderMoreImage()
@@ -222,7 +226,7 @@ export const InfoRoom = () => {
                     {
                         isMobile
                         && 
-                        <button className={`flex items-center mt-[10px] justify-center ${data?.tinhTrang === false ? 'bg-[#3790c7] hover:shadow-[#3790c7a6] hover:shadow-lg' : 'bg-[gray] hover:shadow-lg hover:shadow-gray-400'} text-white py-[12px] px-[20px] rounded-[10px] duration-300 hover:translate-y-[-3px]`} onClick={handleBooking}>
+                        <button className={`flex items-center mt-[10px] justify-center ${data?.tinhTrang === false ? 'bg-[#3790c7] hover:shadow-[#3790c7a6] hover:shadow-lg' : 'bg-[gray] hover:shadow-lg hover:shadow-gray-400'} text-white py-[12px] px-[20px] rounded-[10px] duration-300 hover:translate-y-[-3px] text-[14px] md:text-[16px] lg:text-[18px]`} onClick={handleBooking}>
                             {t('booking')}
                         </button>
                     }
@@ -231,7 +235,7 @@ export const InfoRoom = () => {
                 <div className="w-[90%] md:w-[80%] xl:w-[70%] 2xl:w-[60%] shadow-lg shadow-gray-300 rounded-[20px] p-[15px] md:p-[20px] mt-[20px] bg-[white]">
                     <div className="flex items-center">
                         <Icon name="chat" color="#3790c7"/>
-                        <h5 className="text-[#3790c7] ml-[10px] text-[16px] md:text-[20px] 2xl:text-[25px]">Reaction</h5>
+                        <h5 className="text-[#3790c7] ml-[10px] text-[16px] md:text-[20px] 2xl:text-[25px]">{t('reaction')}</h5>
                     </div>
                     <div className="mt-[20px] grid grid-cols-1 gap-[10px] md:gap-[15px]">
                         {
@@ -243,7 +247,7 @@ export const InfoRoom = () => {
                         <button className="bg-[#3790c7] relative rounded-[10px] px-[10px] py-[10px] overflow-hidden hoverToShow" onClick={handleOpenForm}>
                             <div className="flex">
                                 <Icon name="paper" color="#fff"/>
-                                <span className="text-[#fff] text-[13px] md:text-[15px] ml-[10px]">Đánh giá ở đây</span>
+                                <span className="text-[#fff] text-[13px] md:text-[15px] ml-[10px]">{t('reactionHere')}</span>
                             </div>
                             <div className="hoverToShow-hide absolute top-0 left-0 w-full h-full bg-[#3790c7]">
                                 <Icon name="paper" color="#fff"/>

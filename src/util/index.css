@@ -284,4 +284,8 @@ html {
 }
 .ant-rate-star-zero .anticon-star {
   color: rgb(119, 119, 119);
+}
+
+.user .ant-ribbon-wrapper {
+  margin-right: 20px;
 }/*# sourceMappingURL=index.css.map */

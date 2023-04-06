@@ -48,6 +48,10 @@ const resources = {
         "confirm": "Confirm",
         "save": "Save",
         "send": "Send",
+        "like": "Like",
+        "reply": "Reply",
+        "reactionHere": "Reaction here",
+        "reaction": "Reaction",
       },
     },
     kr: {
@@ -94,6 +98,10 @@ const resources = {
         "confirm": "확인하다",
         "save": "구하다",
         "send": "보내다",
+        "like": "좋다",
+        "reply": "회신하다",
+        "reactionHere": "여기에서 반응",
+        "reaction": "여기에서",
       },
     },
     vi: {
@@ -140,6 +148,10 @@ const resources = {
         "confirm": "Xác nhận",
         "save": "Lưu",
         "send": "Gửi",
+        "like": "Thích",
+        "reply": "Trả lời",
+        "reactionHere": "Đánh giá ở đây",
+        "reaction": "Đánh giá",
       },
     }
 };

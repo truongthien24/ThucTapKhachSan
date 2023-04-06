@@ -1,4 +1,4 @@
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, updateDoc } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
 import Swal from "sweetalert2";
 import { db } from "../../firebase/firebase.config";
 import { setLoading } from "./homeAction";
@@ -78,6 +78,18 @@ export const getSoLuongPhong = (data) => async (dispatch) => {
         const phongRef = doc(db, 'Phong', data);
         const result = await getDoc(phongRef);
         return result.data().soLuongPhong;
+    } catch (error) {
+        console.log(error);
+    }
+} 
+
+// Lấy thông tin loại phòng
+export const getThongTinLoaiPhong = (loaiPhong) => async (dispatch) => {
+    try {
+        const loaiPhongRef = collection(db, 'loaiPhong');
+        const loaiPhongQuery = query(loaiPhongRef, where('loai', '==', loaiPhong));
+        const loaiPhongDoc = await getDocs(loaiPhongQuery);
+        return loaiPhongDoc.docs[0].data();
     } catch (error) {
         console.log(error);
     }

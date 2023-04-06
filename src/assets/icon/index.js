@@ -15,6 +15,11 @@ import { Top } from "./component/Top";
 import { Logout } from "./component/Logout";
 import { ServiceIcon } from "./component/ServiceIcon";
 import { Paper } from "./component/Paper";
+import { Like } from "./component/Like";
+import { Reply } from "./component/Reply";
+import { Bath } from "./component/Bath";
+import { Bed } from "./component/Bed";
+import { People } from "./component/People";
 
 export const Icon = (props) => {
     switch(props.name) {
@@ -51,7 +56,17 @@ export const Icon = (props) => {
         case "service": return (<ServiceIcon {...props}/>);
         break;
         case "paper": return (<Paper {...props}/>);
-        break;           
+        break;          
+        case "like": return (<Like {...props}/>);
+        break;
+        case "reply": return (<Reply {...props}/>);
+        break;    
+        case "bath": return (<Bath {...props}/>);
+        break;  
+        case "bed": return (<Bed {...props}/>);
+        break;  
+        case "people": return (<People {...props}/>);
+        break;  
         default: return <></>;
     }
 }

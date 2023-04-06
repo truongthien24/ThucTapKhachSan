@@ -22,7 +22,7 @@ export const Layout1 = () => {
   }, []);
 
   return (
-    <div>
+    <div className='user'>
       <MenuUser/>
       <div className="pt-[70px] md:pt-[60px] lg:pt-[75px] min-h-screen flex flex-col justify-between">
         <Outlet/>

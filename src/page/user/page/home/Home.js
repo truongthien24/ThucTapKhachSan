@@ -3,6 +3,10 @@ import { ListRoomArea } from '../../component/ListRoomArea'
 import { SearchArea } from '../../component/SearchArea'
 import { Slider } from '../../component/Slider'
 import { Reason } from '../../component/Reason'
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { layDuLieuPhong } from '../../../../redux/action/phongAction'
 
 export const HomeUser = () => {
 
@@ -29,6 +33,15 @@ export const HomeUser = () => {
       image: 'https://ik.imagekit.io/tvlk/image/imageResource/2023/02/24/1677241355474-7600499dd8000f1cdd4ae1ad3b779a9a.jpeg?tr=h-230,q-75,w-472',
     },
   ]
+
+  const dispatch = useDispatch();
+
+  // const {layDuLieuPhong} = bindActionCreators(phongCreator, dispatch);
+  
+  useEffect(()=> {
+    dispatch(layDuLieuPhong());
+  }, [])
+
 
   return (
     <div className=''>

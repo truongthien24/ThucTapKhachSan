@@ -24,6 +24,7 @@ export const layDuLieuPhong = () => async (dispatch) => {
     }
 }
 
+// Search phòng
 export const layDuLieuPhongTheoParams = (data) => {
     return async (dispatch) => {
         const phongRef = collection(db, 'Phong');
@@ -35,39 +36,22 @@ export const layDuLieuPhongTheoParams = (data) => {
             return dataResult = result.docs.map((doc)=>({...doc.data(), id: doc.id}));
         }  else {
             const loaiPhongQuery = query(loaiPhongRef,
-                            where('soNguoi', '==', parseInt(data.soNguoiPar)), 
-                            where('noiThat.soGiuong', '==', parseInt(data.soGiuongPar)),
                             where('giaThueNgay', '>=', parseInt(data.priceFromPar)),
-                            where('giaThueNgay', '<=', parseInt(data.priceToPar)))
-                        // or(
-                        //     and(
-                        //         where('giaThueNgay', '>=', parseInt(data.priceFromPar)),
-                        //         where('giaThueNgay', '<=', parseInt(data.priceToPar))
-                        //     )
-                        // )
-                    // ),
-            // const loaiPhongQueryPrice = query(loaiPhongRef, 
-            //         where('giaThueNgay', '>=', parseInt(data.priceFromPar)),
-            //         where('giaThueNgay', '<=', parseInt(data.priceToPar)))
-            await getDocs(loaiPhongQuery).then((querySnapShot) => {
-                querySnapShot.forEach((doc) => {
-                    console.log('doc.data()',doc.data());
-                })
-            });
-            // const resulta = loaiPhongResult.docs.map((doc)=>({...doc.data(),id: doc.id}));
-            // if(resulta.length > 0) {
-            //     const phongQuery = query(phongRef, where('loaiPhong', '==', resulta[0].loai));
-            //     const phongResult = await  getDocs(phongQuery);
-            //     return phongResult.docs.map((doc)=>({...doc.data(),id: doc.id}));
-            // } 
+                            where('giaThueNgay', '<=', parseInt(data.priceToPar)),
+                            where('soNguoi', '==', parseInt(data.soNguoiPar)), 
+                            where('noiThat.soGiuong', '==', parseInt(data.soGiuongPar)))
+            const loaiPhongResult = await getDocs(loaiPhongQuery);
+            const resulta = loaiPhongResult.docs.map((doc)=>({...doc.data(),id: doc.id}));
+            if(resulta.length > 0) {
+                const phongQuery = query(phongRef, where('loaiPhong', '==', resulta[0].loai));
+                const phongResult = await  getDocs(phongQuery);
+                return phongResult.docs.map((doc)=>({...doc.data(),id: doc.id}));
+            } 
         }
-        // developing...
-        // if(dataResult) {
-        //     return dataResult;
-        // }
     }
 }
 
+// Lấy dữ liệu info phòng
 export const layDuLieuPhongInfo = async (id) => {
     try {
         const phongRef = collection(db, 'Phong');

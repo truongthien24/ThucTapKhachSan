@@ -2,8 +2,6 @@ import React from 'react'
 import { ButtonMenu } from '../shareComponent/ButtonMenu/ButtonMenu'
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { setLoading } from '../../../redux/action/homeAction';
 import Swal from 'sweetalert2';
 
 export const ListMenu = () => {
@@ -12,21 +10,20 @@ export const ListMenu = () => {
 
     const navigate = useNavigate();
 
-    const dispatch = useDispatch();
-
     const APIMenu = [
         {
             name: `${t('aboutUs')}`,
             icon: 'check',
             method: () => {
-                Swal.fire({
-                    icon: 'info',
-                    title: `${t('FuncIsDev')}`,
-                    confirmButtonColor: '#3790c7',
-                    confirmButtonText: `${t('ok')}`,
-                    timer: 2000,
-                    timerProgressBar: true
-                  })
+                // Swal.fire({
+                //     icon: 'info',
+                //     title: `${t('FuncIsDev')}`,
+                //     confirmButtonColor: '#3790c7',
+                //     confirmButtonText: `${t('ok')}`,
+                //     timer: 2000,
+                //     timerProgressBar: true
+                // })
+                navigate('introduce');
             }
         },
         {

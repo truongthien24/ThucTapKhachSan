@@ -36,7 +36,6 @@ export const MenuUser = () => {
 
   useEffect(()=> {
     const innerWidth = window.innerWidth;
-    console.log('innerWidth', innerWidth);
     if(innerWidth < 900) {
       setIsMenuMobile(true);
     } else {

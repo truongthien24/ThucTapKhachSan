@@ -16,6 +16,7 @@ import AccountManagement from '../page/admin/page/AccountManagement';
 import { LoginAdmin } from '../page/admin/page/LoginAdmin';
 import { RoomManagement } from '../page/admin/page/RoomManagement/RoomManagement';
 import { CheckingManagement } from '../page/admin/page/CheckingManagement/CheckingManagement';
+import { Introduce } from '../page/user/page/introduce/Introduce';
 
 
 export const MainRoutes = () => {
@@ -32,7 +33,8 @@ export const MainRoutes = () => {
                 <Route path="bookingSchedule" element={<BookingSchedule/>}/>   
                 <Route path="searchRoom" element={<MoreRoom/>}/>   
                 <Route path="profile" element={<Profile/>}/>   
-                <Route path="service" element={<Service/>}/>   
+                <Route path="service" element={<Service/>}/> 
+                <Route path="introduce" element={<Introduce/>}/> 
             </Route>
             <Route path="/admin" element={<Layout1Admin/>}>
               <Route index element={<Dashboard/>}/>

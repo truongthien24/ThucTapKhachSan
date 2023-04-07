@@ -15,14 +15,15 @@ export const MenuMobile = () => {
             name: `${t('aboutUs')}`,
             icon: 'check',
             method: () => {
-                Swal.fire({
-                    icon: 'info',
-                    title: `${t('FuncIsDev')}`,
-                    confirmButtonColor: '#3790c7',
-                    confirmButtonText: `${t('ok')}`,
-                    timer: 2000,
-                    timerProgressBar: true
-                  })
+                // Swal.fire({
+                //     icon: 'info',
+                //     title: `${t('FuncIsDev')}`,
+                //     confirmButtonColor: '#3790c7',
+                //     confirmButtonText: `${t('ok')}`,
+                //     timer: 2000,
+                //     timerProgressBar: true
+                //   })
+                navigate('introduce')
             }
         },
         {

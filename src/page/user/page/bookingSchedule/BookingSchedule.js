@@ -44,12 +44,12 @@ export const BookingSchedule = () => {
             {/* <div className='w-[100%] flex justify-center py-[20px] bg-[#f7f7f7] rounded-t-[20px]'>
                 <h3 className='text-[20px]'>Đặt phòng ở đây</h3>
             </div> */}
-            <div className='w-full md:w-[90%] lg:w-[80%] 2xl:w-[65%] flex flex-col items-center justify-center py-[40px]'>
+            <div className='w-full md:w-[95%] lg:w-[80%] 2xl:w-[65%] flex flex-col items-center justify-center py-[40px]'>
                 <div className='flex items-center mb-[20px]'>
                     <Icon name="bookMark" color="#3790c7"/>
                     <h3 className='text-[25px] ml-[20px] text-[#3790c7] font-[500]'>{t('reservationTicket')}</h3>
                 </div>
-                <div className='w-full pt-[20px] pb-[5px] px-[30px]'>
+                <div className='w-full pt-[20px] pb-[5px] px-[20px] lg:px-[30px]'>
                     {
                         renderReservationTicket()
                     }

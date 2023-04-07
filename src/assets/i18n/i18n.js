@@ -53,6 +53,9 @@ const resources = {
         "reactionHere": "Reaction here",
         "reaction": "Reaction",
         "view": "View",
+        'soNguoi': 'Number of people',
+        'soGiuong': 'Number of beds',
+        'noneRoom': 'There are no rooms available',
       },
     },
     kr: {
@@ -104,6 +107,9 @@ const resources = {
         "reactionHere": "여기에서 반응",
         "reaction": "여기에서",
         "view": "보다",
+        'soNguoi': '사람의 양',
+        'soGiuong': '침대 수',
+        'noneRoom': '이용 가능한 객실이 없습니다',
       },
     },
     vi: {
@@ -155,6 +161,9 @@ const resources = {
         "reactionHere": "Đánh giá ở đây",
         "reaction": "Đánh giá",
         "view": "Xem chi tiết",
+        'soNguoi': 'Số người',
+        'soGiuong': 'Số giường',
+        'noneRoom': 'Không có phòng nào',
       },
     }
 };

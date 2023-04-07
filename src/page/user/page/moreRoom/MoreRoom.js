@@ -6,6 +6,7 @@ import { InfoRoomSearch } from '../../shareComponent/InfoRoomSearch';
 import { useDispatch } from 'react-redux';
 import { layDuLieuPhongTheoParams } from '../../../../redux/action/phongAction';
 import { setLoading } from '../../../../redux/action/homeAction';
+import { NoneInfo } from '../../shareComponent/NoneInfo';
 
 export const MoreRoom = () => {
 
@@ -19,16 +20,18 @@ export const MoreRoom = () => {
     const [dataRoom, setDataRoom] = useState([]);
 
     useEffect(async ()=> {
-        const memberPar = searchParams.get('member');
+        const soNguoiPar = searchParams.get('soNguoi');
         const priceFromPar = searchParams.get('priceFrom');
         const priceToPar = searchParams.get('priceTo');
+        const soGiuongPar = searchParams.get('soGiuong');
         dispatch(setLoading({
             status: 'isLoading'
         })) 
         const data = await dispatch(layDuLieuPhongTheoParams({
-            memberPar,
+            soNguoiPar,
             priceFromPar,
-            priceToPar
+            priceToPar,
+            soGiuongPar
         }));
         setDataRoom(data);
         dispatch(setLoading({
@@ -38,15 +41,21 @@ export const MoreRoom = () => {
 
     // Method
     const renderRoomSearch = () => {
-        return dataRoom?.map((item, index)=> {
-            return <InfoRoomSearch key={index} data={item}/>
-        })
+        if(dataRoom?.length > 0) {
+            return dataRoom?.map((item, index)=> {
+                return <InfoRoomSearch key={index} data={item}/>
+            })
+        } else {
+            return <div className="col-span-1 md:col-span-2 lg:col-span-3 2xl:col-span-3 flex justify-center py-[50px]">
+                <NoneInfo content={t('noneRoom')}/>
+            </div>
+        }
     }
 
     // Return
     return (
         <>
-            <div className="flex justify-center pb-[60px] pt-[40px] flex-col items-center">
+            <div className="flex justify-center pb-[40px] pt-[40px] flex-col items-center">
                 <div className="flex justify-center items-center">
                     <Icon name="building" color="3790c7"/>
                     <h5 className="text-[#3790c7] text-[25px] ml-[20px] font-[500]">{t('listRoom')}</h5>

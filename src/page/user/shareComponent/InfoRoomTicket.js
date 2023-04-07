@@ -50,7 +50,7 @@ export const InfoRoomTicket = (props) => {
                     <img src={data?.image} className="w-[55%] rounded-[10px]"/>
                     <div className="flex flex-col justify-between px-[10px] h-full">
                         <div>
-                            <h5>{data?.tenPhong}</h5>
+                            <h5 className="w-full overflow-hidden whitespace-nowrap">{data?.tenPhong}</h5>
                             <div className="flex text-[gray] mt-[5px] text-[13px] translate-x-[-5px]">
                                 <Icon name="location"/>
                                 <span className="ml-[5px] mt-[5px]">{data?.diaChi}</span>

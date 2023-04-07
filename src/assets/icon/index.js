@@ -24,6 +24,7 @@ import { Key } from "./component/Key";
 import { Swatch } from "./component/Swatch";
 import { Clock } from "./component/Clock";
 import { Card } from "./component/Card";
+import { Money } from "./component/Money";
 
 export const Icon = (props) => {
     switch(props.name) {
@@ -78,6 +79,8 @@ export const Icon = (props) => {
         case "clock": return (<Clock {...props}/>);
         break; 
         case "card": return (<Card {...props}/>);
+        break;   
+        case "money": return (<Money {...props}/>);
         break;   
         default: return <></>;
     }

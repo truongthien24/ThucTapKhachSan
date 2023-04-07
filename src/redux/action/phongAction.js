@@ -1,4 +1,4 @@
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, query, updateDoc, where, and, or } from "firebase/firestore";
 import Swal from "sweetalert2";
 import { db } from "../../firebase/firebase.config";
 import { setLoading } from "./homeAction";
@@ -27,15 +27,44 @@ export const layDuLieuPhong = () => async (dispatch) => {
 export const layDuLieuPhongTheoParams = (data) => {
     return async (dispatch) => {
         const phongRef = collection(db, 'Phong');
+        const loaiPhongRef = collection(db, 'loaiPhong');
         const result = await getDocs(phongRef);
+        console.log('data', data)
         let dataResult = [];
-        if(data.memberPar === "" && data.priceFromPar === "" && data.priceToPar === "") {
-            dataResult = result.docs.map((doc)=>({...doc.data(), id: doc.id}));
-        }   
-        // developing...
-        if(dataResult) {
-            return dataResult;
+        if(data.soNguoiPar === "" && data.priceFromPar === "" && data.priceToPar === "" && data.soGiuongPar === "") {
+            return dataResult = result.docs.map((doc)=>({...doc.data(), id: doc.id}));
+        }  else {
+            const loaiPhongQuery = query(loaiPhongRef,
+                            where('soNguoi', '==', parseInt(data.soNguoiPar)), 
+                            where('noiThat.soGiuong', '==', parseInt(data.soGiuongPar)),
+                            where('giaThueNgay', '>=', parseInt(data.priceFromPar)),
+                            where('giaThueNgay', '<=', parseInt(data.priceToPar)))
+                        // or(
+                        //     and(
+                        //         where('giaThueNgay', '>=', parseInt(data.priceFromPar)),
+                        //         where('giaThueNgay', '<=', parseInt(data.priceToPar))
+                        //     )
+                        // )
+                    // ),
+            // const loaiPhongQueryPrice = query(loaiPhongRef, 
+            //         where('giaThueNgay', '>=', parseInt(data.priceFromPar)),
+            //         where('giaThueNgay', '<=', parseInt(data.priceToPar)))
+            await getDocs(loaiPhongQuery).then((querySnapShot) => {
+                querySnapShot.forEach((doc) => {
+                    console.log('doc.data()',doc.data());
+                })
+            });
+            // const resulta = loaiPhongResult.docs.map((doc)=>({...doc.data(),id: doc.id}));
+            // if(resulta.length > 0) {
+            //     const phongQuery = query(phongRef, where('loaiPhong', '==', resulta[0].loai));
+            //     const phongResult = await  getDocs(phongQuery);
+            //     return phongResult.docs.map((doc)=>({...doc.data(),id: doc.id}));
+            // } 
         }
+        // developing...
+        // if(dataResult) {
+        //     return dataResult;
+        // }
     }
 }
 

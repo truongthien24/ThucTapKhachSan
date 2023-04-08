@@ -56,6 +56,11 @@ const resources = {
         'soNguoi': 'Number of people',
         'soGiuong': 'Number of beds',
         'noneRoom': 'There are no rooms available',
+        "neoclassicalArchitecture": "Neoclassical Architecture",
+        "fullFacilities": "Full Facilities",
+        "variousTypesOfRoomsForFriends": "Various types of rooms for friends",
+        "variousTypesOfRoomsForFamily": "arious types of rooms for family",  
+        "variousTypesOfRoomsForCouples": "arious types of rooms for couples",
       },
     },
     kr: {
@@ -110,6 +115,11 @@ const resources = {
         'soNguoi': '사람의 양',
         'soGiuong': '침대 수',
         'noneRoom': '이용 가능한 객실이 없습니다',
+        "neoclassicalArchitecture": "신고전주의 건축",
+        "fullFacilities": "전체 시설",
+        "variousTypesOfRoomsForFriends": "친구를 위한 다양한 형태의 방",
+        "variousTypesOfRoomsForFamily": "가족을 위한 다양한 형태의 객실",  
+        "variousTypesOfRoomsForCouples": "친구를 위한 다양한 형태의 객실",
       },
     },
     vi: {
@@ -164,6 +174,11 @@ const resources = {
         'soNguoi': 'Số người',
         'soGiuong': 'Số giường',
         'noneRoom': 'Không có phòng nào',
+        "neoclassicalArchitecture": "Kiến trúc tân cổ điển",
+        "fullFacilities": "Tiện ích đầy đủ",
+        "variousTypesOfRoomsForFriends": "Đa dạng các loại phòng cho bạn bè",
+        "variousTypesOfRoomsForFamily": "Đa dạng các loại phòng cho gia đình",  
+        "variousTypesOfRoomsForCouples": "Đa dạng các loại phòng cho cặp đôi",
       },
     }
 };

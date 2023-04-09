@@ -1,35 +1,41 @@
-    export const columns = [
-        {
-            title: 'tenPhong',  
-            dataIndex: 'tenPhong',
-            key: 'tenPhong',
-            width: '15%',
-        },
-        {
-            title: 'dacDiemPhong',
-            dataIndex: 'dacDiemPhong',
-            key: 'dacDiemPhong',
-            width: '30%',
-        },
-        {
-            title: 'soLuongPhong',
-            dataIndex: 'soLuongPhong',
-            key: 'soLuongPhong',
-            width: '5%'
-        },
-        {
-            title: 'giaThueNgay',  
-            dataIndex: 'giaThueNgay',
-            key: 'giaThueNgay',
-            width: '15%',
-        },
-        {
-            title: 'danhGia',
-            dataIndex: 'danhGia',
-            key: 'danhGia',
-            width: '15%',
-        }
-    ]
+    export const columns = (onClickFunc) => {
+        return [
+            {
+                title: 'tenPhong',  
+                dataIndex: 'tenPhong',
+                key: 'tenPhong',
+                width: '15%',
+            },
+            {
+                title: 'dacDiemPhong',
+                dataIndex: 'dacDiemPhong',
+                key: 'dacDiemPhong',
+                width: '30%',
+            },
+            {
+                title: 'soLuongPhong',
+                dataIndex: 'soLuongPhong',
+                key: 'soLuongPhong',
+                width: '5%'
+            },
+            {
+                title: 'giaThueNgay',  
+                dataIndex: 'giaThueNgay',
+                key: 'giaThueNgay',
+                width: '15%',
+            },
+            {
+                title: 'danhGia',
+                dataIndex: 'btn',
+                key: 'btn',
+                width: '15%',
+                onClickFunc: (data) => {
+                    console.log('data', data);
+                    onClickFunc(data);
+                }
+            }
+        ]
+    }
 
     // getDataTable
     export const getDataTable = (data) => {

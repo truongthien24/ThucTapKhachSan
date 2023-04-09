@@ -28,6 +28,7 @@ export const FormUpdate = (props) => {
 
     useEffect(()=> {
         if(dataEdit) {
+            // reset();
             columns.map((item)=> {
                 return setValue(`${item.name}`, dataEdit?.[item.name]);
             })
@@ -106,10 +107,22 @@ export const FormUpdate = (props) => {
                 // }} 
             />
         } else if (item.type === "radio") {
-            return <Radio.Group {...register(`${item.name}`)} onChange={(e)=> {setValue(`${item.name}`, e.target.value)}}>
+            return <Radio.Group 
+                {...register(`${item.name}`)} 
+                buttonStyle="solid"
+                onChange={(e)=> {setValue(`${item.name}`, e.target.value)}}
+                value={watch(`${item.name}`)}
+            >
                 {
                     item.dataRadio?.map((data, index)=> {
-                        return <Radio.Button value={data.value} key={index} disabled={data.checked}>{data.label}</Radio.Button>
+                        return <Radio.Button 
+                            // checked={dataEdit?.[item.name].toString() === data.value.toString()}
+                            value={data.value} 
+                            key={index} 
+                            disabled={data.checked && data.value != dataEdit?.[item.name]}
+                        >
+                            {data.label}
+                        </Radio.Button>
                     })
                 }
             </Radio.Group>

@@ -171,7 +171,8 @@ export const columns = [
       tinhTrang: yup.string().required("Please input...."),
       sdt: yup.number('Please input number....').required("Please input...."),
       ngayBatDauThue: yup.string().required("Please input...."),
-      soNgay: yup.number('Please input number....').required("Please input....")
+      soNgay: yup.number('Please input number....').required("Please input...."),
+      soPhong: yup.string().required("Please input...."),
   });
 
   // getDataTable => Thêm index cho table

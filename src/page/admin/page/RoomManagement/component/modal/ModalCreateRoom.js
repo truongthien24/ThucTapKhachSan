@@ -166,7 +166,6 @@ export const ModalCreateRoom = (props) => {
         //     });
         // }
         dispatch(createRoom({data: watch()})).then(data=> {
-            console.log('Thêm thành công !');
             reset();
             setImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDF9695aEHL20tZNMzJ26nIGr5AYMKr_eaoxXWtDkngU8M8KXhqPQXkhyamMWJ1mvbeYU&usqp=CAU')
         }).catch(err => {

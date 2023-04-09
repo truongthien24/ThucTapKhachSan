@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Confirm } from '../../../../component/Confirm/Confirm';
-import { FormCreate } from '../../shareComponent/form/FormCreate';
-import { FormUpdate } from '../../shareComponent/form/FormUpdate';
-import { ModalCreate } from '../../shareComponent/modal/ModalCreate';
+// import { FormCreate } from '../../shareComponent/form/FormCreate';
+// import { FormUpdate } from '../../shareComponent/form/FormUpdate';
+// import { ModalCreate } from '../../shareComponent/modal/ModalCreate';
 import { TableMain } from '../../shareComponent/table/TableMain'
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteRoom, layDuLieuPhong } from '../../../../redux/action/phongAction';
@@ -14,12 +14,14 @@ import { db } from '../../../../firebase/firebase.config';
 import { ModalCreateRoom } from './component/modal/ModalCreateRoom';
 import { setConfirm } from '../../../../redux/action/homeAction';
 import Swal from 'sweetalert2';
+import { ModalEditReaction } from './component/modal/ModalEditReaction';
 
 export const RoomManagement = () => {
 
     // State
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isModalEditOpen, setIsModalEditOpen] = useState(false);
+    const [isModalEditReaction, setIsModalEditReaction] = useState(false);
     const [dataEdit, setDataEdit] = useState({});
 
     // Somethings
@@ -80,7 +82,12 @@ export const RoomManagement = () => {
             <button className='flex items-center justify-center bg-[#3790c7] text-white py-[10px] px-[20px] rounded-[7px] duration-300 hover:shadow-[#3790c7a6] hover:shadow-lg hover:translate-y-[-3px]' type="submit" onClick={handleAdd}>{t('add')}</button>
           </div>
           <div className="h-[88%]">
-              <TableMain data={data} columns={columns} handleEdit={handleEdit} handleDelete={handleDelete}/>
+              <TableMain 
+                data={data} 
+                columns={columns(setIsModalEditReaction)} 
+                handleEdit={handleEdit} 
+                handleDelete={handleDelete}
+              />
           </div>
           {/* <ModalCreate
             methodCancel={()=>setIsModalOpen(false)}
@@ -109,6 +116,11 @@ export const RoomManagement = () => {
             methodCancel={()=>setIsModalOpen(false)}
             title={t('Create Room Management')}
             isOpen={isModalOpen}
+          />
+          <ModalEditReaction
+            isOpen={isModalEditReaction}
+            methodCancel={()=>setIsModalEditReaction(false)}
+            title={t('Edit Reaction')}
           />
           <Confirm/>
         </>

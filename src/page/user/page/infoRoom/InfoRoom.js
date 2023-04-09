@@ -129,7 +129,7 @@ export const InfoRoom = () => {
     const renderDanhGia = () => {
         if(danhGia?.length === 0) {
             return <div className="h-[100px] md:h-[150px] flex items-center justify-center">
-                <NoneInfo content={`${t('No reaction')}`}/>
+                <NoneInfo content={`${t('noneReaction')}`}/>
             </div>
         }
         else {

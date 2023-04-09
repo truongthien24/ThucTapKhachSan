@@ -17,8 +17,19 @@
         }
 
         .ant-modal-body {
-            height: calc(100% - 50px) !important;
-            // overflow-y: scroll !important;
+            // max-height: calc(100% - 50px) !important;
+            max-height: 83vh !important;
+            overflow-y: scroll !important;
+            overflow-x: hidden;
+
+            &::-webkit-scrollbar-thumb {
+                background-color: rgb(212, 212, 212) !important;
+                border-radius: 10px;
+            }
+            
+            &::-webkit-scrollbar {
+                width: 8px;
+            }
         }
     }
 }

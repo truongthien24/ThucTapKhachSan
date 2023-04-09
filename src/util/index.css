@@ -240,7 +240,16 @@ html {
   font-size: 20px;
 }
 .ant-modal .ant-modal-content .ant-modal-body {
-  height: calc(100% - 50px) !important;
+  max-height: 83vh !important;
+  overflow-y: scroll !important;
+  overflow-x: hidden;
+}
+.ant-modal .ant-modal-content .ant-modal-body::-webkit-scrollbar-thumb {
+  background-color: rgb(212, 212, 212) !important;
+  border-radius: 10px;
+}
+.ant-modal .ant-modal-content .ant-modal-body::-webkit-scrollbar {
+  width: 8px;
 }
 
 .hoverToShow {

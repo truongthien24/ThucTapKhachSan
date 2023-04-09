@@ -105,7 +105,7 @@ export const Introduce = () => {
     return (
         <div className="w-full top-0 left-0 overflow-x-hidden">
             <div className="w-full relative h-[50vh] md:h-[90vh]">
-                <video autoPlay={true} loop muted id="myVideo" className='absolute w-full h-full top-0 left-0 -z-1 object-cover'>
+                <video autoPlay={true} loop muted controls={false} id="myVideo" className='absolute w-full h-full top-0 left-0 -z-1 object-cover'>
                     <source src="/video/videotest.mp4" type="video/mp4"/>
                 </video>
                 <div className='absolute w-full h-full top-0 left-0 z-1 bg-[#00000057] flex py-[50px]'>

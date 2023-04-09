@@ -17,13 +17,15 @@ export const FormBaseRegister = (props) => {
     const {t} = useTranslation();
 
     // Form
+    // React hook form
     const {setValue, watch, formState: { errors }, handleSubmit, register, getValues, reset} = useForm({
-        mode: 'onChange',
-        defaultValues: initialValue,
-        resolver: yupResolver(validationSchema),
+        mode: 'onChange',  //Cách thức kiểm tra
+        defaultValues: initialValue, //Giá trị khởi tạo
+        resolver: yupResolver(validationSchema),  //Kiểm tra tính hợp lệ
     });
 
     const renderInput = () => {
+        // ES6 javascript để render từ một mảng sang mảng khác
         return formField.map((item, index)=> {
             return (
                 <div className='w-[90%] lg:w-[80%] mt-[20px]'>
@@ -35,7 +37,7 @@ export const FormBaseRegister = (props) => {
                             name={item.name}
                             placeholder={`Điền vào ${item.name}...`} 
                             className={`w-[95%] outline-none`}
-                            {...register(`${item.name}`)}
+                            {...register(`${item.name}`)}  //Đăng ký field vào form
                         />
                         {
                             errors?.[item.name] && <div className='absolute right-2 md:right-4 top-[50%] translate-y-[-50%]'>
@@ -53,6 +55,7 @@ export const FormBaseRegister = (props) => {
     }
 
     const handleLogin = async () => {
+        // Watch() => Xuất ra tất cả các field và value của form
         const res = await dispatch(methodSubmit({data: watch()}));
         if(res) {
             setTimeout(()=> {

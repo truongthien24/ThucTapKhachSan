@@ -14,7 +14,7 @@ export const Register = () => {
     const initialValue = {
       userName: "",
       password: "",
-      loaiTaiKhoan: "guest"
+      loaiTaiKhoan: "guest" //user
     }
 
     const formField = [
@@ -37,9 +37,23 @@ export const Register = () => {
     ]
 
     const validationSchema = yup.object().shape({
-      userName: yup.string().required("Please input...."),
-      password: yup.string().required("Please input...."),
-      confirmPassword: yup.string().required("Please input....").oneOf([yup.ref('password')], "Password does not match"),
+      userName: yup.string().required("Please input...."),  //Reuired: bắt buộc nhập, string là kiểu kí tự chuỗi
+      password: yup.string().required("Please input....").test('len', 'Must be 6-24 characters', 
+       (data) => {
+        if(data.toString().length >=6 && data.toString().length <= 24) {
+          return true; //Hợp lệ
+        }
+        return false; //Không hợp lệ
+       }
+      ),
+      confirmPassword: yup.string().required("Please input....").oneOf([yup.ref('password')], "Password does not match").test('len', 'Must be 6-24 characters', 
+        (data) => {
+        if(data.toString().length >=6 && data.toString().length <= 24) {
+          return true;
+        }
+        return false;
+        }
+      ),
       email: yup.string().email('Please input abc@gmail...').required("Please input...")
   });
 
@@ -50,6 +64,7 @@ export const Register = () => {
     // })
     
 
+    // Xúất ra giao diện
     return (
       <>
         <div className='fixed top-0 left-0 w-screen h-screen bg-[white] z-[101] flex flex-col lg:flex-row items-center lg:justify-center'>

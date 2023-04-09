@@ -153,9 +153,12 @@ export const TableMain = (props) => {
                     }
                   </div>}
                 } else if (item.key === "btn") {
-                  obj = {...item, render: (text) =>
-                    // <Button type="primary">{t('view')}</Button>
-                    <div className='flex items-center justify-center text-[#3790c7] text-[13px] py-[5px] px-[10px] rounded-[7px] duration-300 cursor-pointer hover:underline' type="button" onClick={()=>item.onClickFunc(data)}>{t('view')}</div>
+                  obj = {...item, 
+                    render: (text, row) =>
+                      // <Button type="primary">{t('view')}</Button>
+                      <div className='flex items-center justify-center text-[#3790c7] text-[13px] py-[5px] px-[10px] rounded-[7px] duration-300 cursor-pointer hover:underline' type="button" onClick={()=> { 
+                        item.onClickFunc(row)
+                      }}>{t('view')}</div>
                   }
                 } else {
                   obj = {...item, ...getColumnSearchProps(`${item.dataIndex}`)};

@@ -97,18 +97,21 @@ export const registerUser = (data) => async (dispatch) => {
         dispatch(setLoading({
             status: 'isLoading'
         }))
+        // Lấy collection từ firebase 
         const accountRef = collection(db, 'Account');
         const result = await getDocs(accountRef);
         const dataResult = result.docs.map((item)=> item.data());
-        // ES6
+        // ES6 => Tìm vị trí => Nếu tìm thấy vị trí sẽ xuất ra giá trị khác -1, và ngược lại
         const findIndex = dataResult.findIndex(item=>item.userName === (data.data.userName || data.userName));
         if(findIndex === -1) {
             setTimeout(async ()=> {
+                // Tạo document trong collection Account 
                 await addDoc(collection(db, 'Account'), {
                     ...data.data});
                 dispatch(setLoading({
                     status: 'done'
                 }))
+                // Thông báo
                 Swal.fire({
                     icon: 'success',
                     title: 'Tạo tài khoản thành công !',
@@ -116,6 +119,7 @@ export const registerUser = (data) => async (dispatch) => {
                     timer: 1000,
                     timerProgressBar: true
                 })
+                // Chuyển hướng người dùng về trang login
                 window.location.replace('/user/login');
             }, 1000);
             return true;

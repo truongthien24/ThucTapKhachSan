@@ -1,4 +1,4 @@
-    export const columns = (onClickFunc) => {
+    export const columns = (onClickFuncc) => {
         return [
             {
                 title: 'tenPhong',  
@@ -30,8 +30,7 @@
                 key: 'btn',
                 width: '15%',
                 onClickFunc: (data) => {
-                    console.log('data', data);
-                    onClickFunc(data);
+                    onClickFuncc(data);
                 }
             }
         ]

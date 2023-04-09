@@ -75,6 +75,11 @@ export const RoomManagement = () => {
       }))
     }
 
+    const handleViewDanhGia = (data) => {
+      setDataEdit(data);
+      setIsModalEditReaction(true);
+    }
+
     return (
       <>
         <div className="h-[12%] flex justify-between items-center">
@@ -84,7 +89,7 @@ export const RoomManagement = () => {
           <div className="h-[88%]">
               <TableMain 
                 data={data} 
-                columns={columns(setIsModalEditReaction)} 
+                columns={columns(handleViewDanhGia)} 
                 handleEdit={handleEdit} 
                 handleDelete={handleDelete}
               />
@@ -121,6 +126,7 @@ export const RoomManagement = () => {
             isOpen={isModalEditReaction}
             methodCancel={()=>setIsModalEditReaction(false)}
             title={t('Edit Reaction')}
+            idRoom={dataEdit?.id}
           />
           <Confirm/>
         </>

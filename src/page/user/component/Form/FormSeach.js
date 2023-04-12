@@ -14,21 +14,30 @@ export const FormSearch = (props) => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    // Dùng để bắt đa ngôn ngữ
     const {t} = useTranslation();
 
     // Form
     const {setValue, watch, formState: { errors }, handleSubmit, register, getValues} = useForm({
         mode: 'onChange',
         defaultValues: initialValue,
-        // resolver: yupResolver(validationSchema),
     });
 
     const handleSearch = () => {
+        // Navigate 
+        // Chuyển hướng router <> Chuyển hướng trang
+        // React-router-dom = window.location.replace
         navigate({
           pathname: 'searchRoom',
           search: `${createSearchParams( qs.stringify({ soNguoi: getValues('soNguoi'), priceFrom: getValues('priceFrom'), priceTo: getValues('priceTo'), soGiuong: getValues('soGiuong') }))}`,
         });
-      }
+    }
+
+
+    console.log('watch', watch());
+
+
 
     return (
         <>
@@ -40,7 +49,10 @@ export const FormSearch = (props) => {
                                <Select
                                     defaultValue={1}
                                     style={{ width: '100%' }}
-                                    onChange={(value)=>setValue('soGiuong', value)}
+                                    onChange={(value)=>{
+                                        // Truyền giá trị lên form để gửi đi
+                                        setValue('soGiuong', value)
+                                    }}
                                     options={[
                                         { value: 1, label: '1' },
                                         { value: 2, label: '2' },

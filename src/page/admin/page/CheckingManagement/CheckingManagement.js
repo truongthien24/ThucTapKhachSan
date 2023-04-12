@@ -43,10 +43,6 @@ export const CheckingManagement = () => {
         getDataTable(listAllPhieuDatPhong)
     , [listAllPhieuDatPhong]);
 
-    // const dataPhong = useMemo(async()=> {
-    //     await dispatch(getSoLuongPhong(data))
-    // }, [dataEdit])
-
     useEffect(async()=> {
         if(isModalEditOpen) {
             const data = await dispatch(getSoLuongPhong(dataEdit.idPhong))
@@ -84,24 +80,10 @@ export const CheckingManagement = () => {
         <>
             <div className="h-[12%] flex justify-between items-center">
                 <h3 className="text-[20px] text-[#3790c7] font-bold">{t('Checking Management')}</h3>
-                {/* <button className='flex items-center justify-center bg-[#3790c7] text-white py-[10px] px-[20px] rounded-[7px] duration-300 hover:shadow-[#3790c7a6] hover:shadow-lg hover:translate-y-[-3px]' type="submit" onClick={handleAdd}>{t('add')}</button> */}
             </div>
             <div className="h-[88%]">
                 <TableMain data={data} columns={columns} handleEdit={handleEdit} handleDelete={handleDelete}/>
             </div>
-            {/* <ModalCreate
-            methodCancel={()=>setIsModalOpen(false)}
-            title={t('Create Account Management ')}
-            isOpen={isModalOpen}
-            childrenForm={
-                <FormCreate
-                columns={ColumnsCreate} 
-                methodCancel={()=>setIsModalOpen(false)} 
-                methodSubmit={registerUser}
-                validationSchema={validationSchemaCreateUser}
-                />
-            }
-            /> */}
             <ModalEdit
                 methodCancel={()=>setIsModalEditOpen(false)}
                 title={t('Edit Booking Management ')}
@@ -114,8 +96,7 @@ export const CheckingManagement = () => {
                         validationSchema={validationSchemaEditChecking}
                         dataEdit={dataEdit}
                     />
-                    // <>fdaffsaf</>
-            }
+                }
             />
             <Confirm/>
         </>

@@ -17,6 +17,8 @@ export const Introduce = () => {
 
 
     useEffect(()=> {
+
+        // GSAP
         gsap.from(logo.current, {
             x: 700, 
             duration: 1,

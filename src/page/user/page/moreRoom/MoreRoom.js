@@ -11,6 +11,7 @@ import { NoneInfo } from '../../shareComponent/NoneInfo';
 export const MoreRoom = () => {
 
     // Somethings
+    // Lấy query params từ url
     const [searchParams, setSearchParams] = useSearchParams();
 
     const {t} = useTranslation();
@@ -19,6 +20,8 @@ export const MoreRoom = () => {
     // State
     const [dataRoom, setDataRoom] = useState([]);
 
+
+    // Nó sẽ gọi n hàm khi tham số x thay đổi
     useEffect(async ()=> {
         const soNguoiPar = searchParams.get('soNguoi');
         const priceFromPar = searchParams.get('priceFrom');
@@ -27,6 +30,7 @@ export const MoreRoom = () => {
         dispatch(setLoading({
             status: 'isLoading'
         })) 
+        // Dispatch gọi phương thức 
         const data = await dispatch(layDuLieuPhongTheoParams({
             soNguoiPar,
             priceFromPar,
@@ -41,11 +45,13 @@ export const MoreRoom = () => {
 
     // Method
     const renderRoomSearch = () => {
+        // Trường hợp tìm thấy phòng
         if(dataRoom?.length > 0) {
             return dataRoom?.map((item, index)=> {
                 return <InfoRoomSearch key={index} data={item}/>
             })
         } else {
+            // Trường hợp không tìm thấy phòng
             return <div className="col-span-1 md:col-span-2 lg:col-span-3 2xl:col-span-3 flex justify-center py-[50px]">
                 <NoneInfo content={t('noneRoom')}/>
             </div>

@@ -22,15 +22,21 @@ export const TableMain = (props) => {
     // Method
     const handleSearch = (selectedKeys, confirm, dataIndex) => {
       confirm();
+      // Tìm thấy
       setSearchText(selectedKeys[0]);
+      // Set lại data table
       setSearchedColumn(dataIndex);
     };
 
+    // Reset filter 
     const handleReset = (clearFilters) => {
+      // Clear giá trị của ô input
       clearFilters();
+      // Set lại data table
       setSearchText('');
     };
 
+    // Hàm search của table
     const getColumnSearchProps = (dataIndex) => ({
       filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
         <div

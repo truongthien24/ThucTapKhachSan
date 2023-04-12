@@ -52,8 +52,7 @@ export const FormReaction = (props) => {
         showConfirmButton: false,
         timer: 1000,
         timerProgressBar: true
-    })
-    })
+    })})
   }
 
   const renderDanhGiaSao = () => {

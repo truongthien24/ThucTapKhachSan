@@ -94,20 +94,6 @@ export const RoomManagement = () => {
                 handleDelete={handleDelete}
               />
           </div>
-          {/* <ModalCreate
-            methodCancel={()=>setIsModalOpen(false)}
-            title={t('Create Account Management ')}
-            isOpen={isModalOpen}
-            childrenForm={
-              // <FormCreate
-              //   columns={ColumnsCreate} 
-              //   methodCancel={()=>setIsModalOpen(false)} 
-              //   methodSubmit={()=> {}}
-              //   validationSchema={validationSchemaCreateUser}
-              // />
-              <></>
-            }
-          /> */}
           <ModalEditRoom
             methodCancel={()=>setIsModalEditOpen(false)}
             title={t('Edit Room Management')}

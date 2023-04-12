@@ -120,10 +120,13 @@ export const registerUser = (data) => async (dispatch) => {
                     timerProgressBar: true
                 })
                 // Chuyển hướng người dùng về trang login
-                window.location.replace('/user/login');
+                if(data.data.loaiTaiKhoan === "guest") {
+                    window.location.replace('/user/login');
+                }
             }, 1000);
             return true;
         } else {
+            // Trường hợp tài khoản đã tồn tại
             setTimeout(async ()=> {
                 dispatch(setLoading({
                     status: 'done'
@@ -279,6 +282,7 @@ export const updateUser = (data) => async (dispatch) => {
             status: 'isLoading'
         }))
         setTimeout(async ()=> {
+            // Lấy trên firebase một document có id bằng ...
             const accountRef = doc(db,'Account', data.data.id);
             await updateDoc(accountRef, data.data);
             dispatch(setLoading({
@@ -311,6 +315,7 @@ export const deleteUser = (data) => async (dispatch) => {
         const dataRef = await getDocs(phieuDatPhongRef);
         setTimeout(async()=> {
             if((dataRef.docs.findIndex((item)=> item.data().idKhachHang === data.data.id)) != -1) {
+                // Trường hợp khách hàng đang đặt phòng
                 dispatch(setLoading({
                     status: 'done'
                 }))
@@ -322,6 +327,7 @@ export const deleteUser = (data) => async (dispatch) => {
                     timerProgressBar: true
                 })
             } else {
+                // Trường hợp khách hàng không đặt phòng
                 await deleteDoc(doc(db, "Account", data.data.id));
                 dispatch(setLoading({
                     status: 'done'

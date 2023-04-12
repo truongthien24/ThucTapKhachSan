@@ -35,6 +35,7 @@ export const layDuLieuPhongTheoParams = (data) => {
         if(data.soNguoiPar === "" && data.priceFromPar === "" && data.priceToPar === "" && data.soGiuongPar === "") {
             return dataResult = result.docs.map((doc)=>({...doc.data(), id: doc.id}));
         }  else {
+            // Tìm kiếm phòng bằng câu lệnh query 
             const loaiPhongQuery = query(loaiPhongRef,
                             where('giaThueNgay', '>=', parseInt(data.priceFromPar)),
                             where('giaThueNgay', '<=', parseInt(data.priceToPar)),
@@ -42,9 +43,13 @@ export const layDuLieuPhongTheoParams = (data) => {
                             where('noiThat.soGiuong', '==', parseInt(data.soGiuongPar)))
             const loaiPhongResult = await getDocs(loaiPhongQuery);
             const resulta = loaiPhongResult.docs.map((doc)=>({...doc.data(),id: doc.id}));
+
+            // Trường hợp tìm thấy phòng
             if(resulta.length > 0) {
                 const phongQuery = query(phongRef, where('loaiPhong', '==', resulta[0].loai));
+                // Giải mã
                 const phongResult = await  getDocs(phongQuery);
+                // Trả ra số phòng tìm thấy
                 return phongResult.docs.map((doc)=>({...doc.data(),id: doc.id}));
             } 
         }

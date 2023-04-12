@@ -22,7 +22,7 @@ export const createDanhGia = (data) => async (dispatch) => {
             status: 'isLoading'
         }));
         setTimeout(async()=> {
-            await addDoc(collection(db, 'danhGia'), {...data, createAt: serverTimestamp(),idKhacHang: JSON.parse(localStorage.getItem('jwt')), infoKhachHang: JSON.parse(localStorage.getItem('userLogin'))});
+            await addDoc(collection(db, 'danhGia'), {...data, createAt: serverTimestamp(), idKhacHang: JSON.parse(localStorage.getItem('jwt')), infoKhachHang: JSON.parse(localStorage.getItem('userLogin'))});
             dispatch(setLoading({
                 status: 'done'
             }));

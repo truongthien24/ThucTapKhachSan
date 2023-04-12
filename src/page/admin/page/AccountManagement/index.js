@@ -33,6 +33,7 @@ const AccountManagement = (props) => {
     }, []);
 
     useEffect(()=> {
+      // Khi có một account thay đổi => gọi lại dữ liệu
       onSnapshot(collection(db,'Account'), (snapShot) => {
         dispatch(getAllUser())
       });

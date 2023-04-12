@@ -1,6 +1,7 @@
 import  i18n  from "i18next";
 import { initReactI18next } from "react-i18next";
  
+// Lấy value của field language trên localStorage
 const language = localStorage.getItem('language');
 
 const resources = {

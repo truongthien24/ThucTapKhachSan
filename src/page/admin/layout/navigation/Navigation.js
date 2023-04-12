@@ -41,19 +41,19 @@ export const Navigation = () => {
       }}>Account Management</div>, '2', <DesktopOutlined />),
       getItem(<div onClick={()=> {
         navigate('/admin/roomManagement')
-      }}>Room Management</div>, '9', <ContainerOutlined />),
+      }}>Room Management</div>, '3', <ContainerOutlined />),
       getItem('Booking', 'sub2', <MailOutlined />, [
         getItem(<div onClick={()=> {
           navigate('/admin/checkingManagement')
         }}>Checking Management</div>, '7'),
         getItem('Check-out request', '8'),
       ]),
-      getItem('Customer Management', '3', <ContainerOutlined />),
-      getItem('Service Management', '10', <ContainerOutlined />),
+      getItem(<div onClick={()=> {
+        navigate('/admin/serviceManagement')
+      }}>Service Management</div>, '9', <ContainerOutlined />),
       getItem('Revenue', 'sub3', <AppstoreOutlined />, [
-        getItem('Invoices Management', '11'),
-        getItem('Statistical Management', '12'),
-        // getItem('Submenu', 'sub3', null, [getItem('Option 11', '11'), getItem('Option 12', '12')]),
+        getItem('Invoices Management', '10'),
+        getItem('Statistical Management', '11'),
       ]),
     ];
 

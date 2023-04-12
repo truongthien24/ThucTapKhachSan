@@ -19,6 +19,7 @@ import { InfoLoaiPhong } from '../../shareComponent/InfoLoaiPhong';
 
 export const InfoRoom = () => {
 
+    // Lấy id từ params trên url
     const {id} = useParams();
 
     window.addEventListener("resize", ()=>{
@@ -72,6 +73,7 @@ export const InfoRoom = () => {
 
         // Khi có một đánh giá mới
         onSnapshot(collection(db,'danhGia'), async (snapShot) => {
+            debugger;
             const danhGia = await dispatch(layDuLieuDanhGiaPhong(id));
             setDanhGia(danhGia);
         });
@@ -128,11 +130,13 @@ export const InfoRoom = () => {
 
     const renderDanhGia = () => {
         if(danhGia?.length === 0) {
+            // Trường hợp không có đánh giá
             return <div className="h-[100px] md:h-[150px] flex items-center justify-center">
                 <NoneInfo content={`${t('noneReaction')}`}/>
             </div>
         }
         else {
+            // Trường hợp có đánh giá
             return danhGia.map((dg, i) => {
                 return <Reaction key={i} data={dg}/>
             })

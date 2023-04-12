@@ -10,7 +10,7 @@
                 title: 'dacDiemPhong',
                 dataIndex: 'dacDiemPhong',
                 key: 'dacDiemPhong',
-                width: '30%',
+                width: '40%',
             },
             {
                 title: 'soLuongPhong',
@@ -18,12 +18,12 @@
                 key: 'soLuongPhong',
                 width: '5%'
             },
-            {
-                title: 'giaThueNgay',  
-                dataIndex: 'giaThueNgay',
-                key: 'giaThueNgay',
-                width: '15%',
-            },
+            // {
+            //     title: 'giaThueNgay',  
+            //     dataIndex: 'giaThueNgay',
+            //     key: 'giaThueNgay',
+            //     width: '15%',
+            // },
             {
                 title: 'danhGia',
                 dataIndex: 'btn',

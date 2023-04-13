@@ -47,7 +47,8 @@ export const Contact = () => {
                         </div>
                     </div>
                     <div className="w-[65%] p-[20px]">
-                        <FormContact/>
+                        <img src="/images/contact.png"/>
+                        {/* <FormContact/> */}
                     </div>
                 </div>
             </div>

@@ -14,8 +14,8 @@ export const Contact = () => {
                 <h4 className="text-[#3790c7] text-[25px] xl:text-[35px] ml-[20px] font-[500]">{t('contact')}</h4>
             </div>
             <div className="flex justify-center items-center w-full mt-[50px]">
-                <div className="rounded-[20px] w-[90%] md:w-[80%] lg:w-[70%] xl:w-[60%] shadow-xl bg-[white] shadow-gray-300 flex p-[7px]">
-                    <div className="w-[35%] bg-[#3790c7] rounded-[20px] p-[30px] relative test">
+                <div className="rounded-[20px] flex-col md:flex-row w-[90%] md:w-[80%] lg:w-[70%] xl:w-[60%] shadow-xl bg-[white] shadow-gray-300 flex p-[7px]">
+                    <div className="w-full md:w-[35%] bg-[#3790c7] rounded-[20px] p-[30px] relative test">
                         <div className='z-[2] relative'>
                             <h5 className="text-[20px] lg:text-[23px] text-[white]">{t('Contact Information')}</h5>
                             <p className='text-[13px] text-[#f0f0f0] mt-[13px] font-100'>Fill up the form and our Team will get back to you within 24 hours.</p>
@@ -46,7 +46,7 @@ export const Contact = () => {
                             </a>
                         </div>
                     </div>
-                    <div className="w-[65%] p-[20px] flex items-center">
+                    <div className="w-full md:w-[65%] p-[20px] flex items-center">
                         <img src="/images/contact.png"/>
                         {/* <FormContact/> */}
                     </div>

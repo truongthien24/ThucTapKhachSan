@@ -15,14 +15,6 @@ export const ListMenu = () => {
             name: `${t('aboutUs')}`,
             icon: 'check',
             method: () => {
-                // Swal.fire({
-                //     icon: 'info',
-                //     title: `${t('FuncIsDev')}`,
-                //     confirmButtonColor: '#3790c7',
-                //     confirmButtonText: `${t('ok')}`,
-                //     timer: 2000,
-                //     timerProgressBar: true
-                // })
                 navigate('introduce');
             }
         },
@@ -30,16 +22,6 @@ export const ListMenu = () => {
             name: `${t('booking')}`,
             icon: 'calendar',
             method: () => {
-                // alert('xin chào !')
-                // dispatch(setLoading({
-                //     status: 'isLoading',
-                // }))
-                // setTimeout(()=> {
-                //     dispatch(setLoading({
-                //         status: 'done',
-                //     }))
-                //     navigate('bookingSchedule');
-                // }, 1300)
                 const jwt = localStorage.getItem('jwt');
                 if(jwt) {
                     navigate('bookingSchedule');
@@ -59,14 +41,6 @@ export const ListMenu = () => {
             name: `${t('service')}`,
             icon: 'service',
             method: () => {
-                // Swal.fire({
-                //     icon: 'info',
-                //     title: `${t('FuncIsDev')}`,
-                //     confirmButtonColor: '#3790c7',
-                //     confirmButtonText: `${t('ok')}`,
-                //     timer: 2000,
-                //     timerProgressBar: true
-                //   })
                 navigate('service');
             }
         },
@@ -74,14 +48,7 @@ export const ListMenu = () => {
             name: `${t('contact')}`,
             icon: 'phone',
             method: () => {
-                Swal.fire({
-                    icon: 'info',
-                    title: `${t('FuncIsDev')}`,
-                    confirmButtonColor: '#3790c7',
-                    confirmButtonText: `${t('ok')}`,
-                    timer: 2000,
-                    timerProgressBar: true
-                  })
+                  navigate('contact');
             }
         },
     ]

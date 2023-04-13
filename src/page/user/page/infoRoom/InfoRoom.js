@@ -197,11 +197,6 @@ export const InfoRoom = () => {
                             <div>
                                 <InfoLoaiPhong dataRoom={data} setGiaThueNgay={setGiaThueNgay}/>
                             </div>
-                            {/* <div className="flex items-center translate-x-[-5px] mt-[5px] text-[18px]">
-                                <Icon name="bank"/>
-                                <span className="text-[#3790c7] font-500 mr-[20px] ml-[7px]">{(data?.giaThueNgay - (data?.giaThueNgay * data?.sale / 100))?.toLocaleString()}</span>
-                                <span className={`${data?.sale > 0 && 'line-through'}`}>{data?.giaThueNgay?.toLocaleString()}</span>
-                            </div> */}
                         </div>
                         <div className="flex flex-col">
                             <div className="flex items-center justify-end text-[gray] text-[14px] translate-x-[-5px] ml-[20px] mb-[10px] mt-[5px]">
@@ -212,7 +207,7 @@ export const InfoRoom = () => {
                                 !isMobile
                                 &&
                                 <>
-                                    <p className="mb-[10px] text-end">{data?.tinhTrang ? `${t('outOfRoom')}` : `${t('thereStillRoom')}`}</p>
+                                    <p className="mb-[10px] text-end">{(data?.soLuongPhong?.findIndex((item)=> item?.tinhTrang === false) != -1 && data?.soLuongPhong?.length > 0) ? `${t('thereStillRoom')}` : `${t('outOfRoom')}`}</p>
                                     <button className={`flex items-center justify-center ${(data?.soLuongPhong?.findIndex((item)=> item?.tinhTrang === false) != -1 && data?.soLuongPhong?.length > 0) ? 'bg-[#3790c7] hover:shadow-[#3790c7a6] hover:shadow-lg' : 'bg-[gray] hover:shadow-lg hover:shadow-gray-400'} text-white py-[12px] px-[20px] rounded-[7px] duration-300 hover:translate-y-[-3px]`} onClick={handleBooking}>
                                         {t('booking')}
                                     </button>
@@ -231,7 +226,7 @@ export const InfoRoom = () => {
                     {
                         isMobile
                         && 
-                        <button className={`flex items-center mt-[10px] justify-center ${data?.tinhTrang === false ? 'bg-[#3790c7] hover:shadow-[#3790c7a6] hover:shadow-lg' : 'bg-[gray] hover:shadow-lg hover:shadow-gray-400'} text-white py-[12px] px-[20px] rounded-[10px] duration-300 hover:translate-y-[-3px] text-[14px] md:text-[16px] lg:text-[18px]`} onClick={handleBooking}>
+                        <button className={`flex items-center mt-[10px] justify-center ${(data?.soLuongPhong?.findIndex((item)=> item?.tinhTrang === false) != -1 && data?.soLuongPhong?.length > 0) ? 'bg-[#3790c7] hover:shadow-[#3790c7a6] hover:shadow-lg' : 'bg-[gray] hover:shadow-lg hover:shadow-gray-400'} text-white py-[12px] px-[20px] rounded-[10px] duration-300 hover:translate-y-[-3px] text-[14px] md:text-[16px] lg:text-[18px]`} onClick={handleBooking}>
                             {t('booking')}
                         </button>
                     }

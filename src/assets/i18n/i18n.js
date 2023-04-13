@@ -9,8 +9,8 @@ const resources = {
       translation: {
         "booking": "Booking",
         "seeAll": "See all",
-        "aboutUs": "About us",
-        "contact": "Contact",
+        "aboutUs": "About Us",
+        "contact": "Contact Us",
         "logOut": "Logout",
         "login": "Login",
         "noAccount": "No account",

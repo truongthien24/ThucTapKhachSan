@@ -25,6 +25,10 @@ import { Swatch } from "./component/Swatch";
 import { Clock } from "./component/Clock";
 import { Card } from "./component/Card";
 import { Money } from "./component/Money";
+import { Mail } from "./component/Mail";
+import { Facebook } from "./component/Facebook";
+import { Instagram } from "./component/Instagram";
+import { Twitter } from "./component/Twitter";
 
 export const Icon = (props) => {
     switch(props.name) {
@@ -81,6 +85,14 @@ export const Icon = (props) => {
         case "card": return (<Card {...props}/>);
         break;   
         case "money": return (<Money {...props}/>);
+        break;   
+        case "mail": return (<Mail {...props}/>);
+        break;   
+        case "facebook": return (<Facebook {...props}/>);
+        break;   
+        case "instagram": return (<Instagram {...props}/>);
+        break;   
+        case "twitter": return (<Twitter {...props}/>);
         break;   
         default: return <></>;
     }

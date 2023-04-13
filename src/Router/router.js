@@ -18,6 +18,7 @@ import { RoomManagement } from '../page/admin/page/RoomManagement/RoomManagement
 import { CheckingManagement } from '../page/admin/page/CheckingManagement/CheckingManagement';
 import { Introduce } from '../page/user/page/introduce/Introduce';
 import { ServiceManagement } from '../page/admin/page/ServiceManagement/ServiceManagement';
+import { Contact } from '../page/user/page/contact/Contact';
 
 
 export const MainRoutes = () => {
@@ -36,6 +37,7 @@ export const MainRoutes = () => {
                 <Route path="profile" element={<Profile/>}/>   
                 <Route path="service" element={<Service/>}/> 
                 <Route path="introduce" element={<Introduce/>}/> 
+                <Route path="contact" element={<Contact/>}/> 
             </Route>
             <Route path="/admin" element={<Layout1Admin/>}>
               <Route index element={<Dashboard/>}/>

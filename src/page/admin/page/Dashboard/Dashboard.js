@@ -279,13 +279,24 @@ export const Dashboard = () => {
   useEffect(()=> {
     if(listUser.length > 0) {
       // checkQtyMonth()
-      const ai = listUser.forEach(item=> {
-        console.log('item', item);
-        const date = moment(item?.createAt?.seconds).format('YYYY-MM-DD')
-        const dateStrin = new Date(date).getMonth() + 1;
-        // console.log('dateStrin', dateStrin)
-        // return dateStrin === i;
-      })
+      // debugger;
+      // for(let i = 1; i <= 12; i++) {
+        const ai = listUser.filter(item=> {
+          const date = moment(item?.createAt).format('YYYY-MM-DD')
+          console.log('date', date.toDateString());
+          const dateStrin = new Date(date).getMonth() + 1;
+          console.log('dateStrin', dateStrin);
+
+          // return dateStrin === i;
+        })
+      // }
+      // const ai = listUser.forEach(item=> {
+      //   console.log('item', item);
+      //   const date = moment(item?.createAt?.seconds).format('YYYY-MM-DD')
+      //   const dateStrin = new Date(date).getMonth() + 1;
+      //   // console.log('dateStrin', dateStrin)
+      //   // return dateStrin === i;
+      // })
     }
   }, [listUser])
 

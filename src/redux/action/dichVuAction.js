@@ -1,5 +1,5 @@
 import { db } from '../../firebase/firebase.config';
-import { addDoc, collection, getDocs } from 'firebase/firestore'; 
+import { addDoc, collection, deleteDoc, doc, getDocs } from 'firebase/firestore'; 
 import { setLoading } from './homeAction';
 import Swal from 'sweetalert2';
 
@@ -31,7 +31,7 @@ export const createDichVu = (data) => async (dispatch) => {
             status: 'isLoading'
         }));
         setTimeout(async()=> {
-            await addDoc(collection(db, 'dichVu'), {...data});
+            await addDoc(collection(db, 'dichVu'), {...data.data});
             dispatch(setLoading({
                 status: 'done'
             }));
@@ -43,6 +43,31 @@ export const createDichVu = (data) => async (dispatch) => {
                 timerProgressBar: true
             }).finally(()=> { return true; })
         }, 500) 
+    } catch (err) {
+        return false;
+    }
+}
+
+// Xóa dịch vụ
+export const deleteDichVu = (id) => async (dispatch) => {
+    try {
+        dispatch(setLoading({
+            status: 'isLoading'
+        }))
+        setTimeout(async()=> {
+            // if()
+            await deleteDoc(doc(db, "dichVu", id));
+            dispatch(setLoading({
+                status: 'done'
+            }))
+            Swal.fire({
+                icon: 'success',
+                title: 'Xoá thành công !',
+                showConfirmButton: false,
+                timer: 1000,
+                timerProgressBar: true
+            })
+        }, 500)
     } catch (err) {
         return false;
     }

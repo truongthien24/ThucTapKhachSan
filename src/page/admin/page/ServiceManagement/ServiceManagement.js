@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Confirm } from '../../../../component/Confirm/Confirm'
-import { getAllDichVu } from '../../../../redux/action/dichVuAction'
+import { deleteDichVu, getAllDichVu } from '../../../../redux/action/dichVuAction'
 import { setConfirm } from '../../../../redux/action/homeAction'
 import { TableMain } from '../../shareComponent/table/TableMain'
 import { ModalCreateService } from './component/modal/ModalCreateService'
 import { columns } from './helper'
+import { collection, onSnapshot } from 'firebase/firestore'
+import { db } from '../../../../firebase/firebase.config'
 
 export const ServiceManagement = () => {
 
@@ -23,6 +25,9 @@ export const ServiceManagement = () => {
     // Effect
     useEffect(async()=> {
         await dispatch(getAllDichVu());
+        onSnapshot(collection(db,'dichVu'), (snapShot) => {
+            dispatch(getAllDichVu())
+        });
     }, [])
 
     const {listDichVu} = useSelector(state=>state.dichVu);
@@ -33,11 +38,11 @@ export const ServiceManagement = () => {
         setIsModalEditOpen(true);
     }
 
-    const handleDelete = (data) => {
-        dispatch(setConfirm({
+    const handleDelete = async (data) => {
+        await dispatch(setConfirm({
             status: 'open',
             method: async () => {
-                // await dispatch();
+                await dispatch(deleteDichVu(data.id));
             }
         }))
     }

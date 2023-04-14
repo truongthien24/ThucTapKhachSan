@@ -190,16 +190,6 @@ export const loginAdmin = (data) => async (dispatch) => {
                 }, 1000)
             }
         } else {
-            // setTimeout(()=> {
-            //     dispatch({
-            //         type: 'DANG_NHAP_USER',
-            //         payload: {
-            //             data: null,
-            //             status: 500
-            //         }
-            //     })
-            // }, 1000)
-            // alert()
             setTimeout(()=> {
                 dispatch(setLoading({
                     status: 'done'
@@ -212,16 +202,6 @@ export const loginAdmin = (data) => async (dispatch) => {
                     timer: 2000,
                     timerProgressBar: true,
                     confirmButtonColor: '#3790c7',
-                    // didOpen: () => {
-                    //     Swal.showLoading()
-                    //     const b = Swal.getHtmlContainer().querySelector('b')
-                    //     timerInterval = setInterval(() => {
-                    //     b.textContent = Swal.getTimerLeft()
-                    //     }, 100)
-                    // },
-                    // willClose: () => {
-                    //     clearInterval(timerInterval)
-                    // }
                 })
             }, 1000)
         }

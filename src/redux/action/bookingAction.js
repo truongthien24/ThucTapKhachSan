@@ -3,12 +3,14 @@ import Swal from "sweetalert2";
 import { db } from "../../firebase/firebase.config";
 import { setLoading } from "./homeAction";
 import { updateRoom } from "./phongAction";
+import emailjs from '@emailjs/browser';
 
 export const createBooking = (data) => async (dispatch) => {
     try {
         dispatch(setLoading({
             status: 'isLoading'
         }))
+        const user = JSON.parse(localStorage.getItem('userLogin'));
         setTimeout(async ()=> {
             await addDoc(collection(db, "phieuDatPhong"), {
                 hoTen: data.hoTen,
@@ -20,7 +22,8 @@ export const createBooking = (data) => async (dispatch) => {
                 tongGia: data.tongGia,
                 idKhachHang: data.idKhachHang,
                 idPhong: data.idPhong,
-                createAt: serverTimestamp()
+                createAt: serverTimestamp(),
+                email: user.email
             });
             dispatch(setLoading({
                 status: 'done'
@@ -126,10 +129,31 @@ export const updateBooking = (data) => async (dispatch) => {
             )}
             await updateDoc(bookingRef, {...data.data, tinhTrang: a});
             await updateDoc(phongRef, {...dataTest});
-            // console.log('phongRef', await getDoc(phongRef).data());
             dispatch(setLoading({
                 status: 'done'
             }))
+            emailjs.send('service_umni2zq', 'template_tzv75r5', {
+                name: `${data.data.hoTen}`,
+                email: `${data.data.email}`,
+                message: 
+                // <html>
+                //     <body>
+                //         {
+                            `Bạn đã đặt phòng thành công!. Mã phiếu ${data.data.id}. Phòng số ${data.data.soPhong}. Ngày nhận phòng ${data.data.ngayBatDauThue}. Thời gian ${data.data.soNgay} ngày. Tổng giá ${data.data.tongGia}VNĐ`
+                //         }
+                //         <img src="cid:fly.png"/>
+                //     </body>
+                // </html>
+            }, 'aySwWgr_QCaZv1y1D', {
+                'username': 'James',
+                'g-recaptcha-response': '03AHJ_ASjnLA214KSNKFJAK12sfKASfehbmfd...'
+            })
+                .then((result) => {
+                    console.log(result.text);
+                }, (error) => {
+                    console.log(error.text);
+                }
+            );
             Swal.fire({
                 icon: 'success',
                 title: 'Cập nhật thành công !',
@@ -137,6 +161,7 @@ export const updateBooking = (data) => async (dispatch) => {
                 timer: 1000,
                 timerProgressBar: true
             })
+
             return true;
         }, 1000);
     } catch (error) {

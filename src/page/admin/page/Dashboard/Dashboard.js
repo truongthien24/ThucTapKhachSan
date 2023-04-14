@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Area } from '@ant-design/plots';
+import { getAllUser } from '../../../../redux/action/accountAction';
+import { useDispatch, useSelector } from 'react-redux';
+import moment from 'moment/moment';
 
 export const Dashboard = () => {
   // const [data, setData] = useState([]);
@@ -248,6 +251,43 @@ export const Dashboard = () => {
       "value": 1.58
     }
   ];
+
+  const dataAccount = [
+
+  ]
+
+  const dispatch = useDispatch();
+
+  useEffect(()=> {
+    dispatch(getAllUser());
+
+  }, [])
+
+  const {listUser} = useSelector(state=>state.account);
+
+  const checkQtyMonth = () => {
+    for(let i = 1; i <= 12; i++) {
+      const ai = listUser.filter(item=> {
+        const date = moment(item?.createAt?.seconds).format('YYYY-MM-DD')
+        const dateStrin = new Date(date).getMonth() + 1;
+        return dateStrin === i;
+      })
+      // console.log(`Tháng ${i}`, ai?.length)
+    }
+  }
+
+  useEffect(()=> {
+    if(listUser.length > 0) {
+      // checkQtyMonth()
+      const ai = listUser.forEach(item=> {
+        console.log('item', item);
+        const date = moment(item?.createAt?.seconds).format('YYYY-MM-DD')
+        const dateStrin = new Date(date).getMonth() + 1;
+        // console.log('dateStrin', dateStrin)
+        // return dateStrin === i;
+      })
+    }
+  }, [listUser])
 
   const config = {
     data,

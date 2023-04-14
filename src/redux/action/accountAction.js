@@ -1,4 +1,4 @@
-import { addDoc, collection, deleteDoc, doc, getDocs, updateDoc } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDocs, serverTimestamp, updateDoc } from "firebase/firestore";
 import Swal from "sweetalert2";
 import { db } from "../../firebase/firebase.config";
 import { setLoading } from "./homeAction";
@@ -107,7 +107,7 @@ export const registerUser = (data) => async (dispatch) => {
             setTimeout(async ()=> {
                 // Tạo document trong collection Account 
                 await addDoc(collection(db, 'Account'), {
-                    ...data.data});
+                    ...data.data, createAt: serverTimestamp()});
                 dispatch(setLoading({
                     status: 'done'
                 }))

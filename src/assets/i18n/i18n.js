@@ -63,6 +63,8 @@ const resources = {
         "variousTypesOfRoomsForFriends": "Various types of rooms for friends",
         "variousTypesOfRoomsForFamily": "arious types of rooms for family",  
         "variousTypesOfRoomsForCouples": "arious types of rooms for couples",
+        "profile": "Profile",
+        "editProfile": "Edit profile",
       },
     },
     kr: {
@@ -123,6 +125,8 @@ const resources = {
         "variousTypesOfRoomsForFriends": "친구를 위한 다양한 형태의 방",
         "variousTypesOfRoomsForFamily": "가족을 위한 다양한 형태의 객실",  
         "variousTypesOfRoomsForCouples": "친구를 위한 다양한 형태의 객실",
+        "profile": "프로필 페이지",
+        "editProfile": "프로필 수정",
       },
     },
     vi: {
@@ -183,6 +187,8 @@ const resources = {
         "variousTypesOfRoomsForFriends": "Đa dạng các loại phòng cho bạn bè",
         "variousTypesOfRoomsForFamily": "Đa dạng các loại phòng cho gia đình",  
         "variousTypesOfRoomsForCouples": "Đa dạng các loại phòng cho cặp đôi",
+        "profile": "Trang cá nhân",
+        "editProfile": "Chỉnh sửa thông tin",
       },
     }
 };

@@ -245,7 +245,7 @@ export const getUser = (id) => async (dispatch) => {
         const resultFilter = result.docs.filter(item => item.id === id);
         dispatch({
             type: 'LAY_DU_LIEU_USER',
-            payload: resultFilter[0].data(),
+            payload: {...resultFilter[0].data(), id: resultFilter[0].id},
         })
     } catch (error) {
         console.log(error);

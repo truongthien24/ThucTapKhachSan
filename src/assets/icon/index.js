@@ -29,6 +29,9 @@ import { Mail } from "./component/Mail";
 import { Facebook } from "./component/Facebook";
 import { Instagram } from "./component/Instagram";
 import { Twitter } from "./component/Twitter";
+import { User } from "./component/User";
+import { Lock } from "./component/Lock";
+import { LockOpen } from "./component/LockOpen";
 
 export const Icon = (props) => {
     switch(props.name) {
@@ -93,6 +96,12 @@ export const Icon = (props) => {
         case "instagram": return (<Instagram {...props}/>);
         break;   
         case "twitter": return (<Twitter {...props}/>);
+        break;   
+        case "user": return (<User {...props}/>);
+        break;   
+        case "lock": return (<Lock {...props}/>);
+        break;   
+        case "unlock": return (<LockOpen {...props}/>);
         break;   
         default: return <></>;
     }

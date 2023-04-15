@@ -73,7 +73,6 @@ export const InfoRoom = () => {
 
         // Khi có một đánh giá mới
         onSnapshot(collection(db,'danhGia'), async (snapShot) => {
-            debugger;
             const danhGia = await dispatch(layDuLieuDanhGiaPhong(id));
             setDanhGia(danhGia);
         });

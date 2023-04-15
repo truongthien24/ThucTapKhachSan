@@ -161,7 +161,6 @@ export const loginAdmin = (data) => async (dispatch) => {
 
         const findUser = dataResult?.filter((item)=>  item?.userName === data?.data?.userName && item?.password === data?.data?.password );
 
-        console.log('findUser', findUser)
 
         if(findUser.length > 0) {
             if(findUser[0].loaiTaiKhoan === 'admin') {
@@ -251,6 +250,23 @@ export const getAllUser = () => async (dispatch) => {
         }, 500)
     } catch (error) {
         console.log(error)
+    }
+}
+
+export const getAllUserNotReducer = () => async (dispatch) => {
+    try {
+        dispatch(setLoading({
+            status: 'isLoading'
+        }))
+        const accountRef = collection(db, 'Account');
+        const result = await getDocs(accountRef);
+        dispatch(setLoading({
+            status: 'done'
+        }))
+        return result.docs.map((item)=>({...item.data(), id: item.id}));
+    } catch (error) {
+        // console.log(error)
+        return 500;
     }
 }
 

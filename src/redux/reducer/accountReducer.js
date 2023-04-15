@@ -44,6 +44,7 @@ export const AccountReducer = (state = initialState, action) => {
         } 
         break;
         case 'LAY_DU_LIEU_USER_ALL': {
+            debugger;
             const data = action.payload.docs.map((item)=> ({...item.data(), id: item.id}));
             state.listUser = data;
             return {...state};

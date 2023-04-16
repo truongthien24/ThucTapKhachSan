@@ -56,6 +56,28 @@ export const getAllBooking = () => async (dispatch) => {
     }
 }
 
+// Lấy dữ liệu tất cả phiếu đặt phòng 
+export const getAllBookingNoReducer = () => async (dispatch) => {
+    try {
+        dispatch(setLoading({
+            status: 'isLoading'
+        }))
+        const phieuDatPhongRef = collection(db, 'phieuDatPhong');
+        const dataRef = await getDocs(phieuDatPhongRef);
+            // dispatch({
+            //     type: 'LAY_DU_LIEU_BOOKING',
+            //     payload: dataRef.docs.map((item)=> ({...item.data(), id: item.id}))
+            // })
+        dispatch(setLoading({
+            status: 'done'
+        }))
+        // }, 1000)
+        return dataRef.docs.map((item)=> ({...item.data(), id: item.id}));
+    } catch (error) {
+        return 500;
+    }
+}
+
 // Lấy dữ liệu phiếu đặt phòng theo id
 export const getBooking = () => async (dispatch) => {
     try {

@@ -32,6 +32,7 @@ import { Twitter } from "./component/Twitter";
 import { User } from "./component/User";
 import { Lock } from "./component/Lock";
 import { LockOpen } from "./component/LockOpen";
+import { Chart } from "./component/Chart";
 
 export const Icon = (props) => {
     switch(props.name) {
@@ -102,6 +103,8 @@ export const Icon = (props) => {
         case "lock": return (<Lock {...props}/>);
         break;   
         case "unlock": return (<LockOpen {...props}/>);
+        break;   
+        case "chart": return (<Chart {...props}/>);
         break;   
         default: return <></>;
     }

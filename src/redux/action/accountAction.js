@@ -239,11 +239,11 @@ export const getAllUser = () => async (dispatch) => {
         }))
         const accountRef = collection(db, 'Account');
         const result = await getDocs(accountRef);
+        await dispatch({
+            type: 'LAY_DU_LIEU_USER_ALL',
+            payload: result,
+        })
         setTimeout(async()=> {
-            await dispatch({
-                type: 'LAY_DU_LIEU_USER_ALL',
-                payload: result,
-            })
             dispatch(setLoading({
                 status: 'done'
             }))

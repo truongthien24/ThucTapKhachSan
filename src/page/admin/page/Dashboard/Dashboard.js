@@ -11,24 +11,20 @@ export const Dashboard = () => {
   const {t} = useTranslation();
 
   // State
-  const [listUser, setListUser] = useState([]);
-
-  useEffect(async()=> {
-    const res = await dispatch(getAllUserNotReducer());
-    console.log('result', res)
-    setListUser(res);
-  }, [])
+  const [segment, setSegment] = useState('Account');
 
   return (
-    <div>
+    <div className="h-full">
       <div className="h-[12%] flex justify-between items-center">
           <h3 className="text-[20px] text-[#3790c7] font-bold">{t('Dashboard')}</h3>
       </div>
       <div className="h-[8%]">
-        <Segmented block options={['Account', 'Booking', 'Customer']} />
+        <Segmented block options={['Account', 'Booking', 'Reaction']} onChange={(e=> {
+          setSegment(e)
+        })}/>
       </div>
       <div className="h-[80%]">
-        <DashboardArea listUser={listUser}/>
+        <DashboardArea segment={segment}/>
         {/* <Area {...config} /> */}
       </div>
     </div>

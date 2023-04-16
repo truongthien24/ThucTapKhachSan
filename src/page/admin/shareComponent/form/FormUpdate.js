@@ -13,16 +13,17 @@ import moment from 'moment';
 export const FormUpdate = (props) => {
 
     // Props
-    const { columns, methodCancel, validationSchema, methodSubmit, dataEdit } = props;
+    const { columns, methodCancel, validationSchema, methodSubmit, dataEdit, defaultValue = {} } = props;
 
     // Somethings
     const {t} = useTranslation();
     const dispatch = useDispatch();
 
+    console.log('defaultValue', defaultValue)
+
     // Form
     const {register, watch, setValue, getValues, formState: {errors}, handleSubmit, reset} = useForm({
         mode: 'onChange',
-        // defaultValues: {},
         resolver: yupResolver(validationSchema),
     })
 
@@ -32,8 +33,15 @@ export const FormUpdate = (props) => {
             columns.map((item)=> {
                 return setValue(`${item.name}`, dataEdit?.[item.name]);
             })
+            if(defaultValue) {
+                for(let i in defaultValue) {
+                    setValue(`${i}`, defaultValue[i]);
+                }
+            }
         }
     }, [dataEdit])
+
+    console.log('watch', watch());
 
     // Method
     const submitForm = async () => {

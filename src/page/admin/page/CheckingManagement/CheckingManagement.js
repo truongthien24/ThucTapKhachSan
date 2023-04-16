@@ -20,6 +20,7 @@ export const CheckingManagement = () => {
     const [dataEdit, setDataEdit] = useState({});
     const [isModalEditOpen, setIsModalEditOpen] = useState(false);
     const [dataPhong, setDataPhong] = useState([]);
+    const [defaultValue, setDefaultValue] = useState({});
 
     // Somethings
     const {t} = useTranslation();
@@ -53,7 +54,12 @@ export const CheckingManagement = () => {
 
     // Method
     const handleEdit = (data) => {
+        console.log('dât eidt', data)
         setDataEdit(data);
+        setDefaultValue({
+            email: data?.email,
+            tongGia: data?.tongGia
+        })
         setIsModalEditOpen(true);
     }
 
@@ -95,6 +101,7 @@ export const CheckingManagement = () => {
                         methodSubmit={updateBooking}
                         validationSchema={validationSchemaEditChecking}
                         dataEdit={dataEdit}
+                        defaultValue={defaultValue}
                     />
                 }
             />

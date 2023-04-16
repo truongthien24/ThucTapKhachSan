@@ -59,18 +59,18 @@ export const getAllBooking = () => async (dispatch) => {
 // Lấy dữ liệu tất cả phiếu đặt phòng 
 export const getAllBookingNoReducer = () => async (dispatch) => {
     try {
-        dispatch(setLoading({
-            status: 'isLoading'
-        }))
+        // dispatch(setLoading({
+        //     status: 'isLoading'
+        // }))
         const phieuDatPhongRef = collection(db, 'phieuDatPhong');
         const dataRef = await getDocs(phieuDatPhongRef);
             // dispatch({
             //     type: 'LAY_DU_LIEU_BOOKING',
             //     payload: dataRef.docs.map((item)=> ({...item.data(), id: item.id}))
             // })
-        dispatch(setLoading({
-            status: 'done'
-        }))
+        // dispatch(setLoading({
+        //     status: 'done'
+        // }))
         // }, 1000)
         return dataRef.docs.map((item)=> ({...item.data(), id: item.id}));
     } catch (error) {
@@ -149,25 +149,27 @@ export const updateBooking = (data) => async (dispatch) => {
                     }
                 }
             )}
-            await updateDoc(bookingRef, {...data.data, tinhTrang: a});
-            await updateDoc(phongRef, {...dataTest});
+            // await updateDoc(bookingRef, {...data.data, tinhTrang: a});
+            // await updateDoc(phongRef, {...dataTest});
             dispatch(setLoading({
                 status: 'done'
             }))
-            // emailjs.send('service_umni2zq', 'template_tzv75r5', {
-            //     name: `${data.data.hoTen}`,
-            //     email: `${data.data.email}`,
-            //     message: `Bạn đã đặt phòng thành công!. Mã phiếu ${data.data.id}. Phòng số ${data.data.soPhong}. Ngày nhận phòng ${data.data.ngayBatDauThue}. Thời gian ${data.data.soNgay} ngày. Tổng giá ${data.data.tongGia}VNĐ`
-            // }, 'aySwWgr_QCaZv1y1D', {
-            //     'username': 'James',
-            //     'g-recaptcha-response': '03AHJ_ASjnLA214KSNKFJAK12sfKASfehbmfd...'
-            // })
-            //     .then((result) => {
-            //         console.log(result.text);
-            //     }, (error) => {
-            //         console.log(error.text);
-            //     }
-            // );
+
+            console.log('data.data.email', data)
+            emailjs.send('service_umni2zq', 'template_tzv75r5', {
+                name: `${data.data.hoTen}`,
+                email: `${data.data.email}`,
+                message: `Bạn đã đặt phòng thành công!. Mã phiếu ${data.data.id}. Phòng số ${data.data.soPhong}. Ngày nhận phòng ${data.data.ngayBatDauThue}. Thời gian ${data.data.soNgay} ngày. Tổng giá ${data.data.tongGia}VNĐ`
+            }, 'aySwWgr_QCaZv1y1D', {
+                'username': 'James',
+                'g-recaptcha-response': '03AHJ_ASjnLA214KSNKFJAK12sfKASfehbmfd...'
+            })
+                .then((result) => {
+                    console.log(result.text);
+                }, (error) => {
+                    console.log(error.text);
+                }
+            );
             Swal.fire({
                 icon: 'success',
                 title: 'Cập nhật thành công !',

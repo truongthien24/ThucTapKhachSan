@@ -47,6 +47,7 @@ export const MainRoutes = () => {
               <Route path="checkingManagement" element={<CheckingManagement/>}/>
               <Route path="serviceManagement" element={<ServiceManagement/>}/>
               <Route path="login" element={<LoginAdmin/>}/>
+              <Route path="*" element={<div>Page not found</div>}/>
             </Route>
         </Routes>
     </div>

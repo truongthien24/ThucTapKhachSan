@@ -255,14 +255,14 @@ export const getAllUser = () => async (dispatch) => {
 
 export const getAllUserNotReducer = () => async (dispatch) => {
     try {
-        dispatch(setLoading({
-            status: 'isLoading'
-        }))
+        // dispatch(setLoading({
+        //     status: 'isLoading'
+        // }))
         const accountRef = collection(db, 'Account');
         const result = await getDocs(accountRef);
-        dispatch(setLoading({
-            status: 'done'
-        }))
+        // dispatch(setLoading({
+        //     status: 'done'
+        // }))
         return result.docs.map((item)=>({...item.data(), id: item.id}));
     } catch (error) {
         // console.log(error)

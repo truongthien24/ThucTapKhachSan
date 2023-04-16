@@ -149,13 +149,13 @@ export const updateBooking = (data) => async (dispatch) => {
                     }
                 }
             )}
-            // await updateDoc(bookingRef, {...data.data, tinhTrang: a});
-            // await updateDoc(phongRef, {...dataTest});
+            await updateDoc(bookingRef, {...data.data, tinhTrang: a});
+            await updateDoc(phongRef, {...dataTest});
             dispatch(setLoading({
                 status: 'done'
             }))
 
-            console.log('data.data.email', data)
+            console.log('data.data.email', data.data.email)
             emailjs.send('service_umni2zq', 'template_tzv75r5', {
                 name: `${data.data.hoTen}`,
                 email: `${data.data.email}`,

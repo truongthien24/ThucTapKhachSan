@@ -154,28 +154,20 @@ export const updateBooking = (data) => async (dispatch) => {
             dispatch(setLoading({
                 status: 'done'
             }))
-            emailjs.send('service_umni2zq', 'template_tzv75r5', {
-                name: `${data.data.hoTen}`,
-                email: `${data.data.email}`,
-                message: 
-                // <html>
-                //     <body>
-                //         {
-                            `Bạn đã đặt phòng thành công!. Mã phiếu ${data.data.id}. Phòng số ${data.data.soPhong}. Ngày nhận phòng ${data.data.ngayBatDauThue}. Thời gian ${data.data.soNgay} ngày. Tổng giá ${data.data.tongGia}VNĐ`
-                //         }
-                //         <img src="cid:fly.png"/>
-                //     </body>
-                // </html>
-            }, 'aySwWgr_QCaZv1y1D', {
-                'username': 'James',
-                'g-recaptcha-response': '03AHJ_ASjnLA214KSNKFJAK12sfKASfehbmfd...'
-            })
-                .then((result) => {
-                    console.log(result.text);
-                }, (error) => {
-                    console.log(error.text);
-                }
-            );
+            // emailjs.send('service_umni2zq', 'template_tzv75r5', {
+            //     name: `${data.data.hoTen}`,
+            //     email: `${data.data.email}`,
+            //     message: `Bạn đã đặt phòng thành công!. Mã phiếu ${data.data.id}. Phòng số ${data.data.soPhong}. Ngày nhận phòng ${data.data.ngayBatDauThue}. Thời gian ${data.data.soNgay} ngày. Tổng giá ${data.data.tongGia}VNĐ`
+            // }, 'aySwWgr_QCaZv1y1D', {
+            //     'username': 'James',
+            //     'g-recaptcha-response': '03AHJ_ASjnLA214KSNKFJAK12sfKASfehbmfd...'
+            // })
+            //     .then((result) => {
+            //         console.log(result.text);
+            //     }, (error) => {
+            //         console.log(error.text);
+            //     }
+            // );
             Swal.fire({
                 icon: 'success',
                 title: 'Cập nhật thành công !',
